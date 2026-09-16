@@ -1,0 +1,19 @@
+# Approximate stack for the 2023 GPU scripts in the repo root.
+# Versions were never frozen; these names match the imports.
+#
+# The offline examples under examples/ need none of this — stdlib only.
+
+torch
+transformers
+datasets
+evaluate
+accelerate
+sentencepiece
+protobuf
+ctranslate2
+pandas
+numpy
+nltk
+tqdm
+rouge-score
+bert-score
