@@ -162,6 +162,9 @@ Training-time selection uses ROUGE-1 mid F on the silver validation CSV. Final r
 - [Personal notes index](notes/README.md)
 - [2023 retrospective](notes/personal-retrospective-2023.md)
 - [Metric notes](notes/metric-notes.md)
+- [Models and data catalog](notes/models-and-data.md)
+- [Error-analysis plan](notes/error-analysis-plan.md)
+- [Run log template](notes/run-log-template.md)
 
 ## Status of this tree
 

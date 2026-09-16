@@ -1,0 +1,29 @@
+# Local environments
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.Python
+.ipynb_checkpoints/
+
+# Hub / training caches that should stay on the machine
+.cache/
+*.pt
+*.bin
+*.safetensors
+
+# Pipeline artifacts (never committed in 2023; keep it that way)
+models/
+small_model/
+large_model/
+mt5-summarize-large/
+datasets/*.csv
+10000_articles_without_linebreaks.csv
+translated_articles.csv
+summarized_file_*.csv
+labeled_dataset_*.csv
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
