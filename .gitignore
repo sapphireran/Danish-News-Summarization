@@ -1,0 +1,30 @@
+# Local course-project artifacts (models and generated CSVs stay off git)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+.ipynb_checkpoints/
+
+# Downloaded / converted models and trainer output
+models/
+large_model/
+small_model/
+mt5-summarize-*/
+*.bin
+*.safetensors
+*.pt
+*.ckpt
+
+# Generated pipeline CSVs at the repo root (keep the curated examples/)
+/*.csv
+datasets/
+examples/output/
+
+# Test / tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
