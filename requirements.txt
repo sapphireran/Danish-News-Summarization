@@ -1,0 +1,18 @@
+# Personal reconstruction of imports from the 2023 scripts.
+# Not a freeze file. Versions were never recorded on the course machine.
+# Install on Linux + CUDA if you intend to fine-tune mT5-large.
+
+torch
+transformers
+datasets
+evaluate
+accelerate
+sentencepiece
+protobuf
+numpy
+pandas
+nltk
+tqdm
+ctranslate2
+rouge-score
+bert-score
