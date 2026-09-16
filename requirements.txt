@@ -1,0 +1,12 @@
+# 2023 training / eval stack. Not required for the study kit.
+torch
+transformers
+datasets
+evaluate
+nltk
+pandas
+numpy
+ctranslate2
+tqdm
+rouge-score
+bert-score
