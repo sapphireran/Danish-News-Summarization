@@ -1,0 +1,7 @@
+# Lightweight extras for docs/examples and the local pytest suite.
+# No GPU, no CTranslate2, no Hugging Face model downloads.
+
+nltk>=3.8.1
+pandas>=2.0.0
+numpy>=1.24.0
+pytest>=7.4.0

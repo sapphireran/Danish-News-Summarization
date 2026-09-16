@@ -1,0 +1,19 @@
+# Full research pipeline (ITU 2023 project scripts at repo root).
+# Pin loosely: the original course work used Transformers 4.x + datasets 2.x.
+# Install a CUDA build of torch that matches your driver before this file
+# if you intend to fine-tune or evaluate on GPU.
+
+torch>=2.0.0
+transformers>=4.30.0,<5
+ctranslate2>=3.16.0
+nltk>=3.8.1
+pandas>=2.0.0
+numpy>=1.24.0
+tqdm>=4.65.0
+datasets>=2.14.0
+evaluate>=0.4.0
+accelerate>=0.21.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+rouge-score>=0.1.2
+bert-score>=0.3.13

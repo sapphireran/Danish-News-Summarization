@@ -1,0 +1,41 @@
+# Local virtual environments and Python caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editor and OS noise
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Downloaded and converted models (large binaries)
+models/
+**/nllb-*
+**/opus-mt-*
+large_model/
+small_model/
+mt5-summarize-large/
+mt5-summarize-small/
+
+# Generated pipeline artifacts (keep examples/data committed)
+*.csv
+!examples/data/*.csv
+datasets/
+runs/
+outputs/
+wandb/
+lightning_logs/
+
+# Hugging Face / NLTK local caches if someone dumps them in-repo
+hf_cache/
+nltk_data/
