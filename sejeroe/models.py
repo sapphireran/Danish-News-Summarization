@@ -63,6 +63,7 @@ class Article:
     connectives_da: tuple[str, ...]
     planted: tuple[PlantedError, ...]
     split: str  # train / validation / test
+    figures: tuple[str, ...] = ()  # clocks, counts, kroner the manchet must not invent
 
     @property
     def lead_da(self) -> str:

@@ -91,6 +91,7 @@ ARTICLES: tuple[Article, ...] = (
                 note="Keeps the event but strips the manchet's time.",
             ),
         ),
+        figures=("18.30", "15 meter", "40"),
     ),
     Article(
         id="SEJ-002",
@@ -165,6 +166,7 @@ ARTICLES: tuple[Article, ...] = (
                 note="Flips the enrolment argument from too few to too many.",
             ),
         ),
+        figures=("27", "118", "1,2 millioner"),
     ),
     Article(
         id="SEJ-003",
@@ -237,6 +239,7 @@ ARTICLES: tuple[Article, ...] = (
                 note="Drops an order of magnitude from the dredge volume.",
             ),
         ),
+        figures=("12.000", "12 meter", "tre uger"),
     ),
     Article(
         id="SEJ-004",
@@ -309,6 +312,7 @@ ARTICLES: tuple[Article, ...] = (
                 note="Same silver text: the quote never entered the T5-like hop.",
             ),
         ),
+        figures=("150 meter", "80 procent"),
     ),
     Article(
         id="SEJ-005",
@@ -382,6 +386,7 @@ ARTICLES: tuple[Article, ...] = (
                 note="Turns a winter cut into an expansion and flips the sales figure.",
             ),
         ),
+        figures=("1. november", "kl. 17", "22 procent", "otte kunder"),
     ),
     Article(
         id="SEJ-006",
@@ -455,6 +460,7 @@ ARTICLES: tuple[Article, ...] = (
                 note="Drops Saturday and 11 o'clock from the manchet.",
             ),
         ),
+        figures=("1,8 millioner", "3.000", "800 liter", "kl. 11"),
     ),
     Article(
         id="SEJ-007",
@@ -527,6 +533,7 @@ ARTICLES: tuple[Article, ...] = (
                 note="Replaces the warden with the mayor, who is not in this brief.",
             ),
         ),
+        figures=("2,4 millioner", "to uger"),
     ),
     Article(
         id="SEJ-008",
@@ -600,6 +607,7 @@ ARTICLES: tuple[Article, ...] = (
                 note="Contradicts the ranger: the quote said the seals are not ill.",
             ),
         ),
+        figures=("14", "100 meter", "to hvalpe"),
     ),
 )
 

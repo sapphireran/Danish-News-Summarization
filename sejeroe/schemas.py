@@ -20,6 +20,7 @@ PUBLIC_EVAL_COLUMNS = ("input_text", "target_text", "text_len", "summary_len")
 SLOT_COLUMNS = ("id", "who", "what", "when", "where", "why", "how")
 PLANTED_COLUMNS = ("id", "kind", "summary", "dropped_slots", "note")
 ORACLE_COLUMNS = ("id", "body", "summary", "oracle")
+FIGURE_COLUMNS = ("id", "figures")
 
 
 @dataclass(frozen=True)
@@ -84,6 +85,12 @@ SCHEMAS: tuple[Schema, ...] = (
         ORACLE_COLUMNS,
         "(desk only)",
         "Silver Danish next to a human oracle manchet.",
+    ),
+    Schema(
+        "figures",
+        FIGURE_COLUMNS,
+        "(desk only)",
+        "Gold clocks, counts, and kroner for stylebook gates.",
     ),
 )
 

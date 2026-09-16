@@ -35,6 +35,17 @@ def _check_articles() -> list[str]:
             problems.append(f"{article.id}: missing quote")
         if not article.connectives_da:
             problems.append(f"{article.id}: missing connective list")
+        if not article.figures:
+            problems.append(f"{article.id}: missing gold figures")
+        da_sents = split_sentences(article.body_da)
+        en_sents = split_sentences(article.body_en)
+        if len(da_sents) != len(en_sents):
+            problems.append(
+                f"{article.id}: DA/EN sentence counts differ ({len(da_sents)} vs {len(en_sents)})"
+            )
+        for figure in article.figures:
+            if not contains_phrase(article.body_da, figure):
+                problems.append(f"{article.id}: figure {figure!r} missing from Danish body")
         for error in article.planted:
             if error.summary_da.strip() == article.summary_da.strip() and error.kind != "quote-loss":
                 problems.append(f"{article.id}: planted {error.kind} equals the silver label")
@@ -55,6 +66,7 @@ def _check_csv_headers(directory: Path) -> list[str]:
         "slot_cards": "06_slot_cards.csv",
         "planted_errors": "07_planted_errors.csv",
         "oracle_labels": "03_oracle_labels.csv",
+        "figures": "08_figures.csv",
     }
     for schema in SCHEMAS:
         filename = mapping.get(schema.name)

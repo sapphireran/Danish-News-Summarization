@@ -7,6 +7,9 @@ import json
 import sys
 from pathlib import Path
 
+from sejeroe.align import align_article
+from sejeroe.baseline import baselines_for, comparison_table
+from sejeroe.cards import write_cards
 from sejeroe.corpus import write_corpus
 from sejeroe.fixtures import ARTICLES, article_by_id
 from sejeroe.hops import hop_records
@@ -16,6 +19,7 @@ from sejeroe.metrics import planted_blind_spots, score_article
 from sejeroe.packing import PRESETS, pack_report_rows, pack_text
 from sejeroe.paths import DATA_DIR
 from sejeroe.report import build_text_report, write_reports
+from sejeroe.stylebook import grade
 from sejeroe.tokenize import LengthNotion
 from sejeroe.validate import require_valid, validate
 
@@ -148,10 +152,80 @@ def cmd_validate(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_baseline(args: argparse.Namespace) -> int:
+    articles = [article_by_id(args.id)] if args.id else list(ARTICLES)
+    _print(
+        f"{'id':8} {'lead1_m':>8} {'silver_m':>9} {'oracle_m':>9} "
+        f"{'lead1_s':>8} {'silver_s':>9} {'lead1>sil':>9}"
+    )
+    for article in articles:
+        row = comparison_table(article)
+        _print(
+            f"{row['article_id']:8} {row['lead1_manchet']:8.2f} {row['silver_manchet']:9.2f} "
+            f"{row['oracle_manchet']:9.2f} {row['lead1_slots']:8.2f} {row['silver_slots']:9.2f} "
+            f"{str(row['lead1_beats_silver_manchet']):>9}"
+        )
+        if args.id:
+            for item in baselines_for(article):
+                _print(f"  {item.name:10} {item.text}")
+    return 0
+
+
+def cmd_gates(args: argparse.Namespace) -> int:
+    articles = [article_by_id(args.id)] if args.id else list(ARTICLES)
+    role = args.role
+    for article in articles:
+        text = {
+            "silver_da": article.summary_da,
+            "oracle_da": article.oracle_da,
+            "lead1_da": article.lead_da,
+        }[role]
+        book = grade(article, text, role)
+        _print(
+            f"{article.id}  {role}  {book.passed}/{book.total}  "
+            f"fail={list(book.failed) or '-'}"
+        )
+        if args.id:
+            for gate in book.gates:
+                mark = "ok" if gate.passed else "FAIL"
+                _print(f"  [{mark:4}] {gate.name}: {gate.detail}")
+    return 0
+
+
+def cmd_align(args: argparse.Namespace) -> int:
+    article = article_by_id(args.id) if args.id else ARTICLES[0]
+    alignment = align_article(article)
+    _print(
+        f"{article.id} aligned={alignment.aligned} "
+        f"pairs={len(alignment.pairs)} quote_i={alignment.quote_index}"
+    )
+    for pair in alignment.pairs:
+        flag = " quote" if pair.is_quote else ""
+        _print(
+            f"  [{pair.index}] da={pair.da_words}w en={pair.en_words}w "
+            f"x{pair.word_ratio:.2f} sub x{pair.subword_ratio:.2f}{flag}"
+        )
+        _print(f"      DA: {pair.danish}")
+        _print(f"      EN: {pair.english}")
+    if alignment.leftover_da or alignment.leftover_en:
+        _print(f"  leftover_da={list(alignment.leftover_da)}")
+        _print(f"  leftover_en={list(alignment.leftover_en)}")
+        return 1
+    return 0
+
+
+def cmd_cards(_: argparse.Namespace) -> int:
+    written = write_cards()
+    for name, path in written.items():
+        _print(f"{name}: {path}")
+    return 0
+
+
 def cmd_all(args: argparse.Namespace) -> int:
     cmd_hops(args)
     require_valid(Path(args.out) if args.out else DATA_DIR)
     cmd_report(args)
+    cmd_cards(args)
     cmd_notes(args)
     return 0
 
@@ -204,9 +278,29 @@ def build_parser() -> argparse.ArgumentParser:
     validate_cmd.add_argument("--out", default="")
     validate_cmd.set_defaults(func=cmd_validate)
 
-    all_cmd = sub.add_parser("all", help="Write hops, validate, and render reports")
+    all_cmd = sub.add_parser("all", help="Write hops, validate, reports, and cards")
     all_cmd.add_argument("--out", default="")
     all_cmd.set_defaults(func=cmd_all)
+
+    baseline = sub.add_parser("baseline", help="Extractive lead-1/lead-2 vs silver vs oracle")
+    baseline.add_argument("--id", default="")
+    baseline.set_defaults(func=cmd_baseline)
+
+    gates = sub.add_parser("gates", help="Night-editor stylebook gates")
+    gates.add_argument("--id", default="")
+    gates.add_argument(
+        "--role",
+        default="silver_da",
+        choices=("silver_da", "oracle_da", "lead1_da"),
+    )
+    gates.set_defaults(func=cmd_gates)
+
+    align = sub.add_parser("align", help="Pair Danish and English sentences")
+    align.add_argument("--id", default="SEJ-001")
+    align.set_defaults(func=cmd_align)
+
+    cards = sub.add_parser("cards", help="Write per-brief markdown cards")
+    cards.set_defaults(func=cmd_cards)
     return parser
 
 

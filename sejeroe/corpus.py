@@ -9,6 +9,7 @@ from sejeroe.fixtures import ARTICLES
 from sejeroe.models import Article
 from sejeroe.paths import DATA_DIR, ensure_output_dirs
 from sejeroe.schemas import (
+    FIGURE_COLUMNS,
     FINETUNE_COLUMNS,
     LABELED_COLUMNS,
     ORACLE_COLUMNS,
@@ -113,4 +114,9 @@ def write_corpus(directory: Path | None = None) -> dict[str, Path]:
                 }
             )
     dump("07_planted_errors.csv", PLANTED_COLUMNS, planted_rows)
+    dump(
+        "08_figures.csv",
+        FIGURE_COLUMNS,
+        [{"id": item.id, "figures": "; ".join(item.figures)} for item in ARTICLES],
+    )
     return written

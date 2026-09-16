@@ -5,12 +5,14 @@ from __future__ import annotations
 import html
 from pathlib import Path
 
+from sejeroe.baseline import comparison_table
 from sejeroe.fixtures import ARTICLES
 from sejeroe.length import pair_lengths
 from sejeroe.manchet import score_manchet
 from sejeroe.metrics import planted_blind_spots, score_article
 from sejeroe.packing import PRESETS, pack_text
 from sejeroe.paths import GENERATED_DOCS, REPORT_DIR, ensure_output_dirs
+from sejeroe.stylebook import grade
 from sejeroe.tokenize import LengthNotion
 
 
@@ -80,6 +82,27 @@ def build_text_report() -> str:
         )
     lines.append("")
 
+    lines.append("Extractive lead-1 vs silver vs oracle (manchet coverage)")
+    lines.append("-------------------------------------------------------")
+    for article in ARTICLES:
+        row = comparison_table(article)
+        beat = "lead1 wins" if row["lead1_beats_silver_manchet"] else "silver holds"
+        lines.append(
+            f"{article.id}  lead1={row['lead1_manchet']:.2f}  silver={row['silver_manchet']:.2f}  "
+            f"oracle={row['oracle_manchet']:.2f}  slots lead1={row['lead1_slots']:.2f}/"
+            f"silver={row['silver_slots']:.2f}  {beat}"
+        )
+    lines.append("")
+
+    lines.append("Stylebook gates on the Danish silver label")
+    lines.append("-----------------------------------------")
+    for article in ARTICLES:
+        book = grade(article, article.summary_da, "silver_da")
+        lines.append(
+            f"{article.id}  {book.passed}/{book.total}  fail={list(book.failed) or '-'}"
+        )
+    lines.append("")
+
     lines.append("Packing windows on the Danish body")
     lines.append("----------------------------------")
     for article in ARTICLES:
@@ -137,6 +160,30 @@ def build_html_report() -> str:
             "</article>"
         )
 
+    baseline_rows = []
+    gate_rows = []
+    for article in ARTICLES:
+        row = comparison_table(article)
+        baseline_rows.append(
+            "<tr>"
+            f"<td>{html.escape(article.id)}</td>"
+            f"<td>{row['lead1_manchet']:.2f}</td>"
+            f"<td>{row['silver_manchet']:.2f}</td>"
+            f"<td>{row['oracle_manchet']:.2f}</td>"
+            f"<td>{row['lead1_slots']:.2f}</td>"
+            f"<td>{row['silver_slots']:.2f}</td>"
+            f"<td>{'yes' if row['lead1_beats_silver_manchet'] else 'no'}</td>"
+            "</tr>"
+        )
+        book = grade(article, article.summary_da, "silver_da")
+        gate_rows.append(
+            "<tr>"
+            f"<td>{html.escape(article.id)}</td>"
+            f"<td>{book.passed}/{book.total}</td>"
+            f"<td>{html.escape(', '.join(book.failed) or '—')}</td>"
+            "</tr>"
+        )
+
     return f"""<!DOCTYPE html>
 <html lang="da">
 <head>
@@ -166,6 +213,27 @@ def build_html_report() -> str:
     </thead>
     <tbody>
       {''.join(text_rows)}
+    </tbody>
+  </table>
+  <h2>Extractive lead-1 vs silver</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>id</th><th>lead1 manchet</th><th>silver manchet</th><th>oracle manchet</th>
+        <th>lead1 slots</th><th>silver slots</th><th>lead1 wins manchet</th>
+      </tr>
+    </thead>
+    <tbody>
+      {''.join(baseline_rows)}
+    </tbody>
+  </table>
+  <h2>Stylebook (silver)</h2>
+  <table>
+    <thead>
+      <tr><th>id</th><th>gates</th><th>failed</th></tr>
+    </thead>
+    <tbody>
+      {''.join(gate_rows)}
     </tbody>
   </table>
   <h2>Planted errors</h2>
