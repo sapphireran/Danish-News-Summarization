@@ -1,0 +1,40 @@
+# Local environments
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Model and Hub caches (stay on the machine)
+.cache/
+*.pt
+*.bin
+*.safetensors
+*.onnx
+
+# 2023 pipeline artifacts — never committed then, still not now
+models/
+small_model/
+large_model/
+mt5-summarize-large/
+datasets/*.csv
+!examples/data/splits/*.csv
+10000_articles_without_linebreaks.csv
+translated_articles.csv
+summarized_file_*.csv
+labeled_dataset_*.csv
+
+# Toy-pipeline scratch output
+examples/output/
+/tmp-dns-*/
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
+*~

@@ -1,0 +1,19 @@
+# Reconstructed from imports in the December 2023 root scripts.
+# Not a freeze file. Versions were never recorded on the course machine.
+# Needed only to re-run translate.py / finetune.py / eval.py.
+# The examples/ folder and tests/ need nothing beyond CPython 3.11+.
+
+torch
+transformers
+datasets
+evaluate
+accelerate
+sentencepiece
+protobuf
+numpy
+pandas
+nltk
+tqdm
+ctranslate2
+rouge-score
+bert-score
