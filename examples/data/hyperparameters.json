@@ -1,0 +1,62 @@
+{
+  "source_script": "finetune.py",
+  "base_model": "google/mt5-large",
+  "output_dir": "mt5-summarize-large",
+  "final_export": "./large_model",
+  "data": {
+    "train": "datasets/train_dataset.csv",
+    "validation": "datasets/validation_dataset.csv",
+    "test": "datasets/test_dataset.csv",
+    "text_column": "body",
+    "summary_column": "summary",
+    "encoder_max_length": 1024,
+    "decoder_max_length": 128,
+    "tokenize_batch_size": 128
+  },
+  "generation_config": {
+    "min_length": 9,
+    "max_length": 128,
+    "length_penalty": 0.8,
+    "no_repeat_ngram_size": 3,
+    "num_beams": 4,
+    "dropout_rate": 0.1
+  },
+  "training_arguments": {
+    "num_train_epochs": 20,
+    "learning_rate": 0.0003,
+    "lr_scheduler_type": "polynomial",
+    "warmup_steps": 1000,
+    "optim": "adafactor",
+    "weight_decay": 0.01,
+    "per_device_train_batch_size": 8,
+    "per_device_eval_batch_size": 8,
+    "gradient_accumulation_steps": 1,
+    "evaluation_strategy": "epoch",
+    "save_strategy": "epoch",
+    "predict_with_generate": true,
+    "generation_max_length": 128,
+    "save_steps": 100,
+    "logging_steps": 250,
+    "push_to_hub": false,
+    "fp16": true,
+    "load_best_model_at_end": true,
+    "metric_for_best_model": "rouge_1_mid_fmeasure",
+    "save_total_limit": 1,
+    "log_level": "error"
+  },
+  "english_labeler": {
+    "source_script": "summary.py",
+    "model": "mrm8488/t5-base-finetuned-summarize-news",
+    "text_max_length": 512,
+    "num_beams": 2,
+    "max_length": 80,
+    "repetition_penalty": 5.0,
+    "length_penalty": 1.0,
+    "early_stopping": true
+  },
+  "notes": [
+    "eval.py and use_model.py load small_model / google/mt5-small, not large_model.",
+    "The test CSV is loaded in finetune.py but not passed to Seq2SeqTrainer.",
+    "These values are a structured copy of the 2023 scripts, not a recommendation."
+  ]
+}
