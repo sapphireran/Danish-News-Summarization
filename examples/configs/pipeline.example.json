@@ -1,0 +1,53 @@
+{
+  "comment": "Mirrors the hardcoded paths and knobs in the 2023 course scripts. This file is documentation for the examples; the original .py files do not load it.",
+  "conversion": {
+    "script": "Ctranslate_converter.py",
+    "models": [
+      {
+        "huggingface_id": "Helsinki-NLP/opus-mt-da-en",
+        "output_dir": "models/opus-mt-da-en_ct2",
+        "enabled_in_committed_script": false
+      },
+      {
+        "huggingface_id": "Helsinki-NLP/opus-mt-en-da",
+        "output_dir": "models/opus-mt-en-da_ct2",
+        "enabled_in_committed_script": true
+      }
+    ]
+  },
+  "translate_da_en": {
+    "script": "translate.py",
+    "input": "10000_articles_without_linebreaks.csv",
+    "output": "translated_articles.csv",
+    "model_path": "models/opus-mt-da-en_ct2",
+    "tokenizer": "Helsinki-NLP/opus-mt-da-en",
+    "max_length": 512,
+    "text_max_length_ratio": 0.9,
+    "input_columns": ["id", "article text"],
+    "output_columns": ["id", "body", "translated"]
+  },
+  "summarize_en": {
+    "script": "summary.py",
+    "input": "translated_articles.csv",
+    "output": "summarized_file_ml80_rp5.0.csv",
+    "model": "mrm8488/t5-base-finetuned-summarize-news",
+    "text_max_length": 512,
+    "generate": {
+      "num_beams": 2,
+      "max_length": 80,
+      "repetition_penalty": 5.0,
+      "length_penalty": 1.0,
+      "early_stopping": true
+    },
+    "debug_row_slice": "[:10]"
+  },
+  "translate_en_da": {
+    "script": "translate_back.py",
+    "input": "summarized_file_ml80_rp5.0.csv",
+    "output": "labeled_dataset_ml80_rp5.0.csv",
+    "model_path": "models/opus-mt-en-da_ct2",
+    "tokenizer": "Helsinki-NLP/opus-mt-en-da",
+    "max_length": 512,
+    "text_max_length_ratio": 0.9
+  }
+}

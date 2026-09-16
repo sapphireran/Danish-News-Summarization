@@ -1,0 +1,65 @@
+{
+  "comment": "Hyperparameters copied from finetune.py / eval.py / use_model.py.",
+  "finetune": {
+    "script": "finetune.py",
+    "base_model": "google/mt5-large",
+    "train": "datasets/train_dataset.csv",
+    "validation": "datasets/validation_dataset.csv",
+    "test": "datasets/test_dataset.csv",
+    "columns": ["id", "body", "summary"],
+    "tokenize": {
+      "body_max_length": 1024,
+      "summary_max_length": 128,
+      "batch_size": 128
+    },
+    "generation_config": {
+      "min_length": 9,
+      "max_length": 128,
+      "length_penalty": 0.8,
+      "no_repeat_ngram_size": 3,
+      "num_beams": 4,
+      "dropout_rate": 0.1
+    },
+    "trainer": {
+      "output_dir": "mt5-summarize-large",
+      "num_train_epochs": 20,
+      "learning_rate": 0.0003,
+      "lr_scheduler_type": "polynomial",
+      "warmup_steps": 1000,
+      "optim": "adafactor",
+      "weight_decay": 0.01,
+      "per_device_train_batch_size": 8,
+      "per_device_eval_batch_size": 8,
+      "gradient_accumulation_steps": 1,
+      "evaluation_strategy": "epoch",
+      "save_strategy": "epoch",
+      "predict_with_generate": true,
+      "generation_max_length": 128,
+      "fp16": true,
+      "load_best_model_at_end": true,
+      "metric_for_best_model": "rouge_1_mid_fmeasure",
+      "save_total_limit": 1
+    },
+    "export_dir": "./large_model"
+  },
+  "inspect_predictions": {
+    "script": "use_model.py",
+    "tokenizer_name": "google/mt5-small",
+    "local_model_path": "small_model",
+    "dataset": "ScandEval/nordjylland-news-summarization-mini",
+    "split": "test",
+    "columns": ["input_text", "target_text", "text_len", "summary_len"]
+  },
+  "evaluate": {
+    "script": "eval.py",
+    "tokenizer_name": "google/mt5-small",
+    "local_model_path": "small_model",
+    "dataset": "alexandrainst/nordjylland-news-summarization",
+    "split": "test",
+    "metrics": ["rouge", "bertscore"],
+    "bertscore": {
+      "lang": "da",
+      "model_type": "xlm-roberta-large"
+    }
+  }
+}

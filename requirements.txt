@@ -1,0 +1,22 @@
+# Approximate stack for the 2023 neural scripts at the repo root.
+# The offline examples and tests do not need this file.
+
+# Core
+torch
+transformers>=4.30,<4.45
+datasets>=2.14,<3.0
+evaluate
+accelerate
+sentencepiece
+protobuf
+numpy
+pandas
+tqdm
+nltk
+
+# Translation
+ctranslate2
+
+# Metrics used by finetune.py / eval.py
+rouge-score
+bert-score
