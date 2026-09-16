@@ -1,0 +1,4 @@
+# Optional extras for notebooks that load the sample CSVs.
+# CPU demos and unit tests use the standard library only.
+
+pandas>=2.0
