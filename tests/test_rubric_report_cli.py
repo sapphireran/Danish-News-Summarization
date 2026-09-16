@@ -37,7 +37,7 @@ class ReportTests(unittest.TestCase):
     def test_html_contains_expected_anchors(self) -> None:
         html = build_report_html()
         self.assertIn("<!DOCTYPE html>", html)
-        self.assertIn("id='lab-01'", html)
+        self.assertIn('id="lab-01"', html)
         self.assertIn('id="means"', html)
         self.assertIn('id="catalog"', html)
         self.assertIn("err-02", html)

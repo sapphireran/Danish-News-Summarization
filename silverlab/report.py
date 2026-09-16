@@ -25,19 +25,21 @@ CSS = """
   --bad: #9f1239;
 }
 * { box-sizing: border-box; }
+html { font-size: 18px; }
 body {
   margin: 0;
-  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   background: var(--paper);
   color: var(--ink);
-  line-height: 1.5;
+  line-height: 1.55;
+  word-spacing: 0.04em;
 }
 header {
   padding: 2.4rem 8vw 1.4rem;
   border-bottom: 1px solid var(--rule);
 }
 header p { max-width: 46rem; color: var(--muted); }
-h1, h2, h3 { font-weight: 650; letter-spacing: -0.02em; }
+h1, h2, h3 { font-weight: 600; }
 main { padding: 1.5rem 8vw 4rem; }
 section { margin: 2.4rem 0; }
 table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
@@ -51,7 +53,7 @@ th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; colo
   margin: 0.9rem 0;
 }
 .muted { color: var(--muted); }
-.kicker { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.kicker { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
 .score-hi { color: var(--good); font-variant-numeric: tabular-nums; }
 .score-mid { color: var(--mid); font-variant-numeric: tabular-nums; }
 .score-lo { color: var(--bad); font-variant-numeric: tabular-nums; }
@@ -93,9 +95,9 @@ def build_report_html() -> str:
             rows.append(
                 "<tr>"
                 f"<td><code>{_esc(name)}</code></td>"
-                f"<td class='{_score_class(r1)}'>{_fmt(r1)}</td>"
-                f"<td class='{_score_class(metrics['rouge2_fmeasure'])}'>{_fmt(metrics['rouge2_fmeasure'])}</td>"
-                f"<td class='{_score_class(metrics['rougeL_fmeasure'])}'>{_fmt(metrics['rougeL_fmeasure'])}</td>"
+                f'<td class="{_score_class(r1)}">{_fmt(r1)}</td>'
+                f'<td class="{_score_class(metrics["rouge2_fmeasure"])}">{_fmt(metrics["rouge2_fmeasure"])}</td>'
+                f'<td class="{_score_class(metrics["rougeL_fmeasure"])}">{_fmt(metrics["rougeL_fmeasure"])}</td>'
                 f"<td>{_esc(result.summary)}</td>"
                 "</tr>"
             )
@@ -111,16 +113,16 @@ def build_report_html() -> str:
             )
             + "</ul>"
             if errors
-            else "<p class='muted'>No catalogued hop errors on this brief.</p>"
+            else '<p class="muted">No catalogued hop errors on this brief.</p>'
         )
         article_blocks.append(
-            f"<article class='card' id='{_esc(brief.id)}'>"
-            f"<div class='kicker'>{_esc(brief.id)} · {_esc(brief.topic)}</div>"
+            f'<article class="card" id="{_esc(brief.id)}">'
+            f'<div class="kicker">{_esc(brief.id)} · {_esc(brief.topic)}</div>'
             f"<h3>{_esc(brief.title)}</h3>"
             f"<p>{_esc(brief.article_text)}</p>"
             f"<p><strong>Gold extractive.</strong> {_esc(brief.gold_extractive)}</p>"
             f"<p><strong>Gold abstractive.</strong> {_esc(brief.gold_abstractive)}</p>"
-            f"<p class='muted'>Lead-2 rubric mean {rubric.mean:.2f} "
+            f'<p class="muted">Lead-2 rubric mean {rubric.mean:.2f} '
             f"(faith {rubric.faithfulness}, cov {rubric.coverage}, "
             f"flu {rubric.fluency}, conc {rubric.conciseness}, da {rubric.danish_naturalness})</p>"
             "<table><thead><tr><th>Baseline</th><th>R1 F</th><th>R2 F</th><th>RL F</th><th>Summary</th></tr></thead>"
@@ -135,9 +137,9 @@ def build_report_html() -> str:
         mean_rows.append(
             "<tr>"
             f"<td><code>{_esc(name)}</code></td>"
-            f"<td class='{_score_class(means['rouge1_fmeasure'])}'>{_fmt(means['rouge1_fmeasure'])}</td>"
-            f"<td class='{_score_class(means['rouge2_fmeasure'])}'>{_fmt(means['rouge2_fmeasure'])}</td>"
-            f"<td class='{_score_class(means['rougeL_fmeasure'])}'>{_fmt(means['rougeL_fmeasure'])}</td>"
+            f'<td class="{_score_class(means["rouge1_fmeasure"])}">{_fmt(means["rouge1_fmeasure"])}</td>'
+            f'<td class="{_score_class(means["rouge2_fmeasure"])}">{_fmt(means["rouge2_fmeasure"])}</td>'
+            f'<td class="{_score_class(means["rougeL_fmeasure"])}">{_fmt(means["rougeL_fmeasure"])}</td>'
             "</tr>"
         )
 
@@ -146,7 +148,7 @@ def build_report_html() -> str:
         catalog_rows.append(
             "<tr>"
             f"<td><code>{_esc(item.id)}</code></td>"
-            f"<td><a href='#{_esc(item.article_id)}'>{_esc(item.article_id)}</a></td>"
+            f'<td><a href="#{_esc(item.article_id)}">{_esc(item.article_id)}</a></td>'
             f"<td>{_esc(', '.join(item.codes))}</td>"
             f"<td>{item.severity}</td>"
             f"<td>{_esc(item.source_span)}</td>"
