@@ -1,0 +1,37 @@
+# Generated pipeline artifacts (real news, not the synthetic fixtures)
+10000_articles_without_linebreaks.csv
+translated_articles.csv
+summarized_file_*.csv
+labeled_dataset_*.csv
+datasets/*.csv
+
+# Model weights and conversion output
+models/
+large_model/
+small_model/
+mt5-summarize-large/
+
+# Python / tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+
+# Hugging Face / datasets / NLTK caches if someone points them here
+.cache/
+nltk_data/
+hf_cache/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+
+# Local dry-run output
+/tmp/
+dry-run/
+/output/
