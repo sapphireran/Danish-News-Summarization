@@ -54,6 +54,28 @@ SEJ-006  words 78->87 (x1.12)  subwords 122->131 (x1.07)
 SEJ-007  words 64->82 (x1.28)  subwords 110->120 (x1.09)
 SEJ-008  words 81->88 (x1.09)  subwords 120->120 (x1.00)
 
+Extractive lead-1 vs silver vs oracle (manchet coverage)
+-------------------------------------------------------
+SEJ-001  lead1=1.00  silver=1.00  oracle=0.75  slots lead1=0.83/silver=0.83  silver holds
+SEJ-002  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67/silver=0.83  silver holds
+SEJ-003  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67/silver=0.67  silver holds
+SEJ-004  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67/silver=0.67  silver holds
+SEJ-005  lead1=0.75  silver=0.75  oracle=0.50  slots lead1=0.50/silver=0.83  silver holds
+SEJ-006  lead1=0.50  silver=0.50  oracle=0.50  slots lead1=0.50/silver=0.50  silver holds
+SEJ-007  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.83/silver=0.83  silver holds
+SEJ-008  lead1=0.50  silver=0.50  oracle=0.50  slots lead1=0.33/silver=0.83  silver holds
+
+Stylebook gates on the Danish silver label
+-----------------------------------------
+SEJ-001  4/7  fail=['quote_or_speaker', 'figures_majority', 'contrast_men']
+SEJ-002  3/7  fail=['who_in_lede', 'quote_or_speaker', 'figures_majority', 'contrast_men']
+SEJ-003  4/7  fail=['who_in_lede', 'quote_or_speaker', 'contrast_men']
+SEJ-004  4/7  fail=['who_in_lede', 'quote_or_speaker', 'contrast_men']
+SEJ-005  4/7  fail=['who_in_lede', 'quote_or_speaker', 'contrast_men']
+SEJ-006  5/7  fail=['who_in_lede', 'quote_or_speaker']
+SEJ-007  5/7  fail=['who_in_lede', 'quote_or_speaker']
+SEJ-008  4/7  fail=['who_in_lede', 'quote_or_speaker', 'contrast_men']
+
 Packing windows on the Danish body
 ----------------------------------
 SEJ-001  manchet-tight=7  manchet-lead=3  t5-summary-cap=2  forward-hop=1

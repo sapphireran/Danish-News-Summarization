@@ -1,0 +1,16 @@
+SEJ-001 aligned=True pairs=5 quote_i=3
+  [0] da=17w en=20w x1.18 sub x1.06
+      DA: Sejerøfærgen til Havnsø bliver i eftermiddag aflyst på grund af kuling fra nordvest, oplyser havnefoged Karen Møller.
+      EN: The Sejerø ferry to Havnsø is cancelled this afternoon because of a north-westerly gale, harbour master Karen Møller said.
+  [1] da=18w en=21w x1.17 sub x1.03
+      DA: Ifølge hende ventes næste afgang først kl. 18.30, hvis vinden lægger sig under 15 meter i sekundet.
+      EN: According to her the next sailing is not expected before 18.30, if the wind drops below 15 metres per second.
+  [2] da=14w en=15w x1.07 sub x1.00
+      DA: Omkring 40 passagerer venter i terminalen i Sejerby, og flere har møder på Sjælland.
+      EN: About 40 passengers are waiting in the Sejerby terminal, and several have meetings on Zealand.
+  [3] da=14w en=16w x1.14 sub x1.00 quote
+      DA: »Vi sætter en ekstra afgang ind i aften, hvis vejret tillader det,« siger Møller.
+      EN: "We will put on an extra sailing this evening if the weather allows it," Møller said.
+  [4] da=20w en=22w x1.10 sub x0.91
+      DA: Rederiet anbefaler, at rejsende følger SMS-varslingen, men understreger at cykler og varebiler først kommer med på den sene tur.
+      EN: The operator asks travellers to follow the SMS alert, but stresses that bicycles and vans will only travel on the late sailing.

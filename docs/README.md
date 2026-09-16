@@ -15,7 +15,10 @@ way to look at what those hops do to a news manchet.
 | [06-course-scripts.md](06-course-scripts.md) | Archaeology of the 2023 root scripts |
 | [07-workbook.md](07-workbook.md) | Exercises that run offline |
 | [08-reproduction.md](08-reproduction.md) | How the GPU pipeline was actually run |
-| [generated/](generated/README.md) | Frozen desk notes |
+| [09-extractive-lede.md](09-extractive-lede.md) | First-sentence baseline vs silver |
+| [10-stylebook.md](10-stylebook.md) | Night-editor gates, not ROUGE |
+| [11-parallel-cards.md](11-parallel-cards.md) | DA/EN sentence pairs and article cards |
+| [generated/](generated/README.md) | Frozen desk notes and cards |
 
 Original course workflow (needs models and a corpus that is not in git):
 

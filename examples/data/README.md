@@ -17,6 +17,7 @@ These CSVs are the eight Sejerø briefs projected into the column shapes the
 | `05_public_eval_shape.csv` | Nordjylland / ScandEval columns | `input_text`, `target_text`, `text_len`, `summary_len` |
 | `06_slot_cards.csv` | (desk only) | `id`, `who`, `what`, `when`, `where`, `why`, `how` |
 | `07_planted_errors.csv` | (desk only) | `id`, `kind`, `summary`, `dropped_slots`, `note` |
+| `08_figures.csv` | (desk only) | `id`, `figures` |
 
 Regenerate from the fixtures:
 

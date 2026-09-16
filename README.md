@@ -10,7 +10,8 @@ GPU weights and a corpus that is not in git.
 
 This checkout also has a personal, download-free workbook — **Sejerø
 Tidende** — that replays the same hops on eight fictional island briefs
-and scores what a news manchet keeps: 5W1H slots, quotes, and connectives.
+and scores what a news manchet keeps: 5W1H slots, quotes, connectives,
+extractive ledes, and night-editor stylebook gates.
 
 ## Course workflow (GPU, original scripts)
 
@@ -76,6 +77,9 @@ PYTHONPATH=. python3 examples/walk_ferry.py
 PYTHONPATH=. python3 examples/inspect_manchet.py
 PYTHONPATH=. python3 examples/pack_lede.py --id SEJ-001 --policy manchet-tight
 PYTHONPATH=. python3 examples/score_slots.py --planted
+PYTHONPATH=. python3 examples/compare_baselines.py
+PYTHONPATH=. python3 examples/inspect_gates.py --id SEJ-001
+PYTHONPATH=. python3 examples/align_parallel.py --id SEJ-001
 PYTHONPATH=. python3 -m pytest tests/
 ```
 

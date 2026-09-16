@@ -48,15 +48,43 @@ All of these run without weights. From the repository root:
    Find a brief where the *word* ratio and the *subword* ratio disagree
    the most. That disagreement is the compound.
 
-6. **Refresh the clipboard.**
+6. **Extractive lead vs silver.**
+
+   ```bash
+   PYTHONPATH=. python3 examples/compare_baselines.py
+   ```
+
+   For how many ids does the first Danish sentence beat the silver label
+   on manchet coverage? That is the baseline `eval.py` never printed.
+
+7. **Night-editor gates.**
+
+   ```bash
+   PYTHONPATH=. python3 examples/inspect_gates.py --role silver_da
+   PYTHONPATH=. python3 examples/inspect_gates.py --id SEJ-001 --role lead1_da
+   ```
+
+   List the gates silver fails and lead-1 passes.
+
+8. **Align one brief.**
+
+   ```bash
+   PYTHONPATH=. python3 examples/align_parallel.py --id SEJ-004
+   ```
+
+   Find the quote sentence. Check whether its English gloss is longer in
+   *words* than in *subwords* relative to the Danish compound.
+
+9. **Refresh the clipboard and the cards.**
 
    ```bash
    PYTHONPATH=. python3 examples/run_desk.py
+   PYTHONPATH=. python3 examples/write_cards.py
    ```
 
-   Open `examples/report/index.html` and `docs/generated/desk-notes.txt`.
+   Open `examples/report/index.html` and `docs/generated/cards/`.
 
-7. **If you later rerun the 2023 GPU scripts**, do not feed the Sejerø
-   CSVs to `finetune.py` and expect a real model. Eight rows are a
-   schema check. Use them to verify column names before touching the
-   10 000-article dump.
+10. **If you later rerun the 2023 GPU scripts**, do not feed the Sejerø
+    CSVs to `finetune.py` and expect a real model. Eight rows are a
+    schema check. Use them to verify column names before touching the
+    10 000-article dump.

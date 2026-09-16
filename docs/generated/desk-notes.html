@@ -29,6 +29,27 @@
       <tr><td>SEJ-001</td><td>train</td><td>0.83</td><td>how</td><td>1.00</td><td>—</td><td>0/1</td><td>0.55</td></tr><tr><td>SEJ-002</td><td>train</td><td>0.83</td><td>how</td><td>0.75</td><td>who</td><td>0/1</td><td>0.58</td></tr><tr><td>SEJ-003</td><td>train</td><td>0.67</td><td>who, why</td><td>0.75</td><td>who</td><td>0/1</td><td>0.50</td></tr><tr><td>SEJ-004</td><td>train</td><td>0.67</td><td>who, why</td><td>0.75</td><td>who</td><td>0/1</td><td>0.53</td></tr><tr><td>SEJ-005</td><td>train</td><td>0.83</td><td>how</td><td>0.75</td><td>who</td><td>0/1</td><td>0.60</td></tr><tr><td>SEJ-006</td><td>validation</td><td>0.50</td><td>who, why, how</td><td>0.50</td><td>who, where</td><td>0/1</td><td>0.63</td></tr><tr><td>SEJ-007</td><td>validation</td><td>0.83</td><td>who</td><td>0.75</td><td>who</td><td>0/1</td><td>0.56</td></tr><tr><td>SEJ-008</td><td>test</td><td>0.83</td><td>who</td><td>0.50</td><td>who, when</td><td>0/1</td><td>0.58</td></tr>
     </tbody>
   </table>
+  <h2>Extractive lead-1 vs silver</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>id</th><th>lead1 manchet</th><th>silver manchet</th><th>oracle manchet</th>
+        <th>lead1 slots</th><th>silver slots</th><th>lead1 wins manchet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>SEJ-001</td><td>1.00</td><td>1.00</td><td>0.75</td><td>0.83</td><td>0.83</td><td>no</td></tr><tr><td>SEJ-002</td><td>0.75</td><td>0.75</td><td>0.75</td><td>0.67</td><td>0.83</td><td>no</td></tr><tr><td>SEJ-003</td><td>0.75</td><td>0.75</td><td>0.75</td><td>0.67</td><td>0.67</td><td>no</td></tr><tr><td>SEJ-004</td><td>0.75</td><td>0.75</td><td>0.75</td><td>0.67</td><td>0.67</td><td>no</td></tr><tr><td>SEJ-005</td><td>0.75</td><td>0.75</td><td>0.50</td><td>0.50</td><td>0.83</td><td>no</td></tr><tr><td>SEJ-006</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0.50</td><td>no</td></tr><tr><td>SEJ-007</td><td>0.75</td><td>0.75</td><td>0.75</td><td>0.83</td><td>0.83</td><td>no</td></tr><tr><td>SEJ-008</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0.33</td><td>0.83</td><td>no</td></tr>
+    </tbody>
+  </table>
+  <h2>Stylebook (silver)</h2>
+  <table>
+    <thead>
+      <tr><th>id</th><th>gates</th><th>failed</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>SEJ-001</td><td>4/7</td><td>quote_or_speaker, figures_majority, contrast_men</td></tr><tr><td>SEJ-002</td><td>3/7</td><td>who_in_lede, quote_or_speaker, figures_majority, contrast_men</td></tr><tr><td>SEJ-003</td><td>4/7</td><td>who_in_lede, quote_or_speaker, contrast_men</td></tr><tr><td>SEJ-004</td><td>4/7</td><td>who_in_lede, quote_or_speaker, contrast_men</td></tr><tr><td>SEJ-005</td><td>4/7</td><td>who_in_lede, quote_or_speaker, contrast_men</td></tr><tr><td>SEJ-006</td><td>5/7</td><td>who_in_lede, quote_or_speaker</td></tr><tr><td>SEJ-007</td><td>5/7</td><td>who_in_lede, quote_or_speaker</td></tr><tr><td>SEJ-008</td><td>4/7</td><td>who_in_lede, quote_or_speaker, contrast_men</td></tr>
+    </tbody>
+  </table>
   <h2>Planted errors</h2>
   <table>
     <thead>
