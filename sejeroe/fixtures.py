@@ -354,10 +354,10 @@ ARTICLES: tuple[Article, ...] = (
             how="bestilling til færgelejet og åbning efter indstillet færge",
             aliases={
                 "who": ("Lene Frost", "indehaver", "owner"),
-                "what": ("lukket om søndagen", "søndag", "Sundays", "kl. 17"),
+                "what": ("lukket om søndagen", "lukker om søndagen", "close on Sundays"),
                 "when": ("1. november", "1 November", "november"),
                 "where": ("Sejerø Købmand", "færgelejet"),
-                "why": ("22 procent", "22 percent", "omsætningen"),
+                "why": ("faldt 22 procent", "faldt med 22", "fell 22 percent", "sales fell"),
                 "how": ("bestille", "åbner", "order"),
             },
         ),

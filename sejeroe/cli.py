@@ -71,9 +71,10 @@ def cmd_pack(args: argparse.Namespace) -> int:
     article = article_by_id(args.id) if args.id else ARTICLES[0]
     if args.policy:
         if args.policy not in PRESETS:
-            raise SystemExit(
-                f"unknown policy {args.policy!r}; choose from {', '.join(sorted(PRESETS))}"
+            sys.stderr.write(
+                f"unknown policy {args.policy!r}; choose from {', '.join(sorted(PRESETS))}\n"
             )
+            return 1
         policy = PRESETS[args.policy]
         windows = pack_text(article.body_da, policy)
         _print(
