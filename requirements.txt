@@ -1,0 +1,16 @@
+# Dependencies for the 2023 root training and labeling scripts.
+# The examples/ tree and tests/ do not need this file.
+
+torch>=2.0,<3
+transformers>=4.30,<5
+datasets>=2.14,<3
+evaluate>=0.4
+ctranslate2>=3.16
+nltk>=3.8
+pandas>=2.0
+numpy>=1.24
+tqdm>=4.65
+rouge-score>=0.1.2
+bert-score>=0.3.13
+sentencepiece>=0.1.99
+protobuf>=3.20
