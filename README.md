@@ -164,6 +164,7 @@ Training-time selection uses ROUGE-1 mid F on the silver validation CSV. Final r
 - [Metric notes](notes/metric-notes.md)
 - [Models and data catalog](notes/models-and-data.md)
 - [Error-analysis plan](notes/error-analysis-plan.md)
+- [One-article walkthrough](notes/one-article-walkthrough.md)
 - [Run log template](notes/run-log-template.md)
 
 ## Status of this tree
