@@ -1,0 +1,12 @@
+{
+  "base_tokenizer": "google/mt5-small",
+  "local_model_path": "small_model",
+  "eval_dataset": "alexandrainst/nordjylland-news-summarization",
+  "preview_dataset": "ScandEval/nordjylland-news-summarization-mini",
+  "input_max_length": 1024,
+  "label_max_length": 128,
+  "eval_batch_size": 64,
+  "bertscore_lang": "da",
+  "bertscore_model": "xlm-roberta-large",
+  "notes": "eval.py scores the held-out Nordjylland News split. use_model.py prints a handful of generations from the smaller ScandEval mini split so a qualitative check does not download the full test set."
+}
