@@ -1,0 +1,19 @@
+id,code,hop,source_raw,silver_raw,note
+bh-01,precision_loss,summary,"47,2 mm",47 mm,T5 rounded the June total before the back-translation.
+bh-02,comma_shift,summary,"2,4 ha",24 ha,English 2.4 lost the decimal and came back as 24.
+bh-02,currency_swap,summary,3.200 kr.,3.200 dollar,kr. was read as a generic currency and emitted as dollars.
+bh-03,clock_12h,summary,kl. 8.15,kl. 20.15,8:15 AM was emitted as a 24-hour evening time.
+bh-04,feast_swap,summary,3. søndag i advent,3. søndag i fasten,Advent and Lent are easy to swap once the pivot says 'third Sunday'.
+bh-05,comma_shift,summary,"4,8 km",48 km,4.8 km lost the decimal in the English summary.
+bh-05,scale_shift,summary,"1,2 mio. kr.",12 mio. kr.,1.2 million was rewritten as 12 million.
+bh-06,sign_drop,summary,"−8,3 °C","8,3 °C",The leading minus did not survive the English T5 rewrite.
+bh-07,comma_shift,summary,"2,1 MW",21 MW,2.1 MW became 21 MW after the decimal was dropped.
+bh-08,clock_shift,summary,13.00–17.00,13.00–19.00,Closing time drifted from 17:00 to 19:00 in the English summary.
+bh-09,unit_swap,summary,38 t/ha,38 kg/ha,Tonnes per hectare collapsed to kilograms per hectare.
+bh-10,line_swap,summary,linje 82,Linje 28,82 and 28 swapped once the English summary shortened the route note.
+bh-11,comma_shift,summary,"2,4 mg/l",24 mg/l,2.4 mg/l lost the decimal; 24 mg/l still looks legal under 50.
+bh-12,dimension_shift,summary,24 × 44 m,"24 × 4,4 m",The second axis dropped a factor of ten (44 → 4.4).
+bh-13,comma_shift,summary,"3,8%",38%,3.8% fat became 38% once the decimal vanished.
+bh-14,value_shift,summary,12 min.,21 min.,12 min. and last year's 14 min. were mashed into 21.
+bh-15,clock_shift,summary,09.00–14.00,09.00–16.00,Closing time drifted two hours in the English summary.
+bh-16,comma_shift,summary,"14,7 m/s",147 m/s,14.7 m/s became a cartoon 147 m/s after the decimal dropped.

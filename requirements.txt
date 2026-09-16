@@ -1,0 +1,11 @@
+# Reconstructed from the December 2023 root scripts.
+# Unpinned: no 2023 freeze was committed. Examples do not install this.
+torch
+transformers
+datasets
+evaluate
+nltk
+pandas
+numpy
+tqdm
+ctranslate2

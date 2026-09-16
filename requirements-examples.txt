@@ -1,0 +1,3 @@
+# The maalestok lab is stdlib-only. This file exists so a later checkout
+# does not look for a hidden extra.
+# (empty on purpose)

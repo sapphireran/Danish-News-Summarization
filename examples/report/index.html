@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<title>Blåhøj Almanak — maalestok</title>
+<style>
+  :root {
+    --ink: #2b2118;
+    --rule: #8a6a3a;
+    --paper: #f4ead3;
+    --card: #fff8e8;
+    --ok: #2f6b3a;
+    --scar: #9b2d1f;
+    --muted: #6a5844;
+  }
+  html { background: #d8c7a3; }
+  body {
+    margin: 0 auto;
+    max-width: 920px;
+    padding: 2rem 1.4rem 4rem;
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    color: var(--ink);
+    background: var(--paper);
+    border-left: 12px solid #6b1d1d;
+    border-right: 1px solid #cbb892;
+  }
+  h1, h2, h3 { font-weight: 650; letter-spacing: 0.01em; }
+  h1 { font-size: 2rem; margin-bottom: 0.2rem; }
+  .deck { color: var(--muted); font-style: italic; margin-top: 0; }
+  nav a { color: var(--rule); margin-right: 0.8rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  th, td { border-bottom: 1px solid #e0d2b0; padding: 0.35rem 0.4rem; text-align: left; vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  .ok { color: var(--ok); }
+  .scar { color: var(--scar); font-weight: 650; }
+  .card {
+    background: var(--card);
+    border: 1px solid #e4d3aa;
+    padding: 0.9rem 1rem;
+    margin: 1.2rem 0;
+  }
+  .bars { display: grid; gap: 0.35rem; margin: 1rem 0 1.4rem; }
+  .bar { display: grid; grid-template-columns: 8rem 1fr 4rem; gap: 0.5rem; align-items: center; }
+  .bar i { display: block; height: 0.7rem; background: #6b1d1d; }
+  code { font-family: "Source Code Pro", ui-monospace, monospace; font-size: 0.86em; }
+  .meta { color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<h1>Blåhøj Almanak</h1>
+<p class="deck">A measuring-stick lab for the 2023 Danish→English→T5→Danish hops.
+Parish: Blåhøj Sogn. Fiction only. No newspaper dump.</p>
+<nav>
+  <a href="#means">Means</a>
+  <a href="#briefs">Briefs</a>
+  <a href="#scar">NLLB scar</a>
+</nav>
+<h2 id="means">Hop survival on planted measures</h2>
+<p>Share of source measures that land as <code>ok</code> after each hop.
+Oracle is the hand-written faithful back-translation. Silver is the planted
+2023-style summary. Lead-2 is the first two Danish sentences.</p>
+<div class="bars">
+  <div class="bar"><span>pivot</span><i style="width:92%"></i><span>92%</span></div>
+  <div class="bar"><span>summary</span><i style="width:16%"></i><span>16%</span></div>
+  <div class="bar"><span>silver</span><i style="width:19%"></i><span>19%</span></div>
+  <div class="bar"><span>oracle</span><i style="width:52%"></i><span>52%</span></div>
+  <div class="bar"><span>lead-2</span><i style="width:50%"></i><span>50%</span></div>
+</div>
+<p class="meta">Worst silver survival: <a href="#bh-02">bh-02</a>
+(0%). Mean silver 19% vs oracle 52%.</p>
+<h2 id="briefs">Sixteen briefs</h2>
+
+<section class="card" id="bh-01">
+  <h3>bh-01 — Juni-regn over Græsbjerg</h3>
+  <p class="meta">vejr · source measures 9 ·
+  silver survival 11% ·
+  oracle 67% ·
+  lead-2 56%</p>
+  <p><strong>Danish source.</strong> I juni målte vejrstationen ved Græsbjerg 47,2 mm nedbør. Hele 18,6 mm faldt den 12. juni mellem kl. 06.00 og kl. 09.30, da et smalt regnbælte stod stille over Havremarken. Morten Bæk sagde, at vårbyggen godt kunne tåle vandet, men at furerne ved Mosebækken løb over Pilebro. Kommunens klimatabel noterer, at juni i fjor kun gav 29 mm. Provst Ejvind Holm aflyste aftensangen kl. 19.00, fordi kirkestien stod under vand. Almanakken minder om, at 47,2 mm på én måned stadig er under rekorden fra 2015 på 81,4 mm.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Græsbjerg registrerede 47 mm regn i juni, heraf et morgenbyge den 12. juni; aftensangen kl. 19.00 blev aflyst.</span></p>
+  <p><strong>Oracle back-translation.</strong> Græsbjerg målte 47,2 mm regn i juni, heraf 18,6 mm den 12. juni mellem kl. 06.00 og kl. 09.30; aftensangen kl. 19.00 blev aflyst, og rekorden fra 2015 på 81,4 mm står stadig.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>precision_loss</code>: 47,2 mm → 47 mm <span class='meta'>(T5 rounded the June total before the back-translation.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>precision_loss</td><td><code>47,2 mm</code></td><td><code>47 mm</code></td><td>47.2 → 47</td></tr><tr><td class='scar'>missing</td><td><code>18,6 mm</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>clock_shift</td><td><code>kl. 06.00</code></td><td><code>kl. 19.00</code></td><td>06:00 → 19:00</td></tr><tr><td class='scar'>missing</td><td><code>kl. 09.30</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>29 mm</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 19.00</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>47,2 mm</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>81,4 mm</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-02">
+  <h3>bh-02 — Vårbyg på Havremarken</h3>
+  <p class="meta">høst · source measures 5 ·
+  silver survival 0% ·
+  oracle 60% ·
+  lead-2 20%</p>
+  <p><strong>Danish source.</strong> Morten Bæk høstede 2,4 ha vårbyg på Havremarken i uge 32. Kornet blev kørt til Kærholm Mejeri, som i år også tørrer korn for tre naboer. Afregningen landede på 3.200 kr. pr. ton, lidt under det, Inge Skovgaard havde sat som sogneregnskabets tommelfingerregel. Bæk minder om, at stykket kun er 2,4 ha, så en enkelt våd plet ved Mosebækken kan slå udbyttet skævt. Han venter 6,8 t/ha, hvis august holder sig tør efter kl. 14.00.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Bæk høstede 24 ha vårbyg; afregningen var 3.200 dollar pr. ton.</span></p>
+  <p><strong>Oracle back-translation.</strong> Bæk høstede 2,4 ha vårbyg på Havremarken; afregningen var 3.200 kr. pr. ton, og han venter 6,8 t/ha.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>comma_shift</code>: 2,4 ha → 24 ha <span class='meta'>(English 2.4 lost the decimal and came back as 24.)</span></li><li><code>currency_swap</code>: 3.200 kr. → 3.200 dollar <span class='meta'>(kr. was read as a generic currency and emitted as dollars.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>comma_shift</td><td><code>2,4 ha</code></td><td><code>24 ha</code></td><td>2.4 → 24</td></tr><tr><td class='scar'>currency_swap</td><td><code>3.200 kr</code></td><td><code>3.200 dollar</code></td><td>kr → dollar</td></tr><tr><td class='scar'>missing</td><td><code>2,4 ha</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>6,8 t/ha</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 14.00</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-03">
+  <h3>bh-03 — Første skoledag på Sønderholt</h3>
+  <p class="meta">skole · source measures 7 ·
+  silver survival 29% ·
+  oracle 43% ·
+  lead-2 57%</p>
+  <p><strong>Danish source.</strong> Sønderholt Skole åbner 1. klasse med 28 elever onsdag. Lektor Hanne Friis ringer ind kl. 8.15, og forældrene bliver bedt om at være ude af gangen inden kl. 8.40. Skolen minder om, at Skt. Hans-ugen stadig tæller som undervisning, t.eks. når 1. klasse går til Mosebækken. Inge Skovgaard kommer med æbler kl. 10.00. Der er 28 elever på listen, heraf fire fra Græsbjerg.</p>
+  <p><strong>Silver label.</strong> <span class="scar">1. klasse starter med 28 elever; der ringes ind kl. 20.15.</span></p>
+  <p><strong>Oracle back-translation.</strong> 1. klasse åbner med 28 elever; Hanne Friis ringer ind kl. 8.15, og Inge Skovgaard kommer kl. 10.00.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>clock_12h</code>: kl. 8.15 → kl. 20.15 <span class='meta'>(8:15 AM was emitted as a 24-hour evening time.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>clock_12h</td><td><code>kl. 8.15</code></td><td><code>kl. 20.15</code></td><td>08:15 → 20:15</td></tr><tr><td class='scar'>missing</td><td><code>kl. 8.40</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>1. klasse</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 10.00</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>28 elever</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-04">
+  <h3>bh-04 — Advent i Blåhøj Kirke</h3>
+  <p class="meta">kirke · source measures 5 ·
+  silver survival 40% ·
+  oracle 80% ·
+  lead-2 60%</p>
+  <p><strong>Danish source.</strong> 3. søndag i advent holdes højmesse i Blåhøj Kirke kl. 10.00. Provst Ejvind Holm prædiker over teksten, og børnekoret øver fra kl. 9.15. Kirkekaffen bagefter koster 12 kr. Almanakken understreger, at det er 3. søndag i advent og ikke fasten, selv om salmevalget kan minde om hinanden. Der stilles 40 stole ekstra ved Pilebro-indgangen.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Højmesse 3. søndag i fasten er kl. 10.00; kaffen koster 12 kr.</span></p>
+  <p><strong>Oracle back-translation.</strong> Højmesse 3. søndag i advent er kl. 10.00; kaffen koster 12 kr., og koret øver fra kl. 9.15.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>feast_swap</code>: 3. søndag i advent → 3. søndag i fasten <span class='meta'>(Advent and Lent are easy to swap once the pivot says &#x27;third Sunday&#x27;.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>feast_swap</td><td><code>3. søndag i advent</code></td><td><code>3. søndag i fasten</code></td><td>advent → fasten</td></tr><tr><td class='scar'>missing</td><td><code>kl. 9.15</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>3. søndag i advent</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-05">
+  <h3>bh-05 — Cykelsti til Nørreled</h3>
+  <p class="meta">anlæg · source measures 6 ·
+  silver survival 17% ·
+  oracle 67% ·
+  lead-2 50%</p>
+  <p><strong>Danish source.</strong> Den nye cykelsti fra Græsbjerg til Nørreled er 4,8 km lang. Sognerådet har sat 1,2 mio. kr. af, heraf 0,3 mio. kr. til belysning ved Pilebro. Inge Skovgaard siger, at 4,8 km lyder kort på et kort, men at bakken ved Rævedal Skov tager tiden. Arbejdet begynder den 22. september kl. 06.30, hvis Mosebækken ikke står over sine brinker.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Den 48 km lange cykelsti er budgetteret til 12 mio. kr. og begynder den 22. september.</span></p>
+  <p><strong>Oracle back-translation.</strong> Cykelstien er 4,8 km og budgetteret til 1,2 mio. kr.; arbejdet begynder den 22. september kl. 06.30.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>comma_shift</code>: 4,8 km → 48 km <span class='meta'>(4.8 km lost the decimal in the English summary.)</span></li><li><code>scale_shift</code>: 1,2 mio. kr. → 12 mio. kr. <span class='meta'>(1.2 million was rewritten as 12 million.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>comma_shift</td><td><code>4,8 km</code></td><td><code>48 km</code></td><td>4.8 → 48</td></tr><tr><td class='scar'>comma_shift</td><td><code>1,2 mio. kr.</code></td><td><code>12 mio. kr.</code></td><td>1200000.0 → 12000000</td></tr><tr><td class='scar'>missing</td><td><code>0,3 mio. kr.</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>4,8 km</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 06.30</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-06">
+  <h3>bh-06 — Nattefrost i januar</h3>
+  <p class="meta">vejr · source measures 7 ·
+  silver survival 14% ·
+  oracle 43% ·
+  lead-2 43%</p>
+  <p><strong>Danish source.</strong> Nattemperaturen i Græsbjerg faldt til −8,3 °C den 14. januar kl. 03.40. Vandrørene ved Sønderholt Skole holdt, men hanerne på Havremarken frøs. Morten Bæk målte −8,3 °C på sin egen stang ved laden, t.eks. da han slukkede lyset kl. 03.55. Almanakken sammenligner med −11,0 °C i 2018. Inge Skovgaard bad folk tømme slangerne inden kl. 18.00.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Græsbjerg faldt til 8,3 °C den 14. januar; slangerne skulle tømmes inden kl. 18.00.</span></p>
+  <p><strong>Oracle back-translation.</strong> Græsbjerg faldt til −8,3 °C den 14. januar kl. 03.40; slangerne skulle tømmes inden kl. 18.00, og 2018-målet var −11,0 °C.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>sign_drop</code>: −8,3 °C → 8,3 °C <span class='meta'>(The leading minus did not survive the English T5 rewrite.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>sign_drop</td><td><code>−8,3 °C</code></td><td><code>8,3 °C</code></td><td>minus dropped</td></tr><tr><td class='scar'>clock_shift</td><td><code>kl. 03.40</code></td><td><code>kl. 18.00</code></td><td>03:40 → 18:00</td></tr><tr><td class='scar'>missing</td><td><code>−8,3 °C</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 03.55</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>−11,0 °C</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 18.00</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-07">
+  <h3>bh-07 — Møllen ved Rævedal</h3>
+  <p class="meta">energi · source measures 5 ·
+  silver survival 20% ·
+  oracle 60% ·
+  lead-2 60%</p>
+  <p><strong>Danish source.</strong> Den nye mølle nord for Rævedal Skov yder 2,1 MW. Navhøjden er 87 m, og vingespidserne går op i 149 m. Sognerådet har fået oplyst, at 2,1 MW i middelvind dækker cirka 1.200 husstande i tørt vejr. Ole Nygaard mindede om, at brandvejen skal holde 4,0 m fri bredde, også når mejekøen holder ved Pilebro.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Møllen ved Rævedal yder 21 MW med en navhøjde på 87 m.</span></p>
+  <p><strong>Oracle back-translation.</strong> Møllen ved Rævedal yder 2,1 MW med en navhøjde på 87 m og vingespidser i 149 m.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>comma_shift</code>: 2,1 MW → 21 MW <span class='meta'>(2.1 MW became 21 MW after the decimal was dropped.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>comma_shift</td><td><code>2,1 MW</code></td><td><code>21 MW</code></td><td>2.1 → 21</td></tr><tr><td class='scar'>missing</td><td><code>149 m</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>2,1 MW</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>4,0 m</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-08">
+  <h3>bh-08 — Bibliotekets vintertid</h3>
+  <p class="meta">kultur · source measures 7 ·
+  silver survival 0% ·
+  oracle 29% ·
+  lead-2 71%</p>
+  <p><strong>Danish source.</strong> Blåhøj Bibliotek holder åbent man.–tors. 13.00–17.00 og fre. 10.00–13.00 fra den 1. oktober. Hanne Friis flytter skolebesøgene til kl. 13.15, så 1. klasse ikke rammer frokosten. Bøder er stadig 12 kr. pr. uge. Almanakken beder folk huske, at lørdag er lukket, t.eks. i efterårsferien. Inge Skovgaard læser eventyr kl. 16.00 om torsdagen.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Biblioteket har åbent 13.00–19.00 på hverdage; torsdagens eventyr er kl. 16.00.</span></p>
+  <p><strong>Oracle back-translation.</strong> Biblioteket har åbent man.–tors. 13.00–17.00 og fre. 10.00–13.00; torsdagens eventyr er kl. 16.00.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>clock_shift</code>: 13.00–17.00 → 13.00–19.00 <span class='meta'>(Closing time drifted from 17:00 to 19:00 in the English summary.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>clock_shift</td><td><code>13.00–17.00</code></td><td><code>13.00–19.00</code></td><td>range end 17:00 → 19:00</td></tr><tr><td class='scar'>missing</td><td><code>10.00–13.00</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>1. oktober</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>clock_shift</td><td><code>kl. 13.15</code></td><td><code>kl. 16.00</code></td><td>13:15 → 16:00</td></tr><tr><td class='scar'>missing</td><td><code>1. klasse</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>12 kr</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 16.00</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-09">
+  <h3>bh-09 — Kartoffelhøst ved Kærholm</h3>
+  <p class="meta">høst · source measures 8 ·
+  silver survival 25% ·
+  oracle 50% ·
+  lead-2 50%</p>
+  <p><strong>Danish source.</strong> Kærholm Avl tog 38 t/ha op af 6,5 ha kartofler i uge 37. Pia Kjeldsen sagde, at 38 t/ha er pænt, men at 6,5 ha er for lidt til at fylde mejeriets køl alene. Vaskevandet fra kulerne målte 2,1 m/s i Mosebækken efter skylning. Prisen blev 1,8 kr. pr. kilo til skolekøkkenet. Høsten sluttede kl. 17.45 den 14. september.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Kærholm høstede 38 kg/ha på 6,5 ha; arbejdet sluttede kl. 17.45.</span></p>
+  <p><strong>Oracle back-translation.</strong> Kærholm høstede 38 t/ha på 6,5 ha; arbejdet sluttede kl. 17.45 den 14. september.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>unit_swap</code>: 38 t/ha → 38 kg/ha <span class='meta'>(Tonnes per hectare collapsed to kilograms per hectare.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>unit_swap</td><td><code>38 t/ha</code></td><td><code>38 kg/ha</code></td><td>t/ha → kg/ha</td></tr><tr><td class='scar'>missing</td><td><code>38 t/ha</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>6,5 ha</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>2,1 m/s</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>1,8 kr</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>14. september</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-10">
+  <h3>bh-10 — Linje 82 til Nørreled</h3>
+  <p class="meta">trafik · source measures 7 ·
+  silver survival 29% ·
+  oracle 57% ·
+  lead-2 57%</p>
+  <p><strong>Danish source.</strong> Linje 82 kører fra Nørreled til Sønderholt Skole på 25 min. En voksenbillet koster 18 kr., og børn under 1. klasse kører gratis. Ole Nygaard klagede over, at vognen kl. 7.12 ofte er seks minutter forsinket, når mejetrafikken holder ved Pilebro. Rutetabellen slår fast, at det er linje 82 og ikke linje 28, som kun kører lørdag.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Linje 28 når skolen på 25 min.; en voksenbillet koster 18 kr.</span></p>
+  <p><strong>Oracle back-translation.</strong> Linje 82 når skolen på 25 min.; en voksenbillet koster 18 kr., og afgangen kl. 7.12 er den, folk klager over.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>line_swap</code>: linje 82 → Linje 28 <span class='meta'>(82 and 28 swapped once the English summary shortened the route note.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>line_swap</td><td><code>Linje 82</code></td><td><code>Linje 28</code></td><td>82 → 28</td></tr><tr><td class='scar'>missing</td><td><code>1. klasse</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 7.12</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>linje 82</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>linje 28</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-11">
+  <h3>bh-11 — Brønden i Rævedal</h3>
+  <p class="meta">vand · source measures 7 ·
+  silver survival 14% ·
+  oracle 29% ·
+  lead-2 57%</p>
+  <p><strong>Danish source.</strong> Brønden ved Rævedal Skov er 38,5 m dyb og viser 2,4 mg/l nitrat. Pia Kjeldsen kalder 2,4 mg/l for acceptabelt, men minder om grænseværdien på 50 mg/l. Prøven blev taget den 3. oktober kl. 11.20. Sognerådet vil måle igen, hvis Mosebækken stiger mere end 0,6 m efter efterårsregn.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Brønden i Rævedal er 38,5 m dyb og viser 24 mg/l nitrat.</span></p>
+  <p><strong>Oracle back-translation.</strong> Brønden i Rævedal er 38,5 m dyb og viser 2,4 mg/l nitrat; grænseværdien er 50 mg/l.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>comma_shift</code>: 2,4 mg/l → 24 mg/l <span class='meta'>(2.4 mg/l lost the decimal; 24 mg/l still looks legal under 50.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>comma_shift</td><td><code>2,4 mg/l</code></td><td><code>24 mg/l</code></td><td>2.4 → 24</td></tr><tr><td class='scar'>missing</td><td><code>2,4 mg/l</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>50 mg/l</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>3. oktober</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 11.20</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>0,6 m</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-12">
+  <h3>bh-12 — Ombygning af Stenholt Hallen</h3>
+  <p class="meta">anlæg · source measures 6 ·
+  silver survival 17% ·
+  oracle 33% ·
+  lead-2 50%</p>
+  <p><strong>Danish source.</strong> Stenholt Hallen måler 24 × 44 m inden ombygningen. Sognerådet har sat 2,8 mio. kr. af, og Inge Skovgaard vil ikke røre banens 24 × 44 m, kun omklædningen. Arbejdet varer 12 min. i brandøvelsesplanen, hvis Ole Nygaard skal tømme huset. Første spigermøde er den 22. september kl. 09.00.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Stenholt Hallen, nu 24 × 4,4 m, får en ombygning til 2,8 mio. kr.</span></p>
+  <p><strong>Oracle back-translation.</strong> Stenholt Hallen måler 24 × 44 m; ombygningen koster 2,8 mio. kr. og rører ikke banen.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>dimension_shift</code>: 24 × 44 m → 24 × 4,4 m <span class='meta'>(The second axis dropped a factor of ten (44 → 4.4).)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>dimension_shift</td><td><code>24 × 44 m</code></td><td><code>24 × 4,4 m</code></td><td>second axis 44 → 4.4</td></tr><tr><td class='scar'>missing</td><td><code>24 × 44 m</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>12 min</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>22. september</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 09.00</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-13">
+  <h3>bh-13 — Mælk med 3,8 procent</h3>
+  <p class="meta">mejeri · source measures 7 ·
+  silver survival 29% ·
+  oracle 57% ·
+  lead-2 43%</p>
+  <p><strong>Danish source.</strong> Kærholm Mejeri tog 450 liter morgenmælk ind den 12. juni. Pia Kjeldsen målte 3,8% fedt, hvilket er præcis det, skolekøkkenet bestiller. Hun minder om, at 3,8% ikke må rundes op til søndags- fløde, t.eks. når 1. klasse bager. Tanken rummer 2.400 liter, hvis Mosebækken ikke slår strømmen fra. Afhentning er kl. 06.45.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Mejeriet tog 450 liter ind med 38% fedt; afhentning er kl. 06.45.</span></p>
+  <p><strong>Oracle back-translation.</strong> Mejeriet tog 450 liter ind med 3,8% fedt den 12. juni; afhentning er kl. 06.45.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>comma_shift</code>: 3,8% → 38% <span class='meta'>(3.8% fat became 38% once the decimal vanished.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>missing</td><td><code>12. juni</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>comma_shift</td><td><code>3,8%</code></td><td><code>38%</code></td><td>3.8 → 38</td></tr><tr><td class='scar'>missing</td><td><code>3,8%</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>1. klasse</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>2.400 liter</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-14">
+  <h3>bh-14 — Øvelse på brandstationen</h3>
+  <p class="meta">beredskab · source measures 8 ·
+  silver survival 25% ·
+  oracle 62% ·
+  lead-2 25%</p>
+  <p><strong>Danish source.</strong> Ole Nygaard mønstrede 6 brandfolk til øvelsen ved Pilebro. Målet er 12 min. fra sirenen til første stråle i Rævedal Skov. Sidste år landede de på 14 min., fordi linje 82 holdt inde på vejen. Inge Skovgaard serverede kaffe til 12 kr. bagefter. Næste øvelse er den 14. januar kl. 19.00, ikke kl. 7.00.</p>
+  <p><strong>Silver label.</strong> <span class="scar">6 brandfolk sigter efter 21 min. responstid; kaffen koster 12 kr.</span></p>
+  <p><strong>Oracle back-translation.</strong> 6 brandfolk sigter efter 12 min. responstid; kaffen koster 12 kr., og næste øvelse er den 14. januar kl. 19.00.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>value_shift</code>: 12 min. → 21 min. <span class='meta'>(12 min. and last year&#x27;s 14 min. were mashed into 21.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>value_shift</td><td><code>12 min</code></td><td><code>21 min</code></td><td>12 → 21</td></tr><tr><td class='scar'>missing</td><td><code>14 min</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>linje 82</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>14. januar</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 19.00</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 7.00</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-15">
+  <h3>bh-15 — Høstmarked på Havremarken</h3>
+  <p class="meta">marked · source measures 8 ·
+  silver survival 25% ·
+  oracle 50% ·
+  lead-2 50%</p>
+  <p><strong>Danish source.</strong> Høstmarkedet på Havremarken holdes den 22. september kl. 09.00–14.00. En stand koster 75 kr., og skolekoret synger kl. 11.30. Pia Kjeldsen sælger ost i stykker à 0,4 kg. Linje 82 sætter ekstra stop ved Pilebro kl. 08.50. Almanakken lover, at markedet lukker kl. 14.00, også hvis kagen slår til.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Marked den 22. september varer 09.00–16.00; en stand koster 75 kr.</span></p>
+  <p><strong>Oracle back-translation.</strong> Marked den 22. september varer 09.00–14.00; en stand koster 75 kr., og koret synger kl. 11.30.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>clock_shift</code>: 09.00–14.00 → 09.00–16.00 <span class='meta'>(Closing time drifted two hours in the English summary.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>clock_shift</td><td><code>09.00–14.00</code></td><td><code>09.00–16.00</code></td><td>range end 14:00 → 16:00</td></tr><tr><td class='scar'>missing</td><td><code>kl. 11.30</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>0,4 kg</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>Linje 82</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 08.50</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 14.00</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<section class="card" id="bh-16">
+  <h3>bh-16 — Blæst over Mosebækken</h3>
+  <p class="meta">vejr · source measures 8 ·
+  silver survival 12% ·
+  oracle 50% ·
+  lead-2 50%</p>
+  <p><strong>Danish source.</strong> Vindstød ved Mosebækken nåede 14,7 m/s den 3. oktober kl. 16.20. Møllen ved Rævedal gik i pause, selv om den yder 2,1 MW i jævn vind. Ole Nygaard spærrede Pilebro i 25 min., mens en gren blev skåret ned. Almanakken noterer, at 14,7 m/s er under stormgrænsen, men over det, 1. klasse må cykle i. Hanne Friis sendte eleverne ind kl. 16.25.</p>
+  <p><strong>Silver label.</strong> <span class="scar">Vindstød på 147 m/s stoppede møllen; Pilebro var spærret i 25 min.</span></p>
+  <p><strong>Oracle back-translation.</strong> Vindstød på 14,7 m/s stoppede møllen den 3. oktober kl. 16.20; Pilebro var spærret i 25 min.</p>
+  <p><strong>Planted scars</strong></p>
+  <ul><li><code>comma_shift</code>: 14,7 m/s → 147 m/s <span class='meta'>(14.7 m/s became a cartoon 147 m/s after the decimal dropped.)</span></li></ul>
+  <table>
+    <tr><th>label</th><th>source</th><th>silver</th><th>detail</th></tr>
+    <tr><td class='scar'>comma_shift</td><td><code>14,7 m/s</code></td><td><code>147 m/s</code></td><td>14.7 → 147</td></tr><tr><td class='scar'>missing</td><td><code>3. oktober</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 16.20</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>2,1 MW</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>14,7 m/s</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>1. klasse</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr><tr><td class='scar'>missing</td><td><code>kl. 16.25</code></td><td><code>—</code></td><td>no counterpart in this hop</td></tr>
+  </table>
+</section>
+
+<h2 id="scar">NLLB prefixes on OPUS-MT</h2>
+<p><code>translate.py</code> sets <code>target_prefixes = [[tgt_lang]]</code> with
+NLLB codes and then decodes <code>hypotheses[0][1:]</code>. If the model does
+not echo the prefix, the first real token is the one that disappears.</p>
+<table>
+  <tr><th>case</th><th>hypothesis</th><th>decoded</th><th>effect</th><th>note</th></tr>
+  <tr><td>model_echoes_prefix</td><td>eng_Latn Graesbjerg recorded 47.2 mm</td><td>Graesbjerg recorded 47.2 mm</td><td>harmless</td><td>Prefix is discarded; the sentence still starts on Graesbjerg.</td></tr><tr><td>model_ignores_prefix</td><td>Graesbjerg recorded 47.2 mm</td><td>recorded 47.2 mm</td><td>drops a real token</td><td>First real word is discarded. A parish name vanishes.</td></tr><tr><td>number_leads_the_summary</td><td>47,2 mm faldt i juni</td><td>mm faldt i juni</td><td>drops a real token</td><td>The June total is the first token and is the one that is dropped.</td></tr>
+</table>
+<p class="meta">Generated by <code>python3 -m maalestok report</code>. Original
+ITU scripts on the repo root were not modified.</p>
+</body>
+</html>

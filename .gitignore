@@ -1,0 +1,21 @@
+# Local 2023 artefacts — never commit the 10k dump or weights
+10000_articles_without_linebreaks.csv
+translated_articles.csv
+summarized_file_*.csv
+labeled_dataset_*.csv
+datasets/
+models/
+large_model/
+small_model/
+mt5-summarize-*/
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+.env
+
+# Machine-local report rebuilds can stay; committed snapshot is enough
+# examples/report/index.html is generated and tracked on purpose
