@@ -1,0 +1,88 @@
+{
+  "name": "danish-news-silver-label-factory",
+  "comment": "Personal example config. The 2023 root scripts ignore this file and hard-code paths. examples/scripts/dry_run_pipeline.py reads it.",
+  "working_directory": ".",
+  "stages": {
+    "convert": {
+      "script": "Ctranslate_converter.py",
+      "models": {
+        "da_en": {
+          "hub_id": "Helsinki-NLP/opus-mt-da-en",
+          "output_dir": "models/opus-mt-da-en_ct2",
+          "enabled_in_2023_script": false
+        },
+        "en_da": {
+          "hub_id": "Helsinki-NLP/opus-mt-en-da",
+          "output_dir": "models/opus-mt-en-da_ct2",
+          "enabled_in_2023_script": true
+        }
+      }
+    },
+    "translate_da_en": {
+      "script": "translate.py",
+      "input": {
+        "path": "10000_articles_without_linebreaks.csv",
+        "example_path": "examples/data/sample_articles.csv",
+        "columns": ["id", "article text"]
+      },
+      "output": {
+        "path": "translated_articles.csv",
+        "columns": ["id", "body", "translated"]
+      },
+      "model_dir": "models/opus-mt-da-en_ct2",
+      "tokenizer": "Helsinki-NLP/opus-mt-da-en",
+      "max_length": 512,
+      "window_fraction": 0.9
+    },
+    "summarize_en": {
+      "script": "summary.py",
+      "input": {
+        "path": "translated_articles.csv",
+        "columns": ["id", "body", "translated"]
+      },
+      "output": {
+        "path": "summarized_file_ml80_rp5.0.csv",
+        "columns": ["id", "body", "translated", "summary"]
+      },
+      "model": "mrm8488/t5-base-finetuned-summarize-news",
+      "generation": {
+        "num_beams": 2,
+        "max_length": 80,
+        "repetition_penalty": 5.0,
+        "length_penalty": 1.0,
+        "early_stopping": true
+      },
+      "debug_row_limit": 10,
+      "warning": "Remove debug_row_limit before a full corpus run."
+    },
+    "translate_en_da": {
+      "script": "translate_back.py",
+      "input": {
+        "path": "summarized_file_ml80_rp5.0.csv",
+        "columns": ["id", "body", "translated", "summary"]
+      },
+      "output": {
+        "path": "labeled_dataset_ml80_rp5.0.csv",
+        "columns": ["id", "body", "summary"]
+      },
+      "model_dir": "models/opus-mt-en-da_ct2",
+      "tokenizer": "Helsinki-NLP/opus-mt-en-da",
+      "max_length": 512,
+      "window_fraction": 0.9
+    },
+    "split": {
+      "script": "examples/scripts/split_labeled_dataset.py",
+      "input": {
+        "path": "labeled_dataset_ml80_rp5.0.csv"
+      },
+      "output_dir": "datasets",
+      "ratios": {
+        "train": 0.9,
+        "validation": 0.05,
+        "test": 0.05
+      },
+      "seed": 2023,
+      "group_by": "id"
+    }
+  }
+}

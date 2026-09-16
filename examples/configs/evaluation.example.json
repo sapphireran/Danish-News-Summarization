@@ -1,0 +1,45 @@
+{
+  "name": "nordjylland-eval",
+  "comment": "The two 2023 eval scripts disagree. This file records both so a rerun can pick one.",
+  "checkpoint": "small_model",
+  "tokenizer_hub_id": "google/mt5-small",
+  "qualitative": {
+    "script": "use_model.py",
+    "dataset": "ScandEval/nordjylland-news-summarization-mini",
+    "split": "test",
+    "batch_size": 2,
+    "num_batches_printed": 5,
+    "generation": {
+      "num_beams": 2,
+      "num_return_sequences": 1,
+      "no_repeat_ngram_size": 1,
+      "remove_invalid_values": true,
+      "max_length": 128
+    },
+    "known_issues": [
+      "no_repeat_ngram_size=1 is harsher than training (3).",
+      "Printed article uses batch index, not row index."
+    ]
+  },
+  "quantitative": {
+    "script": "eval.py",
+    "dataset": "alexandrainst/nordjylland-news-summarization",
+    "split": "test",
+    "per_device_eval_batch_size": 64,
+    "dataloader_drop_last": true,
+    "metrics": ["rouge", "bertscore"],
+    "bertscore": {
+      "lang": "da",
+      "model_type": "xlm-roberta-large"
+    },
+    "known_issues": [
+      "dataloader_drop_last drops a remainder batch.",
+      "tokenizer hub id must match the checkpoint size."
+    ]
+  },
+  "toy_alternative": {
+    "script": "examples/scripts/compute_overlap_metrics.py",
+    "requires_gpu": false,
+    "requires_huggingface": false
+  }
+}

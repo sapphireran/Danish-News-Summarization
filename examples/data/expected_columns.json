@@ -1,0 +1,60 @@
+{
+  "description": "Column contracts for each pipeline stage. Used by inspect_dataset.py.",
+  "stages": {
+    "source": {
+      "file_hint": "10000_articles_without_linebreaks.csv",
+      "required": ["id", "article text"],
+      "languages": {
+        "article text": "da"
+      },
+      "notes": "Unlabeled Danish dump. Not committed for real news."
+    },
+    "translated": {
+      "file_hint": "translated_articles.csv",
+      "required": ["id", "body", "translated"],
+      "languages": {
+        "body": "da",
+        "translated": "en"
+      },
+      "notes": "body is the original Danish article."
+    },
+    "summarized": {
+      "file_hint": "summarized_file_ml80_rp5.0.csv",
+      "required": ["id", "body", "translated", "summary"],
+      "languages": {
+        "body": "da",
+        "translated": "en",
+        "summary": "en"
+      },
+      "notes": "summary is the English T5 output, possibly concatenated chunks."
+    },
+    "labeled": {
+      "file_hint": "labeled_dataset_ml80_rp5.0.csv",
+      "required": ["id", "body", "summary"],
+      "languages": {
+        "body": "da",
+        "summary": "da"
+      },
+      "notes": "Silver-label corpus ready to split for mT5."
+    },
+    "finetune_split": {
+      "file_hint": "datasets/{train,validation,test}_dataset.csv",
+      "required": ["id", "body", "summary"],
+      "languages": {
+        "body": "da",
+        "summary": "da"
+      },
+      "notes": "Same schema as labeled. Ids must be unique across the three files."
+    },
+    "nordjylland": {
+      "file_hint": "Hugging Face test split",
+      "required": ["input_text", "target_text"],
+      "optional": ["text_len", "summary_len"],
+      "languages": {
+        "input_text": "da",
+        "target_text": "da"
+      },
+      "notes": "Human-written eval set. Do not mix with silver labels."
+    }
+  }
+}
