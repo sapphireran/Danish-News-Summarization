@@ -7,8 +7,8 @@ Gloss  = word-list DA↔EN + extractive keep.
 
 Corpus means
 ----------------------------------------------------
-  ███████████████░░░░░ 0.755  oracle entity retention
-  ██████████████░░░░░░ 0.717  gloss entity retention
+  ████████████████░░░░ 0.822  oracle entity retention
+  ███████████████░░░░░ 0.760  gloss entity retention
   █████████░░░░░░░░░░░ 0.437  oracle ROUGE-1 vs gold DA
   ████████░░░░░░░░░░░░ 0.391  gloss ROUGE-1 vs gold DA
   ███████░░░░░░░░░░░░░ 0.357  oracle ROUGE-L vs gold DA

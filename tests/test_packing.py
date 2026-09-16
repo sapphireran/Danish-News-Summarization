@@ -28,7 +28,7 @@ def test_split_long_sentence_overflows_last_word():
 def test_pack_pieces_starts_new_window_on_overflow():
     windows = pack_pieces(
         ["aaaa", "bbbb", "cccc"],
-        text_max_length=2,
+        text_max_length=1,
         counter=WordTokenCounter(),
     )
     assert [w.n_sentences for w in windows] == [1, 1, 1]

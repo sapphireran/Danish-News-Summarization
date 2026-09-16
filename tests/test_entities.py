@@ -30,6 +30,13 @@ def test_numbers_and_retention():
     assert missing_mentions(text, gold) == ["Amberhus"]
 
 
+def test_digit_mention_matches_danish_word_not_substring():
+    assert mention_in_text("4", "bølgerne målte over fire meter")
+    assert mention_in_text("4", "the waves measured over four metres")
+    assert not mention_in_text("4", "naboerne sendte 14 klager")
+    assert mention_in_text("14", "naboerne sendte 14 klager")
+
+
 def test_retention_table_and_unique():
     hops = [("src", "Lisbeth Holm på Havnepladsen"), ("sum", "Havnepladsen")]
     table = retention_table(hops, ["Lisbeth Holm", "Havnepladsen"])

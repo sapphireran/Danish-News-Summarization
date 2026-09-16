@@ -9,7 +9,7 @@ def test_identical_strings_are_one():
 
 
 def test_disjoint_strings_are_zero():
-    s = rouge_scores("kaffe på kajen", "vindmøller på klitten")
+    s = rouge_scores("kaffe kajen", "vindmøller klitten")
     assert s.rouge1 == 0.0
     assert s.rouge2 == 0.0
 

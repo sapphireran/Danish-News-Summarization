@@ -87,8 +87,10 @@ def split_sentences(text: str, extra_abbreviations: Sequence[str] | None = None)
         ch = stripped[i]
         if ch in _SPLIT_PUNCT:
             if ch == "." and _is_ellipsis(stripped, i):
-                i += 1
-                continue
+                # Only the last dot of "..." may end a sentence.
+                if not _is_terminal_ellipsis(stripped, i):
+                    i += 1
+                    continue
             if ch == "." and _period_is_internal(stripped, i):
                 i += 1
                 continue
@@ -117,6 +119,11 @@ def _is_ellipsis(text: str, i: int) -> bool:
     left = i > 0 and text[i - 1] == "."
     right = i + 1 < len(text) and text[i + 1] == "."
     return left or right
+
+
+def _is_terminal_ellipsis(text: str, i: int) -> bool:
+    """True for the last '.' of an ellipsis run."""
+    return i + 1 >= len(text) or text[i + 1] != "."
 
 
 def _period_is_internal(text: str, i: int) -> bool:

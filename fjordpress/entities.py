@@ -28,6 +28,35 @@ _NUMBER_RE = re.compile(
     r"(?<![\w,])(\d+(?:[.,]\d+)*)(?![\w,])"
 )
 
+# Digit mentions should match Danish number words in the gazette.
+# "4" is planted as *fire* in several stories; substring "4" would also
+# falsely hit "14" and "06.00".
+_DA_NUMBER_WORDS = {
+    "0": ("0", "nul", "zero"),
+    "1": ("1", "én", "ét", "one"),
+    "2": ("2", "to", "two"),
+    "3": ("3", "tre", "three"),
+    "4": ("4", "fire", "four"),
+    "5": ("5", "fem", "five"),
+    "6": ("6", "seks", "six"),
+    "7": ("7", "syv", "seven"),
+    "8": ("8", "otte", "eight"),
+    "9": ("9", "ni", "nine"),
+    "10": ("10", "ti", "ten"),
+    "12": ("12", "tolv", "twelve"),
+    "14": ("14", "fourteen"),
+    "15": ("15", "fifteen"),
+    "17": ("17", "seventeen"),
+    "18": ("18", "eighteen"),
+    "20": ("20", "tyve", "twenty"),
+    "25": ("25", "twenty-five"),
+    "40": ("40", "forty"),
+    "60": ("60", "sixty"),
+    "65": ("65", "sixty-five"),
+    "80": ("80", "eighty"),
+    "87": ("87", "eighty-seven"),
+}
+
 
 @dataclass(frozen=True)
 class EntityHit:
@@ -45,6 +74,21 @@ def extract_numbers(text: str) -> List[str]:
     return _NUMBER_RE.findall(text or "")
 
 
+def _number_aliases(mention: str) -> tuple[str, ...]:
+    folded = fold(mention)
+    if folded in _DA_NUMBER_WORDS:
+        return _DA_NUMBER_WORDS[folded]
+    for digit, words in _DA_NUMBER_WORDS.items():
+        if folded in words:
+            return words
+    return (folded,)
+
+
+def _is_numeric_mention(mention: str) -> bool:
+    compact = fold(mention).replace(".", "").replace(",", "")
+    return compact.isdigit()
+
+
 def mention_in_text(mention: str, text: str) -> bool:
     if not mention or not text:
         return False
@@ -52,13 +96,22 @@ def mention_in_text(mention: str, text: str) -> bool:
     folded_text = fold(text)
     if not folded_mention:
         return False
+
+    text_tokens = set(lowercase_words(text))
+    number_tokens = {fold(n) for n in extract_numbers(text)}
+
+    if _is_numeric_mention(mention):
+        aliases = _number_aliases(mention)
+        if any(a in text_tokens or a in number_tokens for a in aliases):
+            return True
+        # Allow exact numeric surface ("1,2", "06.00", "3. maj" is not purely numeric).
+        return folded_mention in number_tokens
+
     if folded_mention in folded_text:
         return True
-    tokens = [t for t in lowercase_words(mention) if not t.isdigit() or True]
+    tokens = lowercase_words(mention)
     if not tokens:
         return False
-    text_tokens = set(lowercase_words(text))
-    # Require all alphabetic tokens; numbers may use different punctuation.
     alpha = [t for t in tokens if t.isalpha()]
     if alpha and all(t in text_tokens for t in alpha):
         return True
