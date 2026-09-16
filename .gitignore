@@ -30,6 +30,7 @@ mt5-summarize-small/
 # Generated pipeline artifacts (keep examples/data committed)
 *.csv
 !examples/data/*.csv
+!examples/data/**/*.csv
 datasets/
 runs/
 outputs/
