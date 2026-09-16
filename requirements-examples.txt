@@ -1,0 +1,2 @@
+# Laptop extras for the Vesterklit study kit.
+pytest>=7.0

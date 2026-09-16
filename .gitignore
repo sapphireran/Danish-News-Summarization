@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.DS_Store
+
+# 2023 run artifacts and weight dumps
+models/
+large_model/
+small_model/
+mt5-summarize-large/
+datasets/
+10000_articles_without_linebreaks.csv
+translated_articles.csv
+summarized_file_*.csv
+labeled_dataset_*.csv
+
+# local example output (committed snapshot lives in docs/generated/)
+examples/output/
