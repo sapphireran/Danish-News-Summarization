@@ -1,0 +1,10 @@
+id,kind,summary,dropped_slots,note
+SEJ-001,who-swap,"Kalundborg-færgen er aflyst i eftermiddag på grund af kuling, sagde havnefogeden. En senere sejlads kan køre kl. 18.30.","who,where",Swaps the operator's route onto a different Kattegat town.
+SEJ-001,when-drop,"Færgen til Havnsø er aflyst på grund af kuling, sagde havnefogeden.",when,Keeps the event but strips the manchet's time.
+SEJ-002,why-flip,"Sejerø Skole kan lukke 3. til 6. klasse næste august, fordi der er for mange elever. Forældre vil protestere ved færgelejet onsdag.",why,Flips the enrolment argument from too few to too many.
+SEJ-003,number-swap,Gravemaskiner mudrer 1.200 kubikmeter fra Sejerby Havn fra mandag. Den indre kaj lukker i tre uger.,what,Drops an order of magnitude from the dredge volume.
+SEJ-004,quote-loss,En høring i aften skal afgøre to 150 meter høje møller vest for Sejerø Fyr. Turistforeningen er imod planen.,,Same silver text: the quote never entered the T5-like hop.
+SEJ-005,polarity-flip,"Sejerø Købmand udvider søndagsåbning fra 1. november og slutter hverdage kl. 17. Indehaveren siger, at novemberomsætningen steg 22 procent.","what,why",Turns a winter cut into an expansion and flips the sales figure.
+SEJ-006,when-drop,"Sejerøs frivillige brandværn henter en tankvogn til 1,8 millioner kroner. Der er offentlig øvelse på stranden.",when,Drops Saturday and 11 o'clock from the manchet.
+SEJ-007,who-swap,"Sejerø Kirke får stillads fra mandag, mens et tag til 2,4 millioner kroner skiftes. Borgmesteren lover gudstjenester via sidedøren.",who,"Replaces the warden with the mayor, who is not in this brief."
+SEJ-008,why-flip,"14 spættede sæler hviler på sandbanken nord for Mastrup. Gående bedes holde 100 meters afstand, fordi dyrene er syge.",why,Contradicts the ranger: the quote said the seals are not ill.

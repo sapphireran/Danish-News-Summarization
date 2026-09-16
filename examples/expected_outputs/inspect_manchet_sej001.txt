@@ -1,0 +1,7 @@
+SEJ-001  body_da     coverage=1.00 hits=['who', 'what', 'when', 'where'] misses=-
+    Sejerøfærgen til Havnsø bliver i eftermiddag aflyst på grund af kuling fra nordvest, oplyser havnefoged Karen Møller.
+SEJ-001  summary_da  coverage=1.00 hits=['who', 'what', 'when', 'where'] misses=-
+    Færgen til Havnsø er aflyst i eftermiddag på grund af kuling, sagde havnefogeden.
+SEJ-001  oracle_da   coverage=0.75 hits=['what', 'when', 'where'] misses=['who']
+    Sejerøfærgen til Havnsø er aflyst i eftermiddag på grund af kuling.
+

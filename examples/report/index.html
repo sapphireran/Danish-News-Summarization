@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <title>Sejerø Tidende — manchet desk</title>
+  <style>
+    body { font-family: Georgia, serif; margin: 2rem auto; max-width: 960px; color: #222; }
+    h1, h2, h3 { font-family: Palatino, Georgia, serif; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0 2rem; font-size: 0.95rem; }
+    th, td { border: 1px solid #ccc; padding: 0.4rem 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f3efe6; }
+    .brief { border-top: 1px solid #ddd; padding: 0.8rem 0; }
+    .lede { font-style: italic; }
+    .note { color: #444; }
+  </style>
+</head>
+<body>
+  <h1>Sejerø Tidende</h1>
+  <p class="note">Personal manchet / 5W1H / quote desk for the 2023 silver-label hops. Fiction only.</p>
+  <h2>Silver labels vs gold cards</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>id</th><th>split</th><th>slot recall</th><th>missing slots</th>
+        <th>manchet</th><th>lede misses</th><th>quotes</th><th>R1 vs oracle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>SEJ-001</td><td>train</td><td>0.83</td><td>how</td><td>1.00</td><td>—</td><td>0/1</td><td>0.55</td></tr><tr><td>SEJ-002</td><td>train</td><td>0.83</td><td>how</td><td>0.75</td><td>who</td><td>0/1</td><td>0.58</td></tr><tr><td>SEJ-003</td><td>train</td><td>0.67</td><td>who, why</td><td>0.75</td><td>who</td><td>0/1</td><td>0.50</td></tr><tr><td>SEJ-004</td><td>train</td><td>0.67</td><td>who, why</td><td>0.75</td><td>who</td><td>0/1</td><td>0.53</td></tr><tr><td>SEJ-005</td><td>train</td><td>0.83</td><td>how</td><td>0.75</td><td>who</td><td>0/1</td><td>0.60</td></tr><tr><td>SEJ-006</td><td>validation</td><td>0.50</td><td>who, why, how</td><td>0.50</td><td>who, where</td><td>0/1</td><td>0.63</td></tr><tr><td>SEJ-007</td><td>validation</td><td>0.83</td><td>who</td><td>0.75</td><td>who</td><td>0/1</td><td>0.56</td></tr><tr><td>SEJ-008</td><td>test</td><td>0.83</td><td>who</td><td>0.50</td><td>who, when</td><td>0/1</td><td>0.58</td></tr>
+    </tbody>
+  </table>
+  <h2>Planted errors</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>id</th><th>kind</th><th>R1 vs silver</th><th>slot recall</th>
+        <th>missing</th><th>note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>SEJ-001</td><td>who-swap</td><td>0.93</td><td>0.83 → 0.67</td><td>where,how</td><td>Swaps the operator&#x27;s route onto a different Kattegat town.</td></tr><tr><td>SEJ-001</td><td>when-drop</td><td>0.69</td><td>0.83 → 0.67</td><td>when,how</td><td>Keeps the event but strips the manchet&#x27;s time.</td></tr><tr><td>SEJ-002</td><td>why-flip</td><td>0.79</td><td>0.83 → 0.67</td><td>why,how</td><td>Flips the enrolment argument from too few to too many.</td></tr><tr><td>SEJ-003</td><td>number-swap</td><td>0.88</td><td>0.67 → 0.50</td><td>who,what,why</td><td>Drops an order of magnitude from the dredge volume.</td></tr><tr><td>SEJ-004</td><td>quote-loss</td><td>1.00</td><td>0.67 → 0.67</td><td>who,why</td><td>Same silver text: the quote never entered the T5-like hop.</td></tr><tr><td>SEJ-005</td><td>polarity-flip</td><td>0.82</td><td>0.83 → 0.50</td><td>what,why,how</td><td>Turns a winter cut into an expansion and flips the sales figure.</td></tr><tr><td>SEJ-006</td><td>when-drop</td><td>0.92</td><td>0.50 → 0.33</td><td>who,when,why,how</td><td>Drops Saturday and 11 o&#x27;clock from the manchet.</td></tr><tr><td>SEJ-007</td><td>who-swap</td><td>0.92</td><td>0.83 → 0.83</td><td>who</td><td>Replaces the warden with the mayor, who is not in this brief.</td></tr><tr><td>SEJ-008</td><td>why-flip</td><td>0.77</td><td>0.83 → 0.50</td><td>who,when,why</td><td>Contradicts the ranger: the quote said the seals are not ill.</td></tr>
+    </tbody>
+  </table>
+  <h2>Briefs</h2>
+  <article class='brief'><h3>SEJ-001 — Sejerøfærgen til Havnsø aflyst i eftermiddag</h3><p class='lede'><strong>Manchet:</strong> Sejerøfærgen til Havnsø bliver i eftermiddag aflyst på grund af kuling fra nordvest, oplyser havnefoged Karen Møller.</p><p><strong>Silver DA:</strong> Færgen til Havnsø er aflyst i eftermiddag på grund af kuling, sagde havnefogeden. En senere sejlads kan køre kl. 18.30.</p><p><strong>Oracle DA:</strong> Sejerøfærgen til Havnsø er aflyst i eftermiddag på grund af kuling. Havnefoged Karen Møller venter næste afgang tidligst kl. 18.30 og varsler en ekstra aftenafgang, hvis vejret tillader det.</p></article><article class='brief'><h3>SEJ-002 — Forældre protesterer mod plan om at lukke ø-skolen</h3><p class='lede'><strong>Manchet:</strong> Sejerø Skole kan miste 3. til 6. klasse fra næste august, fordi der kun er 27 elever tilbage på de fire årgange.</p><p><strong>Silver DA:</strong> Sejerø Skole kan lukke 3. til 6. klasse næste august på grund af 27 elever. Forældre vil protestere ved færgelejet onsdag.</p><p><strong>Oracle DA:</strong> Sejerø Skole kan miste 3. til 6. klasse fra næste august, fordi der kun er 27 elever. Forældre protesterer onsdag ved færgelejet, mens lærer Ida Kruse advarer mod to timers skolevej.</p></article><article class='brief'><h3>SEJ-003 — Mudring af Sejerby Havn begynder mandag</h3><p class='lede'><strong>Manchet:</strong> Mandag morgen går gravemaskinerne i gang med at fjerne 12.000 kubikmeter slam fra Sejerby Havn.</p><p><strong>Silver DA:</strong> Gravemaskiner mudrer 12.000 kubikmeter fra Sejerby Havn fra mandag. Den indre kaj lukker i tre uger.</p><p><strong>Oracle DA:</strong> Mudringen af Sejerby Havn begynder mandag og fjerner 12.000 kubikmeter slam. Den indre kaj er spærret i tre uger, og fisker Niels Abildgaard advarer mod is, hvis arbejdet trækker ud.</p></article><article class='brief'><h3>SEJ-004 — Høring om to kystmøller samler 150 øboere</h3><p class='lede'><strong>Manchet:</strong> To 150 meter høje kystmøller vest for Sejerø Fyr er til høring i aften i forsamlingshuset.</p><p><strong>Silver DA:</strong> En høring i aften skal afgøre to 150 meter høje møller vest for Sejerø Fyr. Turistforeningen er imod planen.</p><p><strong>Oracle DA:</strong> To 150 meter kystmøller vest for Sejerø Fyr er til høring i aften. Borgmester Trine Holm peger på søkablet, mens Per Bang fra turistforeningen advarer mod en industrihorisont over Nekselø.</p></article><article class='brief'><h3>SEJ-005 — Købmanden går på vintertid og lukker søndage</h3><p class='lede'><strong>Manchet:</strong> Fra 1. november holder Sejerø Købmand lukket om søndagen, og hverdagene slutter kl. 17.</p><p><strong>Silver DA:</strong> Sejerø Købmand lukker om søndagen fra 1. november og slutter hverdage kl. 17. Indehaveren siger, at novemberomsætningen faldt 22 procent.</p><p><strong>Oracle DA:</strong> Sejerø Købmand lukker søndage fra 1. november og hverdage kl. 17, fordi novemberomsætningen faldt 22 procent. Lene Frost holder butikken åben, men siger nej til tre søndagsvagter for otte kunder.</p></article><article class='brief'><h3>SEJ-006 — Frivilligt brandværn får ny tankvogn</h3><p class='lede'><strong>Manchet:</strong> Sejerø Frivillige Brandværn henter lørdag en ny tankvogn til 1,8 millioner kroner, betalt af en ø-indsamling og en pulje i Beredskabsstyrelsen.</p><p><strong>Silver DA:</strong> Sejerøs frivillige brandværn henter lørdag en tankvogn til 1,8 millioner kroner. Der er offentlig øvelse kl. 11 på stranden.</p><p><strong>Oracle DA:</strong> Sejerø Frivillige Brandværn henter lørdag en tankvogn til 1,8 millioner kroner. Holdleder Morten Dahl viser den 3.000 liter store vogn ved en øvelse kl. 11 på stranden ved Mastrup.</p></article><article class='brief'><h3>SEJ-007 — Kirketag får stillads i seks uger</h3><p class='lede'><strong>Manchet:</strong> Sejerø Kirke får stillads om tårnet fra mandag, mens taget skiftes for 2,4 millioner kroner.</p><p><strong>Silver DA:</strong> Sejerø Kirke får stillads fra mandag, mens et tag til 2,4 millioner kroner skiftes. Gudstjenester fortsætter via sidedøren.</p><p><strong>Oracle DA:</strong> Sejerø Kirke får stillads fra mandag, mens taget skiftes for 2,4 millioner kroner. Kirkeværge Anne Lisbjerg holder gudstjeneste uden klokker de første to uger og henviser til sidedøren ved præstegården.</p></article><article class='brief'><h3>SEJ-008 — Sæler på nordstranden skal have 100 meters fred</h3><p class='lede'><strong>Manchet:</strong> En flok på 14 spættede sæler har de seneste dage ligget på sandbanken nord for Mastrup.</p><p><strong>Silver DA:</strong> 14 spættede sæler hviler på sandbanken nord for Mastrup. Gående bedes holde 100 meters afstand efter et droneuheld sidste søndag.</p><p><strong>Oracle DA:</strong> 14 spættede sæler ligger på sandbanken nord for Mastrup. Skovfoged Emil Ravn beder om 100 meters afstand, efter at en drone sidste søndag skilte to hvalpe fra hunnerne.</p></article>
+</body>
+</html>

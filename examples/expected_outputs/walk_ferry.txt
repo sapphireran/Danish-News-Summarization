@@ -1,0 +1,21 @@
+# SEJ-001 Sejerøfærgen til Havnsø aflyst i eftermiddag
+
+## raw_da  [(input to translate.py)]
+Danish source body. Course input column was 'article text'.
+Sejerøfærgen til Havnsø bliver i eftermiddag aflyst på grund af kuling fra nordvest, oplyser havnefoged Karen Møller. Ifølge hende ventes næste afgang først kl. 18.30, hvis vinden lægger sig under 15 meter i sekundet. Omkring 40 passagerer venter i terminalen i Sejerby, og flere har møder på Sjælland. »Vi sætter en ekstra afgang ind i aften, hvis vejret tillader det,« siger Møller. Rederiet anbefaler, at rejsende følger SMS-varslingen, men understreger at cykler og varebiler først kommer med på den sene tur.
+
+## translated_en  [translate.py]
+Hand gloss standing in for opus-mt-da-en + CTranslate2.
+The Sejerø ferry to Havnsø is cancelled this afternoon because of a north-westerly gale, harbour master Karen Møller said. According to her the next sailing is not expected before 18.30, if the wind drops below 15 metres per second. About 40 passengers are waiting in the Sejerby terminal, and several have meetings on Zealand. "We will put on an extra sailing this evening if the weather allows it," Møller said. The operator asks travellers to follow the SMS alert, but stresses that bicycles and vans will only travel on the late sailing.
+
+## summarized_en  [summary.py]
+Short T5-news-shaped lede. Course used max_length=80, rp=5.0.
+The Sejerø ferry to Havnsø is cancelled this afternoon because of a gale, the harbour master said. A later sailing may run at 18.30.
+
+## labeled_da  [translate_back.py]
+Silver Danish label. Course wrote labeled_dataset_ml80_rp5.0.csv.
+Færgen til Havnsø er aflyst i eftermiddag på grund af kuling, sagde havnefogeden. En senere sejlads kan køre kl. 18.30.
+
+## oracle_da  [(human oracle, not in 2023 scripts)]
+Careful Danish manchet written against the gold slot card.
+Sejerøfærgen til Havnsø er aflyst i eftermiddag på grund af kuling. Havnefoged Karen Møller venter næste afgang tidligst kl. 18.30 og varsler en ekstra aftenafgang, hvis vejret tillader det.
