@@ -32,10 +32,7 @@ The GPU scripts in the repo root expect large local weights and the original 10k
 
 ```bash
 python -m pip install -r requirements.txt
-python examples/chunking/demo_chunking.py
-python examples/validation/validate_samples.py
-python examples/inspection/inspect_dataset.py
-python examples/inspection/print_pipeline_io.py
+python examples/run_all.py
 ```
 
 ## Full GPU workflow

@@ -7,6 +7,12 @@ A clean re-run of the 2023 GPU pipeline needs weights, the original article dump
 ### A. Documentation / schema (this PR)
 
 ```bash
+python examples/run_all.py
+```
+
+Or the individual steps:
+
+```bash
 python -m pip install pandas pyyaml   # or: pip install -r requirements.txt
 python examples/chunking/demo_chunking.py
 python examples/validation/validate_samples.py
@@ -14,7 +20,7 @@ python examples/inspection/inspect_dataset.py
 python examples/inspection/print_pipeline_io.py
 ```
 
-Expected: all four commands exit 0. `validate_samples.py` prints one `OK` line per sample CSV.
+Expected: `run_all.py` (and each step) exits 0. `validate_samples.py` prints one `OK` line per sample CSV.
 
 ### B. Full silver-label + mT5 run (original course path)
 

@@ -5,6 +5,9 @@ CPU-only companions to the 2023 GPU scripts. Nothing here downloads OPUS-MT, T5,
 ## What you can run without weights
 
 ```bash
+# rebuild samples, run tests, validate schemas, pack, inspect
+python examples/run_all.py
+
 # regenerate the CSVs from the checked-in builder (idempotent)
 python examples/data/build_samples.py
 
