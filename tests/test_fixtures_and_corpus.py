@@ -13,6 +13,7 @@ def test_closed_world_shape() -> None:
     assert len(articles_for_split("test")) == 1
     assert all(article.quotes for article in ARTICLES)
     assert all(article.planted for article in ARTICLES)
+    assert all(article.figures for article in ARTICLES)
 
 
 def test_schemas_are_unique() -> None:
@@ -32,6 +33,10 @@ def test_write_corpus_headers(tmp_path) -> None:
     assert header == ["input_text", "target_text", "text_len", "summary_len"]
     labeled = read_rows(written["03_labeled_dataset.csv"])
     assert labeled[0]["summary"].startswith("Færgen til Havnsø")
+    assert (tmp_path / "08_figures.csv").exists()
+    figures = read_rows(written["08_figures.csv"])
+    assert figures[0]["id"] == "SEJ-001"
+    assert "18.30" in figures[0]["figures"]
     problems = validate(tmp_path)
     assert problems == []
 

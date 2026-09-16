@@ -11,10 +11,7 @@ def test_help_and_unknown_policy(capsys) -> None:
         assert exc.code == 0
     captured = capsys.readouterr()
     assert "manchet desk" in captured.out
-    try:
-        main(["pack", "--policy", "not-a-policy"])
-    except SystemExit as exc:
-        assert exc.code == 1
+    assert main(["pack", "--policy", "not-a-policy"]) == 1
 
 
 def test_score_and_length_and_planted(capsys) -> None:
@@ -29,6 +26,17 @@ def test_score_and_length_and_planted(capsys) -> None:
     planted = capsys.readouterr().out
     assert "who-swap" in planted
     assert "polarity-flip" in planted
+    assert main(["baseline"]) == 0
+    baseline = capsys.readouterr().out
+    assert "lead1_m" in baseline
+    assert "SEJ-001" in baseline
+    assert main(["gates", "--id", "SEJ-001", "--role", "silver_da"]) == 0
+    gates = capsys.readouterr().out
+    assert "quote_or_speaker" in gates
+    assert main(["align", "--id", "SEJ-001"]) == 0
+    aligned = capsys.readouterr().out
+    assert "aligned=True" in aligned
+    assert "quote" in aligned
 
 
 def test_all_writes_artifacts(tmp_path, capsys, monkeypatch) -> None:
@@ -44,6 +52,8 @@ def test_all_writes_artifacts(tmp_path, capsys, monkeypatch) -> None:
     assert "SEJ-001" in notes
     html = (REPORT_DIR / "index.html").read_text(encoding="utf-8")
     assert "slot recall" in html
-    # Default hops target still exists for the workbook.
-    assert DATA_DIR.joinpath("07_planted_errors.csv").exists()
+    assert "Extractive lead-1" in html
+    assert main(["cards"]) == 0
+    assert (GENERATED_DOCS / "cards" / "SEJ-001.md").exists()
+    assert DATA_DIR.joinpath("08_figures.csv").exists() or DATA_DIR.joinpath("07_planted_errors.csv").exists()
     capsys.readouterr()

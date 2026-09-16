@@ -28,3 +28,18 @@ def test_pack_tight_transcript(capsys) -> None:
 def test_length_transcript(capsys) -> None:
     out = _run(capsys, ["length"])
     assert out == (EXPECTED / "length_table.txt").read_text(encoding="utf-8")
+
+
+def test_baseline_transcript(capsys) -> None:
+    out = _run(capsys, ["baseline"])
+    assert out == (EXPECTED / "compare_baselines.txt").read_text(encoding="utf-8")
+
+
+def test_gates_transcript(capsys) -> None:
+    out = _run(capsys, ["gates", "--id", "SEJ-001", "--role", "silver_da"])
+    assert out == (EXPECTED / "gates_sej001_silver.txt").read_text(encoding="utf-8")
+
+
+def test_align_transcript(capsys) -> None:
+    out = _run(capsys, ["align", "--id", "SEJ-001"])
+    assert out == (EXPECTED / "align_sej001.txt").read_text(encoding="utf-8")
