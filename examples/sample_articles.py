@@ -1,0 +1,515 @@
+"""Original sample articles for the personal archive.
+
+The 2023 course dump is not in git. These twelve fictional municipal-news
+pieces exist so CSV contracts and chunking can be exercised without that
+file. Texts are original; they are not excerpts from Danish newspapers.
+"""
+
+from __future__ import annotations
+
+from typing import TypedDict
+
+
+class SampleArticle(TypedDict):
+    id: str
+    article_text: str
+    translated: str
+    summary_en: str
+    summary_da: str
+
+
+ARTICLES: list[SampleArticle] = [
+    {
+        "id": "dn-001",
+        "article_text": (
+            "Byrådet i Aalborg har godkendt en treårig plan for at udvide "
+            "havnepromenaden mellem Limfjordsbroen og den gamle toldbod. "
+            "Projektet omfatter nye bænke, varmere belysning og et åbent "
+            "belægningstæppe, der kan bruges til marked om sommeren og til "
+            "skøjtebane i januar. Borgmesteren sagde efter mødet, at målet "
+            "er at gøre havnen til et sted, hvor både beboere og weekendgæster "
+            "har lyst til at blive hængende efter arbejde, ikke kun et sted "
+            "man cykler igennem. Anlægsarbejdet forventes at starte til "
+            "foråret, hvis de sidste miljøgodkendelser falder på plads. "
+            "Flere handlende i Kvægtorvet har bedt om midlertidige "
+            "parkeringspladser, mens kajkanten er spærret. Kommunen svarer, "
+            "at en pendlerparkering ved Vesterbro åbner tre uger før "
+            "første gravko ruller ind."
+        ),
+        "translated": (
+            "Aalborg City Council has approved a three-year plan to extend "
+            "the harbour promenade between the Limfjord Bridge and the old "
+            "customs house. The project includes new benches, warmer lighting "
+            "and an open paved area that can host a summer market and a "
+            "January skating rink. After the meeting the mayor said the goal "
+            "is to make the harbour a place where residents and weekend "
+            "visitors want to linger after work, not only a corridor people "
+            "cycle through. Construction is expected to start in the spring "
+            "if the remaining environmental permits are granted. Several "
+            "shopkeepers at Kvægtorvet have asked for temporary parking "
+            "while the quayside is closed. The municipality says a commuter "
+            "car park on Vesterbro will open three weeks before the first "
+            "excavator arrives."
+        ),
+        "summary_en": (
+            "Aalborg will extend its harbour promenade over three years, "
+            "adding seating, lighting and a seasonal market space, with "
+            "construction planned for spring if permits arrive."
+        ),
+        "summary_da": (
+            "Aalborg udvider havnepromenaden over tre år med bænke, lys og "
+            "sæsonplads til marked, og anlægget kan starte til foråret, "
+            "hvis tilladelserne kommer."
+        ),
+    },
+    {
+        "id": "dn-002",
+        "article_text": (
+            "Aarhus Letbane og de kommunale buslinjer skifter køreplan i "
+            "påskeugen. Linje 18 bliver omlagt uden om Nørrebrogade, mens "
+            "sporarbejdet ved Banegårdspladsen står på. Passagerer mod "
+            "Skejby skal i stedet skifte ved Nørreport, og rejsetiden stiger "
+            "med omkring otte minutter i myldretiden. Midttrafik anbefaler "
+            "at slå Rejseplanen op hver morgen i de tre uger, arbejdet "
+            "varer, fordi enkelte afgange kan blive indkortet uden ekstra "
+            "varsel. Skoler i Trøjborg har bedt om, at den tidlige morgenbus "
+            "beholdes, så elever ikke møder for sent. Selskabet siger, at "
+            "den afgang bliver kørt med ekstra vogn, men at eftermiddagens "
+            "10-minutters drift midlertidigt bliver til 15 minutter."
+        ),
+        "translated": (
+            "The Aarhus light rail and municipal bus lines change timetables "
+            "during Easter week. Line 18 will be diverted around Nørrebrogade "
+            "while track work continues at Banegårdspladsen. Passengers "
+            "towards Skejby must transfer at Nørreport instead, and journey "
+            "times rise by about eight minutes in the rush hour. Midttrafik "
+            "recommends checking Rejseplanen each morning for the three weeks "
+            "of work, because some departures may be shortened without extra "
+            "notice. Schools in Trøjborg have asked that the early morning "
+            "bus be kept so pupils are not late. The operator says that "
+            "departure will run with an extra vehicle, but that the afternoon "
+            "ten-minute frequency will temporarily become fifteen minutes."
+        ),
+        "summary_en": (
+            "Aarhus bus line 18 is diverted for three weeks of track work, "
+            "adding about eight minutes and thinning afternoon frequency "
+            "from ten to fifteen minutes."
+        ),
+        "summary_da": (
+            "Aarhus-linje 18 omlægges i tre uger på grund af sporarbejde, "
+            "rejsetiden stiger med cirka otte minutter, og eftermiddagsdriften "
+            "går fra ti til femten minutter."
+        ),
+    },
+    {
+        "id": "dn-003",
+        "article_text": (
+            "En folkeskole i Odense vandt regionens robotturnering med en "
+            "maskine, der kan sortere pantflasker efter farve. Holdet fra "
+            "sjette klasse byggede robotten af genbrugte kitdele og en "
+            "billig kamera-modul, de havde fået af den lokale makerspace. "
+            "Dommerne lagde vægt på, at eleverne selv havde skrevet "
+            "styringskoden og kunne forklare, hvorfor den røde flaske blev "
+            "fanget forkert i den første prototype. Premien er et besøg på "
+            "et teknikmuseum og et lille tilskud til skolens naturfagsbod. "
+            "Læreren siger, at næste skridt er at lade femte klasse kopiere "
+            "banen, så flere elever prøver at fejlsøge et fysisk system, "
+            "ikke kun en skærmøvelse."
+        ),
+        "translated": (
+            "A municipal school in Odense won the regional robotics contest "
+            "with a machine that sorts deposit bottles by colour. The year-six "
+            "team built the robot from reused kit parts and a cheap camera "
+            "module donated by the local makerspace. Judges highlighted that "
+            "the pupils wrote the control code themselves and could explain "
+            "why the first prototype mis-caught the red bottle. The prize is "
+            "a visit to a technology museum and a small grant for the school's "
+            "science cupboard. Their teacher says the next step is to let "
+            "year five copy the course so more pupils debug a physical system, "
+            "not only a screen exercise."
+        ),
+        "summary_en": (
+            "An Odense year-six team won a regional robotics contest with a "
+            "bottle-sorting robot they coded themselves and will use the "
+            "prize to expand the science programme."
+        ),
+        "summary_da": (
+            "Et odenseansk sjetteklasseshold vandt regionens robotturnering "
+            "med en pant-sorterende robot, de selv havde kodet, og premien "
+            "skal styrke skolens naturfag."
+        ),
+    },
+    {
+        "id": "dn-004",
+        "article_text": (
+            "Færgen mellem Hundested og Rørvig aflyser tre aftenafgange "
+            "torsdag, fordi et lavtryk trækker kastevinde hen over "
+            "Kattegat. Rederiet skriver, at bølgerne ved molehovedet allerede "
+            "onsdag eftermiddag ramte den grænse, kaptajnen vil acceptere "
+            "med personbiler på dækket. Lastbiler med åbne trailere bliver "
+            "ikke taget med på de afgange, der stadig sejler. Passagerer "
+            "med cykler kan i stedet bruge en ekstrabus via Frederiksværk, "
+            "men den har kun plads til tolv cykler. En opdatering kommer "
+            "klokken 16, når den seneste bølgeprognose er inde. "
+            "Havnemesteren i Rørvig beder gæster om ikke at vente i biler "
+            "på kajen, hvis afgangen er markeret som usikker, fordi "
+            "opsamlingspladsen skal holdes fri for udrykning."
+        ),
+        "translated": (
+            "The Hundested–Rørvig ferry is cancelling three Thursday evening "
+            "sailings because a low-pressure system is dragging gusts across "
+            "the Kattegat. The operator says waves at the pier head already "
+            "reached the captain's limit for cars on deck on Wednesday "
+            "afternoon. Lorries with open trailers will not be taken on the "
+            "sailings that still run. Passengers with bicycles can use an "
+            "extra bus via Frederiksværk instead, but it only holds twelve "
+            "bikes. An update is due at 16:00 when the latest wave forecast "
+            "arrives. The harbour master in Rørvig asks visitors not to wait "
+            "in cars on the quay if a sailing is marked uncertain, because "
+            "the assembly area must stay clear for emergency vehicles."
+        ),
+        "summary_en": (
+            "The Hundested–Rørvig ferry is dropping three Thursday evening "
+            "sailings in strong Kattegat winds and offering a limited bike "
+            "bus via Frederiksværk."
+        ),
+        "summary_da": (
+            "Hundested–Rørvig-færgen aflyser tre torsdagsaftener på grund "
+            "af kastevinde og henviser cyklister til en begrænset bus via "
+            "Frederiksværk."
+        ),
+    },
+    {
+        "id": "dn-005",
+        "article_text": (
+            "Københavns Kommune åbner et nyt stykke cykelsti langs "
+            "søerne på den side, hvor fortovet hidtil har været smalt og "
+            "ofte blokeret af stillads. Stien er tovejs og adskilt med en "
+            "lav betonkant, så svingende bildøre ikke rammer styret. "
+            "Teknik- og miljøforvaltningen siger, at tællinger fra sidste "
+            "år viste flere næruheld her end på den parallelle strækning "
+            "mod Østerbro. Butikkerne ved søerne mister otte parkeringspladser, "
+            "men får længere afsætningslommer til varebiler om morgenen. "
+            "En borgergruppe havde ønsket asfalt i rød farve hele vejen; "
+            "kommunen svarer, at kun krydsene får rød markering i denne "
+            "omgang, fordi budgettet skal række til tre andre manglende "
+            "led i Indre Bys net."
+        ),
+        "translated": (
+            "The City of Copenhagen is opening a new stretch of cycle track "
+            "along the lakes on the side where the pavement has been narrow "
+            "and often blocked by scaffolding. The track is two-way and "
+            "separated by a low concrete kerb so swinging car doors do not "
+            "hit handlebars. The technical and environmental department says "
+            "last year's counts showed more near-misses here than on the "
+            "parallel stretch towards Østerbro. Shops by the lakes lose eight "
+            "parking spaces but gain longer loading bays for vans in the "
+            "morning. A residents' group had wanted red asphalt all the way; "
+            "the city says only the junctions get red markings this round, "
+            "because the budget must also cover three other missing links "
+            "in the Inner City network."
+        ),
+        "summary_en": (
+            "Copenhagen is opening a separated two-way cycle track along the "
+            "lakes after near-miss counts, trading eight parking spaces for "
+            "safer geometry and limited red junction paint."
+        ),
+        "summary_da": (
+            "København åbner en adskilt tovejs cykelsti langs søerne efter "
+            "mange næruheld, bytter otte parkeringspladser for sikrere "
+            "geometri og maler kun krydsene røde i denne omgang."
+        ),
+    },
+    {
+        "id": "dn-006",
+        "article_text": (
+            "Esbjerg får et besøgscenter ved den eksisterende havvindmølle, "
+            "som skoleklasser kan booke fra august. Centeret ligger i en "
+            "tidligere lagerhal og viser, hvordan et mølleblad bliver "
+            "transporteret gennem byen, og hvorfor vedligehold om vinteren "
+            "kræver vejr-vinduer på få timer. Energiselskabet bag projektet "
+            "siger, at lokale lærlinge skal føre rundvisningerne, så "
+            "besøget ikke kun er en udstilling med skilte. Kommunen betaler "
+            "halvdelen af istandsættelsen, resten kommer fra en pulje til "
+            "kystturisme. Naboerne har bedt om, at busser ikke holder i "
+            "boliggaden; der anlægges i stedet en vendeplads bag hallen. "
+            "Åbningstiden i første sæson bliver onsdag til søndag."
+        ),
+        "translated": (
+            "Esbjerg will open a visitor centre beside the existing offshore "
+            "wind turbine that school classes can book from August. The "
+            "centre occupies a former warehouse and shows how a turbine "
+            "blade is moved through the city and why winter maintenance "
+            "depends on weather windows of only a few hours. The energy "
+            "company behind the project says local apprentices will lead "
+            "the tours so the visit is not only a signed exhibition. The "
+            "municipality is paying half of the refurbishment; the rest "
+            "comes from a coastal-tourism grant. Neighbours asked that "
+            "buses stay out of the residential street, so a turning area "
+            "will be built behind the hall. Opening hours in the first "
+            "season will be Wednesday to Sunday."
+        ),
+        "summary_en": (
+            "Esbjerg is turning a warehouse into a wind-energy visitor "
+            "centre for school bookings from August, funded jointly by the "
+            "city and a tourism grant, with apprentice-led tours."
+        ),
+        "summary_da": (
+            "Esbjerg indretter et besøgscenter om havvind i en gammel hal, "
+            "som skoler kan booke fra august, betalt af kommune og "
+            "turismepulje, med lærlinge som guider."
+        ),
+    },
+    {
+        "id": "dn-007",
+        "article_text": (
+            "Roskilde Bibliotek forsøger søndagsåbent i tre måneder fra "
+            "første weekend i marts. Forsøget gælder kun hovedbiblioteket, "
+            "ikke de små lokale betjeningssteder. Der vil være reduceret "
+            "personale og ingen skranke til indbundne bestillinger, men "
+            "læsesal, aviser og den åbne værkstedskælder holder åbent. "
+            "Kulturudvalget vil se på både besøgstal og støjniveau, før "
+            "ordningen eventuelt gøres fast. En gruppe ældre læsere har "
+            "allerede skrevet under på, at søndag formiddag er det tidspunkt, "
+            "de kan komme uden at skulle bede om skærmtid i familien. "
+            "Ungdomsskolen overvejer at flytte en tegneworkshop ind i "
+            "kælderen de søndage, forsøget kører."
+        ),
+        "translated": (
+            "Roskilde Library will trial Sunday opening for three months "
+            "from the first weekend in March. The trial covers only the "
+            "main library, not the small local service points. Staffing "
+            "will be reduced and there will be no desk for reserved bound "
+            "items, but the reading room, newspapers and the open workshop "
+            "basement will stay available. The culture committee will look "
+            "at both visitor counts and noise before making the hours "
+            "permanent. A group of older readers has already signed a note "
+            "saying Sunday morning is when they can come without negotiating "
+            "screen time at home. The youth school is considering moving a "
+            "drawing workshop into the basement on those Sundays."
+        ),
+        "summary_en": (
+            "Roskilde's main library will trial Sunday hours for three "
+            "months from March, with reduced staffing, and the culture "
+            "committee will review visitor numbers before deciding."
+        ),
+        "summary_da": (
+            "Roskilde Bibliotek prøver søndagsåbent i tre måneder fra marts "
+            "på hovedbiblioteket med reduceret bemanding, og kulturudvalget "
+            "vurderer besøgstallene bagefter."
+        ),
+    },
+    {
+        "id": "dn-008",
+        "article_text": (
+            "Aalborg Universitet åbner 40 ekstra kollegieværelser i en "
+            "midlertidig pavillon ved campus øst, fordi ventelisten efter "
+            "sommeroptaget er længere end de sidste fem år. Pavillonen er "
+            "tænkt som en toårig løsning, mens en ældre kasernebygning "
+            "renoveres. Værelserne er små, men har eget bad, og huslejen "
+            "ligger under gennemsnittet for private udlejere i området. "
+            "Studenterhuset advarer om, at den midlertidige adresse kan "
+            "gøre det sværere at få folkeregistergodkendelse i en fart; "
+            "universitetet siger, at en medarbejder i studieadministrationen "
+            "får faste tider til at hjælpe med papiret. Naboforeningen "
+            "ønsker en tydelig cykelrute uden om legepladsen, når de nye "
+            "beboere kommer til august."
+        ),
+        "translated": (
+            "Aalborg University is opening 40 extra dorm rooms in a "
+            "temporary pavilion on the east campus because the waiting list "
+            "after summer admissions is longer than in the past five years. "
+            "The pavilion is meant as a two-year fix while an older barracks "
+            "building is renovated. The rooms are small but have private "
+            "bathrooms, and rent sits below the average for private landlords "
+            "in the area. The student union warns that the temporary address "
+            "may slow civil-registration approval; the university says a "
+            "staff member in student administration will keep set hours to "
+            "help with the paperwork. The neighbours' association wants a "
+            "clear cycle route that avoids the playground when the new "
+            "residents arrive in August."
+        ),
+        "summary_en": (
+            "Aalborg University will add 40 temporary east-campus dorm rooms "
+            "for two years to cut a record housing queue, with help for "
+            "registration paperwork."
+        ),
+        "summary_da": (
+            "Aalborg Universitet åbner 40 midlertidige kollegieværelser i "
+            "to år på campus øst for at korteste en rekordlang venteliste "
+            "og hjælper med folkeregisterpapir."
+        ),
+    },
+    {
+        "id": "dn-009",
+        "article_text": (
+            "Viborg Museum åbner en vandreudstilling om marksten og de "
+            "veje, de har flyttet sig ad siden sidste istid. Udstillingen "
+            "er bygget, så børn kan røre ved prøver, og så voksne kan se "
+            "kort over, hvor kommunen stadig sprænger sten væk, når der "
+            "lægges fjernvarme. Museet har lånt en borekerne fra en "
+            "nabokommune og viser den ved siden af en nutidig vejgennemskæring. "
+            "Direktøren håber, at landmænd kigger forbi med egne fund i "
+            "stedet for at køre stenene i en bunke bag laden. En lørdag i "
+            "april bliver der en gratis vandretur til en gammel stendige "
+            "uden for byen, hvis marken er tør nok."
+        ),
+        "translated": (
+            "Viborg Museum is opening a touring exhibition about fieldstones "
+            "and the paths they have travelled since the last ice age. The "
+            "show is built so children can touch samples and adults can see "
+            "maps of where the municipality still blasts stone aside when "
+            "district heating is laid. The museum has borrowed a drill core "
+            "from a neighbouring municipality and displays it beside a "
+            "present-day road cutting. The director hopes farmers will bring "
+            "their own finds instead of dumping stones behind the barn. One "
+            "Saturday in April there will be a free walk to an old stone "
+            "wall outside town if the field is dry enough."
+        ),
+        "summary_en": (
+            "Viborg Museum opens a hands-on exhibition about ice-age "
+            "fieldstones, heating-trench maps, and a possible April walk "
+            "to an old stone wall."
+        ),
+        "summary_da": (
+            "Viborg Museum åbner en taktil udstilling om marksten siden "
+            "istiden, viser kort over fjernvarmegrave og planlægger en "
+            "gratis aprilvandring til et stendige."
+        ),
+    },
+    {
+        "id": "dn-010",
+        "article_text": (
+            "Kolding midtby forsøger en tre måneders gågade på den "
+            "strækning, hvor lastbiler i dag holder i dobbelt fil om "
+            "morgenen. Forsøget betyder, at kun cykler, udrykning og "
+            "morgenlevering før klokken 11 må køre ind. Handlende er "
+            "delt: bageren forventer flere fodgæster, elektronikbutikken "
+            "frygter, at kunder med tunge varer udebliver. Kommunen sætter "
+            "tællere op i begge ender og interviewer forbipasserende hver "
+            "anden uge. Hvis luftmålingen ved torvet falder mærkbart, vil "
+            "teknikudvalget indstille en mere varig løsning efter sommeren. "
+            "En app-baseret tidsbestilling til læssezonen bag husrækken "
+            "bliver testet samtidig, så varebiler ikke kører rundt om "
+            "kvarteret i blinde."
+        ),
+        "translated": (
+            "Central Kolding is trialling a three-month pedestrian street "
+            "on the stretch where lorries now queue in double file in the "
+            "morning. During the trial only cycles, emergency vehicles and "
+            "deliveries before 11:00 may enter. Shopkeepers are split: the "
+            "baker expects more footfall, the electronics shop fears "
+            "customers with heavy goods will stay away. The municipality "
+            "is installing counters at both ends and will interview "
+            "passers-by every other week. If air readings at the square "
+            "drop clearly, the technical committee will recommend a more "
+            "lasting scheme after the summer. An app-based booking slot "
+            "for the loading bay behind the terrace will be tested at the "
+            "same time so vans do not circle the block blindly."
+        ),
+        "summary_en": (
+            "Kolding is trialling a three-month pedestrian stretch with "
+            "morning-only deliveries, traffic counts, air measurements and "
+            "bookable loading bays."
+        ),
+        "summary_da": (
+            "Kolding prøver en tre måneders gågade med levering kun om "
+            "morgenen, tællere, luftmåling og tidsbestilte læssezoner."
+        ),
+    },
+    {
+        "id": "dn-011",
+        "article_text": (
+            "Helsingør åbner det nye havnebad i pinsen, hvis vandprøverne "
+            "fra april er færdige i tide. Bassinet ligger inden for "
+            "molen, så det kan bruges på dage, hvor Øresund ellers er for "
+            "oprørt til at svømme udefra. Der er et lavt område til børn og "
+            "et dybere baneafsnit med flydende pontoner. Livreddere bliver "
+            "på plads i åbningstiden, og om aftenen lukkes lågerne, så "
+            "badet ikke bliver en uofficiel natklub på træværket. "
+            "En gruppe vinterbadere har bedt om en saunahytte allerede i "
+            "år; kommunen svarer, at el-tilslutningen først er budgetteret "
+            "til næste sæson. Cykelstativer ved toldboden bliver udvidet, "
+            "fordi parkeringspladsen ved slottet allerede er presset om "
+            "søndagen."
+        ),
+        "translated": (
+            "Helsingør will open the new harbour bath at Whitsun if the "
+            "April water samples are ready in time. The pool sits inside "
+            "the breakwater so it can be used on days when the Øresund is "
+            "otherwise too rough to swim from the outside. There is a "
+            "shallow area for children and a deeper lane section with "
+            "floating pontoons. Lifeguards will be present during opening "
+            "hours, and the gates close in the evening so the bath does "
+            "not become an unofficial night spot on the timber deck. A "
+            "group of winter swimmers asked for a sauna hut already this "
+            "year; the municipality says the electrical connection is only "
+            "budgeted for next season. Cycle parking by the customs house "
+            "will be expanded because the castle car park is already tight "
+            "on Sundays."
+        ),
+        "summary_en": (
+            "Helsingør plans to open an inside-the-mole harbour bath at "
+            "Whitsun, with lifeguards, evening lock-up, and more cycle "
+            "parking; a sauna waits until next year's electrical budget."
+        ),
+        "summary_da": (
+            "Helsingør vil åbne et havnebad inden for molen i pinsen med "
+            "livreddere og aftenlukning; saunaen venter på næste års "
+            "el-budget, og cykelparkeringen ved toldboden udvides."
+        ),
+    },
+    {
+        "id": "dn-012",
+        "article_text": (
+            "Svendborg–Ærø færgeruten rykker to morgenafgange et kvarter "
+            "frem fra næste køreplan, så pendlere kan nå et skiftende "
+            "tog i Svendborg, der ellers kører, mens færgen stadig lægger "
+            "til. Rederiet understreger, at aftenafgangene bliver stående, "
+            "fordi restaurationspersonale på øen ellers ikke kan nå hjem "
+            "efter weekendvagter. Billetter købt til de gamle tidspunkter "
+            "kan ombookes gratis i appen indtil tre dage før afgang. "
+            "Ærø Kommune havde ønsket en ekstra sen søndagsafgang i "
+            "sommer; den kommer ikke i denne omgang, men kapaciteten på "
+            "fredagens eftermiddagsfærge øges med en reservefærge i "
+            "skoleferierne. Cykelholdere på det åbne dæk bliver skiftet, "
+            "efter flere gæster klagede over løse stropper i blæsevejr."
+        ),
+        "translated": (
+            "The Svendborg–Ærø ferry is moving two morning sailings fifteen "
+            "minutes earlier from the next timetable so commuters can catch "
+            "a connecting train in Svendborg that currently leaves while "
+            "the ferry is still berthing. The operator stresses that evening "
+            "sailings stay put, because restaurant staff on the island "
+            "could not otherwise get home after weekend shifts. Tickets "
+            "bought for the old times can be rebooked free in the app until "
+            "three days before departure. Ærø Municipality had asked for an "
+            "extra late Sunday sailing in summer; that is not coming this "
+            "round, but Friday afternoon capacity increases with a reserve "
+            "ferry in the school holidays. On-deck bike racks will be "
+            "replaced after several guests complained about loose straps "
+            "in high wind."
+        ),
+        "summary_en": (
+            "Svendborg–Ærø morning ferries shift fifteen minutes earlier "
+            "to meet the train, evening times stay, and Friday holiday "
+            "afternoons gain a reserve vessel."
+        ),
+        "summary_da": (
+            "Svendborg–Ærø rykker to morgenafgange et kvarter frem for at "
+            "ramme toget, aftenafgangene bliver, og fredage i skoleferien "
+            "får en reservefærge."
+        ),
+    },
+]
+
+
+def by_id(article_id: str) -> SampleArticle:
+    for article in ARTICLES:
+        if article["id"] == article_id:
+            return article
+    raise KeyError(f"unknown sample id: {article_id}")
+
+
+def ids() -> list[str]:
+    return [article["id"] for article in ARTICLES]
