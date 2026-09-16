@@ -54,8 +54,9 @@ All of these run without weights. From the repository root:
    PYTHONPATH=. python3 examples/compare_baselines.py
    ```
 
-   For how many ids does the first Danish sentence beat the silver label
-   on manchet coverage? That is the baseline `eval.py` never printed.
+   For how many ids does **lead-2** beat silver on slot recall? Manchet
+   coverage of lead-1 and silver is usually tied; the interesting gap is
+   quotes, figures, and the second sentence.
 
 7. **Night-editor gates.**
 

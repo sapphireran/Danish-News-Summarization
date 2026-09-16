@@ -156,14 +156,14 @@ def cmd_baseline(args: argparse.Namespace) -> int:
     articles = [article_by_id(args.id)] if args.id else list(ARTICLES)
     _print(
         f"{'id':8} {'lead1_m':>8} {'silver_m':>9} {'oracle_m':>9} "
-        f"{'lead1_s':>8} {'silver_s':>9} {'lead1>sil':>9}"
+        f"{'lead1_s':>8} {'lead2_s':>8} {'silver_s':>9}"
     )
     for article in articles:
         row = comparison_table(article)
         _print(
             f"{row['article_id']:8} {row['lead1_manchet']:8.2f} {row['silver_manchet']:9.2f} "
-            f"{row['oracle_manchet']:9.2f} {row['lead1_slots']:8.2f} {row['silver_slots']:9.2f} "
-            f"{str(row['lead1_beats_silver_manchet']):>9}"
+            f"{row['oracle_manchet']:9.2f} {row['lead1_slots']:8.2f} {row['lead2_slots']:8.2f} "
+            f"{row['silver_slots']:9.2f}"
         )
         if args.id:
             for item in baselines_for(article):

@@ -66,9 +66,11 @@ def comparison_table(article: Article) -> dict[str, object]:
         "silver_manchet": round(silver.manchet, 3),
         "oracle_manchet": round(rows["oracle_da"].manchet, 3),
         "lead1_slots": round(lead1.slots, 3),
+        "lead2_slots": round(rows["lead2_da"].slots, 3),
         "silver_slots": round(silver.slots, 3),
         "lead1_r1_oracle": round(lead1.desk.rouge1_vs_oracle, 3),
         "silver_r1_oracle": round(silver.desk.rouge1_vs_oracle, 3),
         "lead1_beats_silver_manchet": lead1.manchet > silver.manchet,
         "lead1_beats_silver_slots": lead1.slots > silver.slots,
+        "lead2_beats_silver_slots": rows["lead2_da"].slots > silver.slots,
     }

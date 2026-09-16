@@ -13,7 +13,14 @@ def test_extractive_lead_is_first_sentence() -> None:
     assert two.startswith(lead)
 
 
-def test_lead1_beats_or_matches_silver_on_ferry_manchet() -> None:
+def test_lead2_beats_silver_slots_on_fire_tanker() -> None:
+    article = article_by_id("SEJ-006")
+    table = comparison_table(article)
+    assert table["lead2_beats_silver_slots"] is True
+    assert table["lead2_slots"] == 1.0
+
+
+def test_lead1_ties_or_beats_silver_on_ferry_manchet() -> None:
     article = article_by_id("SEJ-001")
     table = comparison_table(article)
     assert table["lead1_manchet"] >= table["silver_manchet"]

@@ -14,13 +14,23 @@ The desk reports four texts per brief:
 | `silver_da` | Back-translated T5-shaped label |
 | `oracle_da` | Human manchet written against the gold card |
 
-On Sejerø briefs, `lead1` often **wins manchet coverage** and **wins slot
-recall**. Silver wins on shortness. Oracle sits in between: short enough
-to print, complete enough to pass a night editor.
+On the eight Sejerø briefs the numbers are less flattering to "just copy
+the lede" than a slogan would like:
 
-That gap is the point of silver labelling. The course pipeline taught mT5
-to imitate *silver*, so a model can learn to drop Karen Møller's name
-because T5 already dropped it.
+- **Manchet coverage** of `lead1` and `silver` is usually *tied*. Both
+  keep a news first sentence. T5 is good at ledes.
+- **Slot recall** of `lead2` (first two Danish sentences) often matches
+  or beats silver (`SEJ-003`, `SEJ-004`, `SEJ-006`). Compression is not
+  free: the second sentence holds WHY/HOW/figures.
+- **Editorial gates** are where silver loses. Quotes, gold figures, and
+  the contrast *men* fall out of `max_length=80` even when ROUGE-1
+  against a human oracle still looks polite.
+
+That is the point of silver labelling. The course pipeline taught mT5 to
+imitate *silver*, so a model can learn to drop Karen Møller's name and
+the extra-evening sailing because T5 already dropped them. The extractive
+baseline is there so that drop is visible, not so we can pretend T5 did
+no work.
 
 ```bash
 PYTHONPATH=. python3 examples/compare_baselines.py

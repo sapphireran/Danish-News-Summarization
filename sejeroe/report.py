@@ -86,11 +86,10 @@ def build_text_report() -> str:
     lines.append("-------------------------------------------------------")
     for article in ARTICLES:
         row = comparison_table(article)
-        beat = "lead1 wins" if row["lead1_beats_silver_manchet"] else "silver holds"
         lines.append(
             f"{article.id}  lead1={row['lead1_manchet']:.2f}  silver={row['silver_manchet']:.2f}  "
-            f"oracle={row['oracle_manchet']:.2f}  slots lead1={row['lead1_slots']:.2f}/"
-            f"silver={row['silver_slots']:.2f}  {beat}"
+            f"oracle={row['oracle_manchet']:.2f}  slots lead1={row['lead1_slots']:.2f} "
+            f"lead2={row['lead2_slots']:.2f} silver={row['silver_slots']:.2f}"
         )
     lines.append("")
 
@@ -171,8 +170,9 @@ def build_html_report() -> str:
             f"<td>{row['silver_manchet']:.2f}</td>"
             f"<td>{row['oracle_manchet']:.2f}</td>"
             f"<td>{row['lead1_slots']:.2f}</td>"
+            f"<td>{row['lead2_slots']:.2f}</td>"
             f"<td>{row['silver_slots']:.2f}</td>"
-            f"<td>{'yes' if row['lead1_beats_silver_manchet'] else 'no'}</td>"
+            f"<td>{'yes' if row['lead2_beats_silver_slots'] else 'no'}</td>"
             "</tr>"
         )
         book = grade(article, article.summary_da, "silver_da")
@@ -220,7 +220,7 @@ def build_html_report() -> str:
     <thead>
       <tr>
         <th>id</th><th>lead1 manchet</th><th>silver manchet</th><th>oracle manchet</th>
-        <th>lead1 slots</th><th>silver slots</th><th>lead1 wins manchet</th>
+        <th>lead1 slots</th><th>lead2 slots</th><th>silver slots</th><th>lead2 wins slots</th>
       </tr>
     </thead>
     <tbody>

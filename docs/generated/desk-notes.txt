@@ -56,14 +56,14 @@ SEJ-008  words 81->88 (x1.09)  subwords 120->120 (x1.00)
 
 Extractive lead-1 vs silver vs oracle (manchet coverage)
 -------------------------------------------------------
-SEJ-001  lead1=1.00  silver=1.00  oracle=0.75  slots lead1=0.83/silver=0.83  silver holds
-SEJ-002  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67/silver=0.83  silver holds
-SEJ-003  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67/silver=0.67  silver holds
-SEJ-004  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67/silver=0.67  silver holds
-SEJ-005  lead1=0.75  silver=0.75  oracle=0.50  slots lead1=0.50/silver=0.83  silver holds
-SEJ-006  lead1=0.50  silver=0.50  oracle=0.50  slots lead1=0.50/silver=0.50  silver holds
-SEJ-007  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.83/silver=0.83  silver holds
-SEJ-008  lead1=0.50  silver=0.50  oracle=0.50  slots lead1=0.33/silver=0.83  silver holds
+SEJ-001  lead1=1.00  silver=1.00  oracle=0.75  slots lead1=0.83 lead2=0.83 silver=0.83
+SEJ-002  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67 lead2=0.67 silver=0.83
+SEJ-003  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67 lead2=0.83 silver=0.67
+SEJ-004  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67 lead2=1.00 silver=0.67
+SEJ-005  lead1=0.75  silver=0.75  oracle=0.50  slots lead1=0.50 lead2=0.83 silver=0.83
+SEJ-006  lead1=0.50  silver=0.50  oracle=0.50  slots lead1=0.50 lead2=1.00 silver=0.50
+SEJ-007  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.83 lead2=0.83 silver=0.83
+SEJ-008  lead1=0.50  silver=0.50  oracle=0.50  slots lead1=0.33 lead2=0.83 silver=0.83
 
 Stylebook gates on the Danish silver label
 -----------------------------------------

@@ -59,8 +59,8 @@ def render_card(article: Article) -> str:
         "",
         f"- lead1 manchet {table['lead1_manchet']} vs silver {table['silver_manchet']}"
         f" (lead1 beats silver: {table['lead1_beats_silver_manchet']})",
-        f"- lead1 slots {table['lead1_slots']} vs silver {table['silver_slots']}"
-        f" (lead1 beats silver: {table['lead1_beats_silver_slots']})",
+        f"- lead1 slots {table['lead1_slots']} / lead2 {table['lead2_slots']} vs silver {table['silver_slots']}"
+        f" (lead2 beats silver: {table['lead2_beats_silver_slots']})",
         f"- R1 vs oracle: lead1 {table['lead1_r1_oracle']} / silver {table['silver_r1_oracle']}",
         "",
         "## Stylebook (silver)",
