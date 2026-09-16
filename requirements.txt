@@ -1,0 +1,24 @@
+# Reconstructed extras for the 2023 ITU course scripts.
+# The examples and unit tests use only the standard library plus the
+# local danish_summarization package. You do not need this file for:
+#
+#   python3 -m unittest discover -s tests -v
+#   python3 examples/inspect_csv_schema.py
+#   python3 examples/chunk_sample_articles.py
+#   python3 examples/simulate_labeling_pipeline.py
+#   python3 examples/print_training_recipe.py
+#
+# Pin versions in a local venv if you revive the GPU labeling run.
+# The original course environment was not checked in.
+
+torch
+transformers
+datasets
+evaluate
+ctranslate2
+nltk
+pandas
+numpy
+tqdm
+rouge-score
+bert-score
