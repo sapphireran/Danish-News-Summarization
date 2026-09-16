@@ -60,7 +60,7 @@ def split_long_sentence(
     if length_fn is None:
         length_fn = default_length
 
-    words = [word for word in WORD_SPLIT_RE.split(sentence.strip()) if word]
+    words = _word_tokens(sentence)
     if not words:
         return []
 
@@ -94,6 +94,20 @@ def split_long_sentence(
             continue
         repaired.extend(_force_word_windows(chunk, max_length, length_fn))
     return repaired
+
+
+def _word_tokens(sentence: str) -> List[str]:
+    """Approximate NLTK ``word_tokenize`` enough for comma/semicolon/colon flushes."""
+    tokens: List[str] = []
+    for raw in WORD_SPLIT_RE.split(sentence.strip()):
+        if not raw:
+            continue
+        if len(raw) > 1 and raw[-1] in PUNCT_FLUSH:
+            tokens.append(raw[:-1])
+            tokens.append(raw[-1])
+        else:
+            tokens.append(raw)
+    return tokens
 
 
 def _force_word_windows(text: str, max_length: int, length_fn: LengthFn) -> List[str]:
