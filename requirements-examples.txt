@@ -1,0 +1,5 @@
+# Lightweight extras for the docs/examples path. No GPU, no CTranslate2,
+# and no Hugging Face model downloads are required.
+pandas>=2.0.0
+numpy>=1.24.0
+pytest>=7.4.0

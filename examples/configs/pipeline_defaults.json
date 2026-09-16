@@ -1,0 +1,46 @@
+{
+  "project": "Danish-News-Summarization",
+  "context": "ITU Advanced NLP and Deep Learning, 2023 personal final project",
+  "silver_label_pipeline": [
+    "convert_opus_mt_with_ctranslate2",
+    "translate_danish_articles_to_english",
+    "summarize_english_with_t5_news",
+    "translate_summaries_back_to_danish",
+    "finetune_mt5_on_silver_labels",
+    "evaluate_on_nordjylland_news"
+  ],
+  "translation_da_en": {
+    "source_model": "Helsinki-NLP/opus-mt-da-en",
+    "converted_dir": "models/opus-mt-da-en_ct2",
+    "max_length": 512,
+    "length_margin": 0.9,
+    "src_lang": "dan_Latn",
+    "tgt_lang": "eng_Latn"
+  },
+  "translation_en_da": {
+    "source_model": "Helsinki-NLP/opus-mt-en-da",
+    "converted_dir": "models/opus-mt-en-da_ct2",
+    "max_length": 512,
+    "length_margin": 0.9,
+    "src_lang": "eng_Latn",
+    "tgt_lang": "dan_Latn"
+  },
+  "english_summarizer": {
+    "model_name": "mrm8488/t5-base-finetuned-summarize-news",
+    "text_max_length": 512,
+    "summary_max_length": 80,
+    "num_beams": 2,
+    "repetition_penalty": 5.0,
+    "length_penalty": 1.0,
+    "early_stopping": true
+  },
+  "paths": {
+    "raw_articles": "10000_articles_without_linebreaks.csv",
+    "translated": "translated_articles.csv",
+    "summarized": "summarized_file_ml80_rp5.0.csv",
+    "labeled": "labeled_dataset_ml80_rp5.0.csv",
+    "train_csv": "datasets/train_dataset.csv",
+    "validation_csv": "datasets/validation_dataset.csv",
+    "test_csv": "datasets/test_dataset.csv"
+  }
+}
