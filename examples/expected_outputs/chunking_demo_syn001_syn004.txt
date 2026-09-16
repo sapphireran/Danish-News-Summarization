@@ -1,0 +1,83 @@
+Danish-News-Summarization chunking demo
+Tokenizer: whitespace words + 1 special token
+Articles: examples/data/sample_articles.csv
+
+=== SYN-001 ===
+budget (approx tokens): 16
+source pieces: 3
+packs: 3
+
+pieces (text[:72], tokens):
+  01  tok= 12  Havneby åbner en ny cykelsti mellem stationen og havnen på lørdag.
+  02  tok= 13  Kommunen har brugt to år på at forhandle med lodsejere langs ruten.
+  03  tok= 11  Borgmesteren kalder stien et løft for både pendlere og weekendgæster.
+
+packs:
+  P1  pieces=1  tok_sum= 12
+      Havneby åbner en ny cykelsti mellem stat
+  P2  pieces=1  tok_sum= 13
+      Kommunen har brugt to år på at forhandle
+  P3  pieces=1  tok_sum= 11
+      Borgmesteren kalder stien et løft for bå
+
+=== SYN-004 ===
+budget (approx tokens): 16
+source pieces: 28
+packs: 12
+
+pieces (text[:72], tokens):
+  01  tok=  3  Byrådet i
+  02  tok=  2  Klitsogn
+  03  tok=  3  vedtog tirsdag
+  04  tok=  2  et
+  05  tok=  2  budgetforlig,
+  06  tok=  4  der flytter 18
+  07  tok=  2  millioner
+  08  tok=  3  kroner til
+  09  tok=  3  ældrepleje og
+  10  tok=  2  skoler.
+  11  tok= 15  Forliget blev til efter tre natmøder mellem Socialdemokratiet, Venstr...
+  12  tok=  3  En planlagt
+  13  tok=  3  omfartsvej ved
+  14  tok=  2  Sønderby
+  15  tok=  4  udskydes to år
+  16  tok=  4  , og det
+  17  tok=  3  sparede beløb
+  18  tok=  4  går til flere
+  19  tok=  2  sygeplejersker
+  20  tok=  3  i hjemmeplejen
+  21  tok=  2  .
+  22  tok= 15  Skolelederne får midler til to ekstra læsevejledere og til at skifte ...
+  23  tok= 13  Kystlisten fik desuden gennemført et loft over gebyret for liggeplads...
+  24  tok= 14  Oppositionen stemte imod, fordi de mener, at vejen haster mere end ha...
+  25  tok= 15  Borgmester Ingrid Holm sagde efter afstemningen, at forliget er et ko...
+  26  tok= 10  Hun lovede en offentlig gennemgang af anlægsplanen i januar.
+  27  tok= 14  Flere borgere ventede uden for rådhuset med skilte om både vejen og æ...
+  28  tok= 15  Budgettet træder i kraft 1. januar og kan kun ændres med et nyt flertal.
+
+packs:
+  P1  pieces=6  tok_sum= 16
+      Byrådet i | Klitsogn | vedtog tirsdag | et | budgetforlig, | der flytter 18
+  P2  pieces=4  tok_sum= 10
+      millioner | kroner til | ældrepleje og | skoler.
+  P3  pieces=1  tok_sum= 15
+      Forliget blev til efter tre natmøder mel
+  P4  pieces=5  tok_sum= 16
+      En planlagt | omfartsvej ved | Sønderby | udskydes to år | , og det
+  P5  pieces=5  tok_sum= 14
+      sparede beløb | går til flere | sygeplejersker | i hjemmeplejen | .
+  P6  pieces=1  tok_sum= 15
+      Skolelederne får midler til to ekstra læ
+  P7  pieces=1  tok_sum= 13
+      Kystlisten fik desuden gennemført et lof
+  P8  pieces=1  tok_sum= 14
+      Oppositionen stemte imod, fordi de mener
+  P9  pieces=1  tok_sum= 15
+      Borgmester Ingrid Holm sagde efter afste
+  P10  pieces=1  tok_sum= 10
+      Hun lovede en offentlig gennemgang af an
+  P11  pieces=1  tok_sum= 14
+      Flere borgere ventede uden for rådhuset 
+  P12  pieces=1  tok_sum= 15
+      Budgettet træder i kraft 1. januar og ka
+
