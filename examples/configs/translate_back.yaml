@@ -1,0 +1,16 @@
+# Mirror of translate_back.py
+
+input_file_path: summarized_file_ml80_rp5.0.csv
+output_file_path: labeled_dataset_ml80_rp5.0.csv
+input_columns: [id, body, translated, summary]
+output_columns: [id, body, summary]   # summary is now Danish; translated is dropped
+
+model_path: models/opus-mt-en-da_ct2
+tokenizer: Helsinki-NLP/opus-mt-en-da
+src_lang: eng_Latn
+tgt_lang: dan_Latn
+
+max_length: 512
+text_max_length: 460          # computed but packer is called with max_length=512
+split_overlong_sentences: false
+device: cuda_if_available

@@ -1,0 +1,50 @@
+# Suggested smaller recipe if you want use_model.py / eval.py to load
+# `small_model` without changing those scripts. Not implemented in
+# finetune.py — copy the values into a fork of that file.
+
+model_name: google/mt5-small
+data:
+  train: datasets/train_dataset.csv
+  validation: datasets/validation_dataset.csv
+  test: datasets/test_dataset.csv
+  source_column: body
+  target_column: summary
+  source_max_length: 1024
+  target_max_length: 128
+  map_batch_size: 128
+
+generate_config:
+  min_length: 9
+  max_length: 128
+  length_penalty: 0.8
+  no_repeat_ngram_size: 3
+  num_beams: 4
+  dropout_rate: 0.1
+
+training:
+  output_dir: mt5-summarize-small
+  num_train_epochs: 20
+  learning_rate: 0.0003
+  lr_scheduler_type: polynomial
+  warmup_steps: 500
+  optim: adafactor
+  weight_decay: 0.01
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 8
+  gradient_accumulation_steps: 1
+  evaluation_strategy: epoch
+  save_strategy: epoch
+  predict_with_generate: true
+  generation_max_length: 128
+  logging_steps: 250
+  push_to_hub: false
+  fp16: true
+  load_best_model_at_end: true
+  metric_for_best_model: rouge_1_mid_fmeasure
+  save_total_limit: 1
+
+final_save_pretrained: small_model
+notes:
+  - use_model.py and eval.py already point at small_model and google/mt5-small
+  - drop source_max_length to 512 if VRAM is tight
+  - prefer bf16 on Ampere+ if fp16 is unstable

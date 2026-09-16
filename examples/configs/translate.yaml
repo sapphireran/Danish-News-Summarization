@@ -1,0 +1,17 @@
+# Mirror of translate.py
+
+input_file_path: 10000_articles_without_linebreaks.csv
+output_file_path: translated_articles.csv
+input_columns: [id, "article text"]
+output_columns: [id, body, translated]
+
+model_path: models/opus-mt-da-en_ct2
+tokenizer: Helsinki-NLP/opus-mt-da-en
+src_lang: dan_Latn
+tgt_lang: eng_Latn
+
+max_length: 512
+text_max_length: 460          # int(max_length * 0.9)
+split_overlong_sentences: true
+device: cuda_if_available
+batching: per_article_sentence_lists

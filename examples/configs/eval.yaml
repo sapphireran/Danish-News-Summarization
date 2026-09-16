@@ -1,0 +1,40 @@
+# Mirrors of use_model.py and eval.py
+
+use_model:
+  local_model_path: small_model
+  tokenizer_name: google/mt5-small
+  dataset: ScandEval/nordjylland-news-summarization-mini
+  split: test
+  columns: [input_text, target_text, text_len, summary_len]
+  source_max_length: 1024
+  target_max_length: 180
+  dataloader_batch_size: 2
+  num_printed_batches: 5
+  generate:
+    num_beams: 2
+    num_return_sequences: 1
+    no_repeat_ngram_size: 1          # aggressive; prefer 3 for readable Danish
+    remove_invalid_values: true
+    max_length: 128
+  known_issue: >
+    Printed input_text uses dataset index i, gold/pred use batch[0] of batch i
+    (batch_size=2), so only the first block is guaranteed to be aligned.
+
+eval:
+  local_model_path: small_model
+  tokenizer_name: google/mt5-small
+  dataset: alexandrainst/nordjylland-news-summarization
+  split: test
+  source_max_length: 1024
+  target_max_length: 128
+  per_device_eval_batch_size: 64
+  dataloader_drop_last: true
+  predict_with_generate: true
+  rouge:
+    api: datasets.load_metric
+    use_aggregator: true
+    keys_as_logged: [rouge_rouge1_mid_fmeasure, rouge_rouge2_mid_fmeasure, rouge_rougeL_mid_fmeasure]
+  bertscore:
+    lang: da
+    model_type: xlm-roberta-large
+    logged: [bertscore_precision, bertscore_recall, bertscore_f1]
