@@ -1,0 +1,23 @@
+# Local course-project artifacts
+models/
+datasets/
+large_model/
+small_model/
+mt5-summarize-large/
+*.csv
+!examples/data/*.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+.env
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
