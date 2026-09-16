@@ -1,0 +1,12 @@
+# GPU stack for the frozen 2023 scripts in the repository root.
+# The Pakhuset lab (pakhus/, examples/) needs none of these.
+torch
+transformers
+ctranslate2
+nltk
+pandas
+numpy
+tqdm
+datasets
+evaluate
+sentencepiece
