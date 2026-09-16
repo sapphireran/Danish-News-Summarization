@@ -1,0 +1,7 @@
+# Lightweight extras for the CPU-only examples/ tree.
+# The full GPU pipeline still needs requirements.txt.
+
+pandas>=2.0.0
+numpy>=1.24.0
+nltk>=3.8.1
+tqdm>=4.65.0

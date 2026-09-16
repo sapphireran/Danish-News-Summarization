@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter / editors
+.ipynb_checkpoints/
+.idea/
+.vscode/
+*.swp
+
+# Hugging Face / torch caches created by local runs
+.cache/
+huggingface/
+~/.cache/
+
+# Converted CTranslate2 models and fine-tuned checkpoints
+/models/
+/large_model/
+/small_model/
+/mt5-summarize-*/
+*_ct2/
+
+# Generated pipeline CSVs at the repo root (keep examples/data/)
+/translated_articles.csv
+/summarized_file_ml80_rp5.0.csv
+/labeled_dataset_ml80_rp5.0.csv
+/10000_articles_without_linebreaks.csv
+/datasets/
+
+# Logs and trainer leftovers
+runs/
+wandb/
+*.log
+lightning_logs/

@@ -1,0 +1,667 @@
+"""Fictional 12-article mini-corpus used to build examples/data/*.csv.
+
+Nothing here is scraped. Names of real institutions (DMI, DSB, Energinet)
+appear the way a classroom example would; the events are made up.
+"""
+
+from __future__ import annotations
+
+from typing import TypedDict
+
+
+class Article(TypedDict):
+    id: str
+    genre: str
+    article_text: str
+    translated: str
+    summary_en: str
+    summary_da_pivot: str
+    summary_da_editorial: str
+
+
+ARTICLES: list[Article] = [
+    {
+        "id": "da-001",
+        "genre": "weather",
+        "article_text": (
+            "En kraftig efterårsstorm ramte Nordjylland natten til tirsdag og efterlod "
+            "ifølge Energinet mere end 14.000 husstande uden strøm. Flere højspændingsmaster "
+            "væltede i et bælte fra Brovst til Aalborg, og beredskabet arbejdede i mørke med "
+            "at skære væltede træer væk fra vejene. Aalborg Kommune åbnede tre nødherberger i "
+            "idrætshaller, hvor omkring 200 borgere overnattede med tæpper, termokander og "
+            "løbende information fra politiet. Meteorologerne fra DMI havde allerede mandag "
+            "aften varslet kategori 2-vindstød, men de højeste målte stød ved Skagen oversteg "
+            "prognosen. I Hirtshals blev en fiskekutter slået løs ved kajen, og havnefogeden "
+            "lukkede broen i flere timer, mens bølgerne slog ind over den ydre mole. "
+            "Onsdag morgen var strømmen genetableret hos de fleste kunder, men flere "
+            "yderområder ventede stadig på teknikere. Kommunen opfordrer borgere til at vente "
+            "med haveaffald til torsdag, når vinden efter planen løjer af. Skoler i Brønderslev "
+            "og Jammerbugt holdt lukket tirsdag formiddag, fordi busruterne var spærret af "
+            "væltede poppeltræer. Region Nordjylland oplyser, at skadestuen på Aalborg "
+            "Universitetshospital tog imod et tital patienter med lettere kvæstelser efter "
+            "faldende tagsten, men at ingen livstruende skader blev registreret. "
+            "Energinet forventer, at den sidste 60-kilovoltlinje er oppe igen senest fredag."
+        ),
+        "translated": (
+            "A severe autumn storm hit North Jutland on Tuesday night and, according to "
+            "Energinet, left more than 14,000 households without power. Several high-voltage "
+            "masts collapsed in a belt from Brovst to Aalborg, and emergency services worked "
+            "in the dark to cut fallen trees from the roads. Aalborg Municipality opened three "
+            "emergency shelters in sports halls, where around 200 residents spent the night "
+            "with blankets, thermoses and updates from the police. DMI meteorologists had "
+            "already issued a category 2 wind-gust warning on Monday evening, but the strongest "
+            "gusts measured at Skagen exceeded the forecast. In Hirtshals a fishing cutter "
+            "broke loose at the quay, and the harbour master closed the bridge for several "
+            "hours as waves broke over the outer pier. By Wednesday morning power had been "
+            "restored for most customers, but several outlying areas were still waiting for "
+            "technicians. The municipality asks residents to wait until Thursday to handle "
+            "garden waste, when the wind is expected to ease. Schools in Brønderslev and "
+            "Jammerbugt stayed closed on Tuesday morning because bus routes were blocked by "
+            "fallen poplars. The North Jutland Region said the emergency ward at Aalborg "
+            "University Hospital treated about ten patients with minor injuries from falling "
+            "roof tiles and recorded no life-threatening injuries. Energinet expects the last "
+            "60-kilovolt line to be back up by Friday at the latest."
+        ),
+        "summary_en": (
+            "An autumn storm left more than 14,000 North Jutland homes without power, "
+            "toppled high-voltage masts and forced Aalborg to open three shelters. Most "
+            "supply was restored by Wednesday; the last line is due Friday."
+        ),
+        "summary_da_pivot": (
+            "En efterårsstorm efterlod mere end 14.000 nordjyske hjem uden strøm, væltede "
+            "højspændingsmaster og tvang Aalborg til at åbne tre herberger. Det meste af "
+            "forsyningen var genetableret onsdag; den sidste linje ventes fredag."
+        ),
+        "summary_da_editorial": (
+            "Stormen i Nordjylland tog strømmen fra over 14.000 husstande og sendte 200 "
+            "borgere i nødherberg. Energinet regner med fuld genetablering senest fredag."
+        ),
+    },
+    {
+        "id": "da-002",
+        "genre": "transport",
+        "article_text": (
+            "Københavns Kommune vil de næste fire år bruge 380 millioner kroner på at "
+            "udvide cykelstierne langs Tagensvej, Nørrebrogade og Amagerbrogade. "
+            "Teknik- og miljøborgmesteren præsenterede tirsdag en plan, der skal skære "
+            "den gennemsnitlige pendlerrejse på cykel ned med tre minutter og samtidig "
+            "mindske antallet af alvorlige uheld i kryds. Planen rummer bredere spor, "
+            "særlige venstresvingsbaner og lyssignaler, der giver cyklister grønt fire "
+            "sekunder før bilerne. Erhvervslivet på Nørrebro er delt: flere caféer glæder "
+            "sig til mindre gennemkørende biltrafik, mens vognmænd advarer om, at "
+            "varelevering om morgenen bliver sværere, hvis et kørespor forsvinder. "
+            "Politiet har bedt om, at de mest trafikerede kryds får kameraovervågning i "
+            "anlægsperioden. Hvis budgettet vedtages i november, begynder gravemaskinerne "
+            "på Amager i marts. Kommunen lover, at skoleveje holdes åbne i hele perioden."
+        ),
+        "translated": (
+            "The City of Copenhagen will spend 380 million kroner over the next four years "
+            "widening cycle tracks along Tagensvej, Nørrebrogade and Amagerbrogade. The "
+            "technical and environmental mayor presented a plan on Tuesday that is meant to "
+            "cut the average bicycle commute by three minutes and reduce serious crashes at "
+            "junctions. The plan includes wider lanes, dedicated left-turn pockets and "
+            "signals that give cyclists a four-second head start. Businesses in Nørrebro are "
+            "split: several cafés welcome less through-traffic, while hauliers warn that "
+            "morning deliveries will be harder if a driving lane disappears. Police have "
+            "asked for cameras at the busiest junctions during construction. If the budget "
+            "is adopted in November, excavators start on Amager in March. The city promises "
+            "school routes will stay open throughout."
+        ),
+        "summary_en": (
+            "Copenhagen plans to spend DKK 380 million widening cycle tracks on three "
+            "arterials, aiming to shorten bike commutes and cut junction crashes if the "
+            "November budget passes."
+        ),
+        "summary_da_pivot": (
+            "København planlægger at bruge 380 millioner kroner på bredere cykelstier på "
+            "tre indfaldsveje for at forkorte pendlingen og mindske uheld, hvis "
+            "novemberbudgettet vedtages."
+        ),
+        "summary_da_editorial": (
+            "En 380 millioner kroner dyr cykelplan skal gøre Tagensvej, Nørrebrogade og "
+            "Amagerbrogade smallere for biler og hurtigere for cyklister."
+        ),
+    },
+    {
+        "id": "da-003",
+        "genre": "research",
+        "article_text": (
+            "Et konsortium ledet af IT-Universitetet i København har fået 27 millioner "
+            "kroner fra Innovationsfonden til at træne åbne sprogmodeller på danske "
+            "myndighedstekster. Projektet, der løber i tre år, skal gøre det muligt at "
+            "opsummere høringsvar og lovudkast uden at sende data til kommercielle skyer "
+            "uden for EU. Forskerne understreger, at modellerne ikke må trænes på "
+            "fortrolige sagsakter, og at alle træningskorpora skal kunne dokumenteres. "
+            "Tre kommuner og en styrelse deltager som teststeder. Første milepæl er et "
+            "offentligt delbart delkorpus af allerede offentliggjorte vejledninger. "
+            "Kritikerne spørger, om 27 millioner rækker, når tilsvarende engelske modeller "
+            "koster væsentligt mere at køre. Projektlederen svarer, at målet ikke er at "
+            "slå de største systemer, men at have en dansk baseline, som journalister og "
+            "forvaltninger kan køre lokalt. En midtvejsevaluering offentliggøres efter "
+            "18 måneder."
+        ),
+        "translated": (
+            "A consortium led by the IT University of Copenhagen has received 27 million "
+            "kroner from the Innovation Fund to train open language models on Danish "
+            "public-sector text. The three-year project aims to summarise consultation "
+            "responses and draft bills without sending data to commercial clouds outside "
+            "the EU. Researchers stress that confidential case files must not enter "
+            "training, and that every corpus must be documented. Three municipalities and "
+            "one agency will act as test beds. The first milestone is a shareable subset of "
+            "already published guidance. Critics ask whether 27 million is enough when "
+            "comparable English models cost more to run. The project lead says the goal is "
+            "not to beat the largest systems but to offer a Danish baseline that journalists "
+            "and administrations can run locally. A mid-term evaluation will be published "
+            "after 18 months."
+        ),
+        "summary_en": (
+            "ITU Copenhagen wins DKK 27 million to train open Danish language models on "
+            "public texts so summaries of hearings and bills can stay inside the EU."
+        ),
+        "summary_da_pivot": (
+            "ITU København får 27 millioner kroner til at træne åbne danske sprogmodeller "
+            "på offentlige tekster, så resuméer af høringer og lovudkast kan blive i EU."
+        ),
+        "summary_da_editorial": (
+            "Innovationsfonden støtter et ITU-ledet projekt, der vil opsummere danske "
+            "myndighedstekster på åbne modeller kørt inden for EU."
+        ),
+    },
+    {
+        "id": "da-004",
+        "genre": "sport",
+        "article_text": (
+            "FC Nordsjælland slog Brøndby 2-1 i Superligaen søndag eftermiddag efter et "
+            "sent hovedstød af angriberen, der kom ind efter 73 minutter. Kampen i "
+            "Farum blev afviklet i øsende regn, og første halvleg bød kun på et skud inden "
+            "for ramme. Brøndby kom foran kort efter pausen på et omstilling, men "
+            "hjemmeholdet udlignede, da en back sparkede bolden i kassen efter et hjørne. "
+            "Dommeren afviste et Brøndby-krav om strafespark i det 88. minut efter "
+            "videogennemsyn. Træneren for Nordsjælland kaldte sejren for 'grim, men "
+            "nødvendig' foran 6.400 tilskuere. Brøndbys chef sagde, at holdet havde "
+            "fortjent et point, og at kalenderen med tre kampe på otte dage nu bliver "
+            "tungere. Med sejren rykker Nordsjælland op på fjerdepladsen, mens Brøndby "
+            "bliver stående som nummer seks."
+        ),
+        "translated": (
+            "FC Nordsjælland beat Brøndby 2-1 in the Superliga on Sunday afternoon after a "
+            "late header from a striker who came on in the 73rd minute. The match in Farum "
+            "was played in pouring rain, and the first half produced only one shot on "
+            "target. Brøndby went ahead shortly after the break on a counter-attack, but "
+            "the home side equalised when a full-back swept in a corner. The referee turned "
+            "down a Brøndby penalty claim in the 88th minute after a video review. "
+            "Nordsjælland's coach called the win 'ugly but necessary' in front of 6,400 "
+            "fans. Brøndby's manager said his team had deserved a point and that a run of "
+            "three matches in eight days now looks heavier. The win lifts Nordsjælland to "
+            "fourth; Brøndby stay sixth."
+        ),
+        "summary_en": (
+            "FC Nordsjælland beat Brøndby 2-1 in the rain with a late header, moving up to "
+            "fourth while a late penalty appeal was waved away."
+        ),
+        "summary_da_pivot": (
+            "FC Nordsjælland slog Brøndby 2-1 i regnvejr med et sent hovedstød og rykker "
+            "op på fjerdepladsen, mens et sent straffesparksprotest blev afvist."
+        ),
+        "summary_da_editorial": (
+            "Et indhop og et hovedstød i Farum gav Nordsjælland tre point og fjerdepladsen "
+            "foran Brøndby."
+        ),
+    },
+    {
+        "id": "da-005",
+        "genre": "municipal",
+        "article_text": (
+            "Aarhus Byråd vedtog onsdag et budget, der hæver dækningsafgiften for "
+            "erhvervsejendomme og skyder 90 millioner kroner i renovering af tre ældre "
+            "folkeskoler i den vestlige del af kommunen. Socialdemokratiet, SF, "
+            "Enhedslisten og et enkelt borgerligt mandat stemte for, mens Venstre og "
+            "Konservative stemte imod med henvisning til butiksdød i midtbyen. "
+            "Borgmesteren sagde, at skolerne i Brabrand og Tilst har ventet på nye tage "
+            "og ventilation siden 2019, og at yderligere udsættelse ville blive dyrere. "
+            "Erhvervsforeningen kalder afgiften 'en stille skat på kvadratmeter' og "
+            "varsler, at flere kæder vil droppe nye lejemål. Forliget rummer også en "
+            "pulje på 12 millioner til cykelstier mellem Viby og havnen samt et loft over "
+            "stigningen i daginstitutionstakster. Budgettet træder i kraft 1. januar."
+        ),
+        "translated": (
+            "Aarhus City Council on Wednesday adopted a budget that raises the commercial "
+            "property coverage tax and puts 90 million kroner into renovating three older "
+            "municipal schools in the west of the city. The Social Democrats, SF, the Red "
+            "Green Alliance and one centre-right vote carried the deal; Venstre and the "
+            "Conservatives opposed it, citing empty shops in the centre. The mayor said "
+            "schools in Brabrand and Tilst have waited for new roofs and ventilation since "
+            "2019, and that another delay would cost more. The business association called "
+            "the levy 'a quiet tax on square metres' and warned that more chains would skip "
+            "new leases. The agreement also earmarks 12 million for cycle tracks between "
+            "Viby and the harbour and caps daycare fee increases. The budget takes effect "
+            "on 1 January."
+        ),
+        "summary_en": (
+            "Aarhus passed a budget raising the commercial property tax and spending DKK "
+            "90 million on three west-side schools, against opposition warnings about "
+            "empty shops."
+        ),
+        "summary_da_pivot": (
+            "Aarhus vedtog et budget, der hæver dækningsafgiften og bruger 90 millioner "
+            "kroner på tre skoler vestpå, trods advarsler om tomme butikker."
+        ),
+        "summary_da_editorial": (
+            "Flertal i Aarhus Byråd finansierer skolerenoveringer med højere "
+            "dækningsafgift. Erhvervslivet kalder det en stille skat på kvadratmeter."
+        ),
+    },
+    {
+        "id": "da-006",
+        "genre": "energy",
+        "article_text": (
+            "Et konsortium bag en planlagt havvindmøllepark 45 kilometer vest for "
+            "Thyborøn har sendt den endelige miljøkonsekvensrapport i høring. Parken "
+            "skal rumme 72 møller med en samlet kapacitet på 1,1 gigawatt og efter "
+            "planen levere strøm nok til omkring en million husstande fra 2031. "
+            "Rapporten beskriver påvirkning af marsvin, trækfugle og fiskeri med "
+            "jyske kuttere, der i dag har rødspættefelter i samme bælte. "
+            "Fiskeriforeningen kræver en fast erstatningsmodel, før anlægsarbejdet "
+            "begynder, og peger på, at tidligere parker i Nordsøen først afklarede "
+            "erstatning efter idriftsættelse. Kommunerne Lemvig og Thisted er "
+            "overvejende positive, fordi projektet lover 400 årsværk i anlægsfasen og "
+            "et servicehub i Thyborøn Havn. Danmarks Naturfredningsforening efterlyser "
+            "et større vinterlukket område for pælefundamenter i marsvineyngletiden. "
+            "Energistyrelsen har sat høringsfristen til otte uger. Hvis tilladelsen "
+            "kommer i foråret, kan de første monopæle rammes i 2028. Konsortiet oplyser, "
+            "at kablerne føres i land ved en eksisterende station, så man undgår ny "
+            "højspændingstrace gennem sommerhusområder. En særskilt redegørelse om "
+            "radarforhold for Søværnet er undtaget offentlighed, men styrelsen skriver, "
+            "at forsvaret har godkendt møllehøjden. Lokale sommerhusejere frygter "
+            "blink fra positionslys i klart vejr; rapporten vurderer generne som "
+            "begrænsede på 45 kilometers afstand. Økonomien i projektet er ifølge "
+            "konsortiet følsom over for den næste udbudspris på havvind, og flere "
+            "investorer har betinget deres deltagelse af, at staten fastholder den "
+            "annoncerede CfD-ramme. Hvis rammen skrider, kan parken skæres ned til "
+            "50 møller, skriver internetsiden for høringsmaterialet. "
+            "Det vil samtidig skære den lovede servicehub ned til et sæsonåbent værksted. "
+            "Høringssvar skal sendes digitalt; styrelsen afholder to borgermøder i "
+            "Thyborøn og Thisted i uge 41. Referaterne lægges på høringsportalen senest "
+            "14 dage efter sidste møde. Forskerne bag baggrundsnotatet om marsvin "
+            "kommer fra Aarhus Universitet og har tidligere rådgivet om parker ved "
+            "Kriegers Flak. De anbefaler passiv akustisk overvågning i hele "
+            "anlægsperioden, ikke kun i yngletiden. Konsortiet har indskrevet det som "
+            "et vilkår, de selv vil tilbyde, hvis tilladelsen ellers forsinkes. "
+            "Dermed er den politiske risiko flyttet fra biologien til tidplanen."
+        ),
+        "translated": (
+            "A consortium behind a planned offshore wind farm 45 kilometres west of "
+            "Thyborøn has released the final environmental impact report for consultation. "
+            "The farm would hold 72 turbines with a combined capacity of 1.1 gigawatts and "
+            "is meant to supply about one million households from 2031. The report covers "
+            "harbour porpoises, migratory birds and fishing by Jutland cutters that now work "
+            "plaice grounds in the same belt. The fishers' association wants a fixed "
+            "compensation model before construction starts, noting that earlier North Sea "
+            "farms settled compensation only after commissioning. Lemvig and Thisted "
+            "municipalities are largely positive because the project promises 400 full-time "
+            "equivalents during construction and a service hub in Thyborøn Harbour. The "
+            "Danish Society for Nature Conservation wants a larger winter closure for pile "
+            "foundations during the porpoise breeding season. The Energy Agency set an "
+            "eight-week consultation deadline. If the permit arrives in the spring, the "
+            "first monopiles could be driven in 2028. The consortium says cables will come "
+            "ashore at an existing station, avoiding a new high-voltage corridor through "
+            "holiday-home areas. A separate note on navy radar is exempt from publication, "
+            "but the agency writes that the armed forces have approved the hub height. "
+            "Local cottage owners fear flashing position lights in clear weather; the report "
+            "judges the nuisance limited at 45 kilometres. Project economics are sensitive "
+            "to the next offshore-wind strike price, and several investors have conditioned "
+            "their participation on the state keeping the announced CfD framework. If that "
+            "framework slips, the farm could be cut to 50 turbines, the consultation site "
+            "says. That would also shrink the promised service hub to a seasonal workshop. "
+            "Responses must be filed digitally; the agency will hold two town-hall meetings "
+            "in Thyborøn and Thisted in week 41. Minutes will be posted no later than 14 "
+            "days after the last meeting. The porpoise background note was written by "
+            "Aarhus University researchers who previously advised on Kriegers Flak. They "
+            "recommend passive acoustic monitoring for the whole construction period, not "
+            "only the breeding season. The consortium has offered that condition itself if "
+            "it would otherwise delay the permit. Political risk has therefore moved from "
+            "biology onto the timetable."
+        ),
+        "summary_en": (
+            "A 1.1 GW offshore wind plan off Thyborøn enters an eight-week hearing, promising "
+            "power for a million homes from 2031 while fishers demand compensation and "
+            "investors watch the CfD price."
+        ),
+        "summary_da_pivot": (
+            "En 1,1 GW havvindplan ud for Thyborøn er sendt i otte ugers høring og lover "
+            "strøm til en million hjem fra 2031, mens fiskere kræver erstatning og "
+            "investorer holder øje med CfD-prisen."
+        ),
+        "summary_da_editorial": (
+            "Havvindparken vest for Thyborøn er i høring: 72 møller, 1,1 gigawatt og et "
+            "åbent slagsmål om fiskeri, marsvin og den næste udbudspris."
+        ),
+    },
+    {
+        "id": "da-007",
+        "genre": "labor",
+        "article_text": (
+            "Sygeplejersker i Region Hovedstaden varsler nye punktstrejker i "
+            "oktober, hvis et mæglingsforslag om natillæg ikke lander inden den 1. "
+            "Sygeplejerskeforbundet siger, at tre medicinske afdelinger på Amager og "
+            "Hvidovre allerede kører med over 15 procent vakante stillinger, og at "
+            "nattevagterne er det sted, folk siger op først. Regionens forhandlingsleder "
+            "kalder varslet 'bekymrende, men forventeligt' og peger på, at et tilsvarende "
+            "tillæg i Region Midtjylland blev finansieret ved at udskyde en "
+            "ambulatorieudvidelse. Patientforeningen advarer om, at planlagte "
+            "knæoperationer kan rykke ind i det nye år. Parterne mødes igen torsdag i "
+            "Forligsinstitutionen. Hvis der ikke er en skitse lørdag, kan de første "
+            "vagter udeblive i uge 41. Forbundet understreger, at akutmodtagelser og "
+            "kræftafdelinger holdes uden for varslet."
+        ),
+        "translated": (
+            "Nurses in the Capital Region have notified new rolling strikes in October if "
+            "a mediation proposal on night-shift supplements is not in place by the 1st. "
+            "The nurses' union says three medical wards at Amager and Hvidovre already run "
+            "with more than 15 percent vacant posts, and that night shifts are where people "
+            "quit first. The region's chief negotiator called the notice 'worrying but "
+            "expected' and noted that a similar supplement in the Central Denmark Region "
+            "was funded by postponing an outpatient expansion. The patients' association "
+            "warns that planned knee operations could slip into the new year. The parties "
+            "meet again Thursday at the conciliation board. If there is no outline by "
+            "Saturday, the first shifts could be missing in week 41. The union stresses "
+            "that emergency rooms and cancer wards are outside the notice."
+        ),
+        "summary_en": (
+            "Capital Region nurses threaten October rolling strikes over night-shift pay, "
+            "keeping emergency and cancer wards outside the notice if talks fail this week."
+        ),
+        "summary_da_pivot": (
+            "Sygeplejersker i Region Hovedstaden varsler punktstrejker i oktober om "
+            "natillæg og holder akut og kræft udenfor, hvis forhandlingerne ikke lander "
+            "i denne uge."
+        ),
+        "summary_da_editorial": (
+            "Nye punktstrejker truer i Region Hovedstaden, medmindre der lander en aftale "
+            "om natillæg inden den 1. oktober."
+        ),
+    },
+    {
+        "id": "da-008",
+        "genre": "culture",
+        "article_text": (
+            "Roskilde Festival offentliggør fredag den første tredjedel af næste sommers "
+            "plakat og lover samtidig, at campingområderne vest for banen får flere "
+            "vandposter efter sidste års køer. Festivaldirektøren sagde på et pressemøde "
+            "i København, at tre af de største navne er europæiske grupper, der ikke har "
+            "spillet i Danmark siden 2019, mens Orange Scene også får en dansk "
+            "headliner lørdag. Kommunen har godkendt en midlertidig togstation tættere "
+            "på østindgangen, så DSB kan indsætte ekstra pendler i aftenmyldretiden. "
+            "Naboerne i Darup har fået udvidet den stille zone med 200 meter. "
+            "Billetter til den første pulje går i salg søndag klokken 10, og "
+            "festivalen indfører et loft på fire billetter per MitID. Overskuddet "
+            "øremærkes som vanligt frivillige foreninger; i år nævnes særligt "
+            "ungdommens musikskoler i Region Sjælland."
+        ),
+        "translated": (
+            "Roskilde Festival will publish the first third of next summer's bill on "
+            "Friday and promises more water taps in the western camps after last year's "
+            "queues. The festival director told a Copenhagen press conference that three "
+            "of the biggest names are European acts that have not played in Denmark since "
+            "2019, while the Orange Stage will also get a Danish Saturday headliner. The "
+            "municipality has approved a temporary station closer to the east gate so DSB "
+            "can add evening commuter trains. Neighbours in Darup get a 200-metre extension "
+            "of the quiet zone. The first ticket batch goes on sale Sunday at 10, with a "
+            "cap of four tickets per MitID. Surplus funds again go to volunteer groups; "
+            "this year the festival highlighted youth music schools in Region Zealand."
+        ),
+        "summary_en": (
+            "Roskilde will reveal a third of next summer's lineup on Friday, add camp "
+            "water taps and a temporary DSB stop, and cap the first ticket drop at four "
+            "per MitID."
+        ),
+        "summary_da_pivot": (
+            "Roskilde afslører fredag en tredjedel af næste sommers plakat, sætter flere "
+            "vandposter og et midlertidigt DSB-stop og loftsætter første salg på fire "
+            "billetter per MitID."
+        ),
+        "summary_da_editorial": (
+            "Første bid af Roskilde-plakaten lander fredag sammen med løfter om vand, tog "
+            "og et MitID-loft på fire billetter."
+        ),
+    },
+    {
+        "id": "da-009",
+        "genre": "transport",
+        "article_text": (
+            "DSB aflyste onsdag morgen 38 afgange mellem Odense og København, efter at "
+            "et signalsystem ved Ringsted gik i fejltilstand. Passagerer blev henvist til "
+            "busser, der kørte via motorvejen, men flere af busserne sad fast i kø ved "
+            "Køge Bugt. Trafikinformationen på DSB's app blev forsinket med op til 22 "
+            "minutter, og Forbrugerrådet Tænk kalder det uacceptabelt så tæt på "
+            "efterårsferien. DSB siger, at fejlen sad i en softwareopdatering natten "
+            "før, og at den gamle version er rullet tilbage. Normal drift ventes i "
+            "eftermiddagsmyldretiden. Pendlerne kan søge om kompensation, hvis "
+            "forsinkelsen oversteg 30 minutter."
+        ),
+        "translated": (
+            "DSB cancelled 38 morning departures between Odense and Copenhagen on "
+            "Wednesday after a signalling system at Ringsted failed. Passengers were "
+            "sent to buses on the motorway, several of which then sat in traffic at Køge "
+            "Bay. App updates lagged by up to 22 minutes, and the consumer council called "
+            "that unacceptable so close to the autumn holiday. DSB said the fault sat in "
+            "an overnight software update and that the previous version has been rolled "
+            "back. Normal service is expected by the afternoon peak. Commuters can claim "
+            "compensation if the delay exceeded 30 minutes."
+        ),
+        "summary_en": (
+            "A failed Ringsted signalling update led DSB to cancel 38 Odense–Copenhagen "
+            "morning trains; buses hit traffic and compensation applies after 30 minutes."
+        ),
+        "summary_da_pivot": (
+            "En fejlslagen softwareopdatering i Ringsted fik DSB til at aflyse 38 "
+            "morgentog mellem Odense og København. Busser sad fast, og kompensation "
+            "gælder efter 30 minutter."
+        ),
+        "summary_da_editorial": (
+            "Signalsvigt ved Ringsted lagde Svendborgbanens nabostrækning ned onsdag "
+            "morgen. DSB ruller opdateringen tilbage og henviser til kompensation."
+        ),
+    },
+    {
+        "id": "da-010",
+        "genre": "housing",
+        "article_text": (
+            "Studerende i Aarhus må i gennemsnit vente 11 måneder på en ungdomsbolig, "
+            "viser nye tal fra Kollegiekontoret. Ventelisten er vokset med 18 procent "
+            "siden 2022, samtidig med at tre midlertidige pavillonanlæg i Skejby udløber "
+            "næste sommer. Borgmesteren vil nu fremrykke en lokalplan for 420 boliger "
+            "ved Nørreport, men beboerforeningen i kvarteret frygter, at højden på otte "
+            "etager vil skygge for de eksisterende gårde. Universitetet overvejer at "
+            "leje hotelværelser i januar til internationale kandidatstuderende, hvis "
+            "listen ikke knækker. De studerendes fællesråd kalder det et plaster og "
+            "kræver, at staten genåbner en pulje til kollegiebyggeri uden for de "
+            "største byer, så presset kan flyttes til Emdrup og Odense."
+        ),
+        "translated": (
+            "Students in Aarhus now wait 11 months on average for a youth housing unit, "
+            "according to new figures from the dormitory office. The queue is up 18 "
+            "percent since 2022, while three temporary pavilion sites in Skejby expire "
+            "next summer. The mayor wants to bring forward a local plan for 420 homes at "
+            "Nørreport, but the neighbourhood association fears that eight-storey blocks "
+            "would shadow existing courtyards. The university is considering hotel rooms "
+            "in January for international master's students if the list does not break. "
+            "The student council called that a plaster and asked the state to reopen a "
+            "grant for dorms outside the largest cities so pressure can move toward "
+            "Emdrup and Odense."
+        ),
+        "summary_en": (
+            "Aarhus student housing waits have reached 11 months. The city wants 420 new "
+            "units at Nørreport; students say hotel rooms and pavilions are not enough."
+        ),
+        "summary_da_pivot": (
+            "Aarhus-studerende venter nu 11 måneder på en ungdomsbolig. Kommunen vil "
+            "bygge 420 enheder ved Nørreport; de studerende kalder hotelværelser og "
+            "pavilloner utilstrækkelige."
+        ),
+        "summary_da_editorial": (
+            "Ventetiden på kollegie i Aarhus er 11 måneder, og pavillonerne i Skejby "
+            "lukker næste sommer. En lokalplan ved Nørreport er borgmesterens svar."
+        ),
+    },
+    {
+        "id": "da-011",
+        "genre": "culture",
+        "article_text": (
+            "Vendsyssel Kunstmuseum åbner på lørdag en udstilling om fiskeriets "
+            "fotografer fra 1950'erne til 1980'erne. Omkring 140 sort-hvidbilleder fra "
+            "skibe hjemmehørende i Skagen, Strandby og Hirtshals vises sammen med "
+            "lydoptagelser af radiotrafik. Museet har lånt negativer fra tre private "
+            "arkiver, som ellers lå i kældre med fugtskader. En konservator har brugt "
+            "otte måneder på at rense glassene. Direktøren håber, at udstillingen kan "
+            "trække gæster i vinterhalvåret, hvor besøgstallet ellers dykker. "
+            "Entréen er gratis den første søndag."
+        ),
+        "translated": (
+            "The Vendsyssel Art Museum opens a Saturday show on fishery photographers "
+            "from the 1950s to the 1980s. About 140 black-and-white pictures from boats "
+            "based in Skagen, Strandby and Hirtshals hang beside recordings of radio "
+            "traffic. The museum borrowed negatives from three private archives that had "
+            "sat in damp cellars. A conservator spent eight months cleaning the plates. "
+            "The director hopes the show will pull visitors through the winter slump. "
+            "Admission is free on the first Sunday."
+        ),
+        "summary_en": (
+            "Vendsyssel Art Museum opens a winter show of 140 fishery photographs and "
+            "radio tapes, with free entry on the first Sunday."
+        ),
+        "summary_da_pivot": (
+            "Vendsyssel Kunstmuseum åbner en vinterudstilling med 140 fiskerifotografier "
+            "og radiobånd. Første søndag er der fri entré."
+        ),
+        "summary_da_editorial": (
+            "Fiskeriets sort-hvidbilleder fylder Vendsyssel Kunstmuseum i vinter. "
+            "Første søndag koster det ikke noget at komme ind."
+        ),
+    },
+    {
+        "id": "da-012",
+        "genre": "economy",
+        "article_text": (
+            "En gennemsnitlig husstand i et parcelhus uden for de største byer betalte "
+            "i august 18 procent mere for el og fjernvarme end samme måned sidste år, "
+            "viser en opgørelse fra Forsyningstilsynet. Stigningen er skævest i "
+            "Vestjylland, hvor flere mindre værker stadig afregner restgæld fra "
+            "indkøb af biomasse i 2022. Regeringen peger på, at den midlertidige "
+            "elafgiftsnedsættelse udløb i juni, og at en ny målrettet pulje til "
+            "varmepumper først åbner i januar. Oppositionen kalder det et hul i fire "
+            "måneder, som især rammer pensionister i olieopvarmede huse, der endnu "
+            "ikke er konverteret. Energiselskaberne advarer om, at vinterens "
+            "futurespriser allerede ligger over budgetterne, og at flere værker vil "
+            "varsle aconto-stigninger i oktober. Forbrugerrådet anbefaler, at "
+            "husstande med variabel aftale tjekker, om de kan låse en del af forbruget "
+            "før 1. november. Nationalbanken vurderer i en kort note, at den samlede "
+            "effekt på inflationen er begrænset, men at den lokale forskel mellem "
+            "værker er den største siden 2010. I Esbjerg har byrådet bedt værket om at "
+            "udskyde en planlagt stigning på 7 procent, indtil Folketinget har behandlet "
+            "en hasteforespørgsel om at forlænge afgiftsnedsættelsen. Værket svarer, at "
+            "en udskydelse kræver en kommunegaranti, fordi kassekreditten ellers bryder "
+            "lånebetingelserne. Samtidig viser tal fra Danmarks Statistik, at "
+            "elforbruget i sommerhuse faldt i august, mens forbruget i etageboliger i "
+            "København steg let — et mønster, analytikerne knytter til hjemmearbejde og "
+            "varmepumpeudrulning i hovedstaden. En tænketank foreslår et midlertidigt "
+            "loft på aconto for husstande under en indkomstgrænse, finansieret af det "
+            "overskud flere statslige energiselskaber bogførte i andet kvartal. "
+            "Finansministeriet har tidligere afvist den model som statslig prisregulering. "
+            "Uenigheden betyder, at forbrugerne går ind i fyringssæsonen uden et klart "
+            "politisk signal. Flere værker har derfor allerede trykt to sæt breve: ét "
+            "hvis puljen kommer, og ét hvis den ikke gør. Det er den slags "
+            "dobbeltkommunikation, der ifølge Forbrugerrådet skaber flest opkald til "
+            "hotlinen. Tilsynet lover en opdateret kommunesammenligning i uge 42, så "
+            "husstande kan se, om deres værk ligger i den dyre ende, før acontoen "
+            "trækkes. Indtil da er det lokale budgetmøder og læserbreve, der bærer "
+            "debatten. I Holstebro mødte 90 borgere op tirsdag aften og bad om, at "
+            "værket offentliggør sine biomassekontrakter. Bestyrelsen svarede, at "
+            "kontrakterne er fortrolige, men at prisen per gigajoule kan oplyses som "
+            "interval. Det tilfredsstillede kun få i salen. En pensionist sagde, at hun "
+            "ikke kan 'varme stuen med et interval'. Sætningen blev siden delt i "
+            "lokale grupper og er nu det nærmeste, debatten har på et slogan."
+        ),
+        "translated": (
+            "An average household in a detached house outside the largest cities paid 18 "
+            "percent more for electricity and district heat in August than in the same "
+            "month last year, according to the Utility Regulator. The rise is sharpest in "
+            "West Jutland, where several smaller plants are still paying down biomass "
+            "purchases from 2022. The government notes that the temporary electricity-tax "
+            "cut expired in June and that a new targeted heat-pump grant only opens in "
+            "January. The opposition calls that a four-month hole that especially hits "
+            "pensioners in oil-heated houses not yet converted. Energy companies warn that "
+            "winter futures already sit above their budgets and that more plants will "
+            "notify October prepayment increases. The consumer council tells households on "
+            "variable contracts to check whether they can lock part of their use before 1 "
+            "November. The central bank said in a short note that the overall inflation "
+            "effect is limited, but that the local gap between plants is the widest since "
+            "2010. In Esbjerg the city council asked the plant to postpone a planned 7 "
+            "percent rise until parliament has heard an urgent question on extending the "
+            "tax cut. The plant replied that a delay needs a municipal guarantee, or the "
+            "overdraft would breach loan covenants. Meanwhile Statistics Denmark figures "
+            "show holiday-home electricity use fell in August while Copenhagen apartment "
+            "use rose slightly — a pattern analysts tie to remote work and heat-pump "
+            "rollout in the capital. A think tank proposes a temporary prepayment cap for "
+            "households under an income line, funded by second-quarter profits at several "
+            "state-owned energy firms. The finance ministry has previously rejected that "
+            "as state price control. The disagreement means consumers enter the heating "
+            "season without a clear political signal. Several plants have therefore already "
+            "printed two sets of letters: one if the grant arrives, and one if it does not. "
+            "That double communication, the consumer council says, drives the most hotline "
+            "calls. The regulator promises an updated municipal comparison in week 42 so "
+            "households can see whether their plant sits in the expensive tail before the "
+            "prepayment is drawn. Until then the debate lives in local budget meetings and "
+            "letters to the editor. In Holstebro 90 residents turned up on Tuesday evening "
+            "and asked the plant to publish its biomass contracts. The board said the "
+            "contracts are confidential but that the price per gigajoule can be given as a "
+            "range. That satisfied few in the room. A pensioner said she cannot 'heat the "
+            "living room with a range'. The line was later shared in local groups and is "
+            "now the closest the debate has to a slogan."
+        ),
+        "summary_en": (
+            "Household power and heat bills outside the big cities were 18 percent higher "
+            "in August. A lapsed tax cut, delayed heat-pump money and leftover biomass "
+            "debt leave plants sending two versions of the winter letter."
+        ),
+        "summary_da_pivot": (
+            "Husstande uden for de store byer betalte 18 procent mere for el og varme i "
+            "august. En udløbet afgiftsnedsættelse, forsinkede varmepenge og gammel "
+            "biomassengæld får værker til at sende to versioner af vinterbrevet."
+        ),
+        "summary_da_editorial": (
+            "El og fjernvarme er steget 18 procent for parcelhuse uden for storbyerne. "
+            "Vestjyske værker slæber stadig på biomasse fra 2022, og politikerne er uenige "
+            "om et hul mellem juni og januar."
+        ),
+    },
+]
+
+
+# Fixed splits so toy_labeling_pipeline.py and the committed CSVs stay aligned.
+TRAIN_IDS = [
+    "da-001",
+    "da-002",
+    "da-003",
+    "da-004",
+    "da-005",
+    "da-006",
+    "da-007",
+    "da-008",
+]
+VALIDATION_IDS = ["da-009", "da-010"]
+TEST_IDS = ["da-011", "da-012"]
+
+
+def by_id() -> dict[str, Article]:
+    return {row["id"]: row for row in ARTICLES}
+
+
+def split_name(article_id: str) -> str:
+    if article_id in TRAIN_IDS:
+        return "train"
+    if article_id in VALIDATION_IDS:
+        return "validation"
+    if article_id in TEST_IDS:
+        return "test"
+    raise KeyError(f"id {article_id!r} is not in the example splits")

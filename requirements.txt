@@ -1,0 +1,26 @@
+# Core stack used by the 2023 course scripts.
+# Pin loosely enough that CPU-only exploratory installs still resolve,
+# but keep the major libraries the original pipeline imported.
+
+torch>=2.0.0
+transformers>=4.30.0
+datasets>=2.14.0
+evaluate>=0.4.0
+accelerate>=0.21.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+
+# Translation / summarization runtime
+ctranslate2>=3.16.0
+nltk>=3.8.1
+pandas>=2.0.0
+numpy>=1.24.0
+tqdm>=4.65.0
+
+# Metrics used in eval.py / finetune.py
+rouge-score>=0.1.2
+bert-score>=0.3.13
+absl-py>=1.4.0
+
+# Optional: load the original Hugging Face trainer extras
+safetensors>=0.3.1
