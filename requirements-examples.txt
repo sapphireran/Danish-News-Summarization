@@ -1,0 +1,5 @@
+# Intentionally empty of third-party packages.
+# examples/ and tests/ run on Python 3.10+ stdlib plus this repo.
+#
+#   PYTHONPATH=. python -m unittest discover -s tests -v
+#   PYTHONPATH=. python examples/dry_run_pipeline.py

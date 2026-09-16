@@ -1,0 +1,31 @@
+# Local models, datasets, and generated artifacts
+models/
+large_model/
+small_model/
+mt5-summarize-large/
+datasets/*.csv
+*.pt
+*.bin
+*.safetensors
+
+# Example / eval outputs
+examples/output/
+.cache/
+nltk_data/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store

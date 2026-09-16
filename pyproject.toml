@@ -1,0 +1,35 @@
+[project]
+name = "danish-news-summarization"
+version = "0.2.0"
+description = "CPU helpers, docs, and examples for the ITU 2023 Danish news summarization project."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [{ name = "Sapphire Ran" }]
+
+[project.scripts]
+danish-news-summarization = "danish_news_summarization.cli:main"
+
+[project.optional-dependencies]
+gpu = [
+    "transformers",
+    "datasets",
+    "evaluate",
+    "nltk",
+    "pandas",
+    "numpy",
+    "ctranslate2",
+    "tqdm",
+    "accelerate",
+    "sentencepiece",
+    "protobuf",
+    "rouge-score",
+    "bert-score",
+]
+
+[tool.setuptools.packages.find]
+include = ["danish_news_summarization*"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
