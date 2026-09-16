@@ -1,0 +1,5 @@
+Blåhøj Almanak ledger
+mean silver=0.191
+mean oracle=0.523
+mean lead2=0.499
+html=/workspace/examples/report/index.html
