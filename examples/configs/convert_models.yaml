@@ -1,0 +1,21 @@
+# Mirror of Ctranslate_converter.py — not loaded by the script.
+# Uncomment da-en in the Python file; both directories are required.
+
+converter: ctranslate2.converters.TransformersConverter
+models:
+  opus_mt_da_en:
+    hub_id: Helsinki-NLP/opus-mt-da-en
+    output_dir: models/opus-mt-da-en_ct2
+    enabled_in_script: false   # currently commented out
+  opus_mt_en_da:
+    hub_id: Helsinki-NLP/opus-mt-en-da
+    output_dir: models/opus-mt-en-da_ct2
+    enabled_in_script: true
+  nllb_3b:
+    hub_id: facebook/nllb-200-3.3B
+    output_dir: models/nllb-200-3.3B_ct2
+    enabled_in_script: false   # leftover experiment
+  nllb_600m:
+    hub_id: facebook/nllb-200-distilled-600m
+    output_dir: models/nllb-200-distilled-600m_ct2
+    enabled_in_script: false

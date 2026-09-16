@@ -1,0 +1,21 @@
+# Mirror of summary.py
+
+input_file_path: translated_articles.csv
+output_file_path: summarized_file_ml80_rp5.0.csv
+input_columns: [id, body, translated]
+output_columns: [id, body, translated, summary]
+
+model_name: mrm8488/t5-base-finetuned-summarize-news
+text_max_length: 512          # pack + encode cap
+debug_row_slice: 10           # df[:10] leftover — remove for a full run
+
+generate:
+  num_beams: 2
+  max_length: 80
+  repetition_penalty: 5.0
+  length_penalty: 1.0
+  early_stopping: true
+
+chunking:
+  split_overlong_sentences: true
+  join_sub_summaries_with: " "

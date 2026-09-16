@@ -1,0 +1,48 @@
+# Local model weights and conversion output
+models/
+**/models/
+large_model/
+small_model/
+mt5-summarize-*/
+**/checkpoint-*/
+
+# Generated and downloaded datasets
+datasets/
+*.csv
+!examples/data/*.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+.env.*
+
+# Notebooks and editor
+.ipynb_checkpoints/
+.idea/
+.vscode/
+.DS_Store
+
+# Evaluation / training logs
+wandb/
+runs/
+logs/
+*.log
+lightning_logs/
+
+# Hugging Face / torch caches (if someone points them here)
+.cache/
+huggingface/
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.onnx
+*.ct2
