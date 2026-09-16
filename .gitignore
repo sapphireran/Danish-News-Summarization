@@ -1,0 +1,25 @@
+# Local 2023 run artifacts (news text and model weights — do not commit)
+10000_articles_without_linebreaks.csv
+translated_articles.csv
+summarized_file_*.csv
+labeled_dataset_*.csv
+datasets/
+models/
+large_model/
+small_model/
+mt5-summarize-large/
+
+# Offline example working copies
+examples/.work/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
