@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+.python-version
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Local model weights and conversion output
+models/
+small_model/
+large_model/
+mt5-summarize-*/
+*.bin
+*.safetensors
+*.ct2
+
+# Generated datasets at the repo root (keep examples/data/)
+/datasets/
+/*_articles*.csv
+/translated_*.csv
+/summarized_*.csv
+/labeled_*.csv
+/10000_articles*.csv
+
+# Trainer / experiment artifacts
+wandb/
+runs/
+outputs/
+lightning_logs/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
