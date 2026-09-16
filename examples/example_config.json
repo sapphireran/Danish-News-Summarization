@@ -1,0 +1,10 @@
+{
+  "raw_csv": "sample_articles.csv",
+  "translated_csv": "sample_translated.csv",
+  "summarized_csv": "sample_summaries_en.csv",
+  "labeled_csv": "sample_labeled.csv",
+  "references_csv": "sample_references.csv",
+  "max_units": 80,
+  "unit": "words",
+  "summary_max_sentences": 2
+}
