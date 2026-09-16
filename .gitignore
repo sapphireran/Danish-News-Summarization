@@ -1,0 +1,40 @@
+# Local Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# 2023 GPU artefacts — never commit the private dump or checkpoints
+models/
+small_model/
+large_model/
+mt5-summarize-*/
+mt5-summarize-large/
+*.bin
+*.pt
+*.safetensors
+
+# Generated run products at the repo root (the 2023 script names)
+/10000_articles_without_linebreaks.csv
+/translated_articles.csv
+/summarized_file_*.csv
+/labeled_dataset_*.csv
+/datasets/
+
+# Keep the committed Kystlinje sample tables
+!examples/data/
+!examples/data/**
+
+# Local report rebuilds outside examples/report
+/tmp/

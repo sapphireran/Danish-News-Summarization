@@ -1,0 +1,13 @@
+# Reconstructed from the December 2023 course scripts.
+# There was no freeze in the original commit. Examples and tests
+# (kystlinje / unittest) need CPython 3.11+ and nothing from this file.
+
+numpy
+nltk
+torch
+tqdm
+transformers
+pandas
+ctranslate2
+datasets
+evaluate
