@@ -15,5 +15,6 @@ Read in this order if you are coming back to the project cold:
 9. [troubleshooting.md](troubleshooting.md) — mismatches the committed scripts still have
 10. [file-map.md](file-map.md) — script-by-script reference
 11. [reproducing-course-run.md](reproducing-course-run.md) — a checklist, not a promise
+12. [silver-labels.md](silver-labels.md) — extractive vs pivot vs editorial Danish
 
 Companion code that you can run without a GPU lives in [`../examples/`](../examples/README.md).

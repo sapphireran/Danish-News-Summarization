@@ -123,6 +123,7 @@ That path exercises the same CSV schemas and the same sentence-chunking rules th
 - [Troubleshooting](docs/troubleshooting.md) — the failures this repo actually hits
 - [File map](docs/file-map.md) — one page per script
 - [Reproducing the course run](docs/reproducing-course-run.md)
+- [Silver labels vs extractive vs editorial](docs/silver-labels.md)
 
 ## License
 

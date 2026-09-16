@@ -79,7 +79,7 @@ Models, trainer dirs, root generated CSVs, caches. Example CSVs under `examples/
 
 ## `docs/`
 
-Prose you are reading. Index: [README.md](README.md).
+Prose you are reading. Index: [README.md](README.md). Silver-label styles: [silver-labels.md](silver-labels.md).
 
 ## `examples/`
 
