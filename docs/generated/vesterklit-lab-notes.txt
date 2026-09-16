@@ -1,0 +1,168 @@
+Fjordpressen lab notes — Vesterklit gazette
+====================================================
+
+Closed-world bounds on the 2023 four-hop silver label.
+Oracle = gold parallel sentences + extractive keep.
+Gloss  = word-list DA↔EN + extractive keep.
+
+Corpus means
+----------------------------------------------------
+  ███████████████░░░░░ 0.755  oracle entity retention
+  ██████████████░░░░░░ 0.717  gloss entity retention
+  █████████░░░░░░░░░░░ 0.437  oracle ROUGE-1 vs gold DA
+  ████████░░░░░░░░░░░░ 0.391  gloss ROUGE-1 vs gold DA
+  ███████░░░░░░░░░░░░░ 0.357  oracle ROUGE-L vs gold DA
+  ██████░░░░░░░░░░░░░░ 0.308  gloss ROUGE-L vs gold DA
+  ██████████████░░░░░░ 0.714  oracle compression
+  █████████████░░░░░░░ 0.671  gloss compression
+
+## vk-001 — Stormen Nanna aflyser færgen til Mågeø
+section: harbour
+windows: 3  gloss DA coverage: 1.000
+back-oracle vs gold  R1=0.479  RL=0.417
+back-gloss  vs gold  R1=0.438  RL=0.396
+facts:
+  - all ferry departures cancelled overnight
+  - waves over four metres at Sølvdyp
+  - next assessment at 06.00
+  - Nordmark pupils rerouted via Brohuset
+gold DA summary:
+  Stormen Nanna aflyser færgen mellem Havnepladsen og Mågeø. Lisbeth Holm peger på fire meter høje bølger ved Sølvdyp. Kommunen åbner et venteskur, og skoleelever fra Nordmark kører via Brohuset.
+oracle DA back-translation:
+  Stormen Nanna tvang i nat Færgeselskabet Vesterklit til at aflyse alle afgange mellem Havnepladsen og Mågeø. Direktør Lisbeth Holm sagde, at bølgerne ved Sølvdyp målte over fire meter, og at mandskabet ikke kunne sikre fortøjningen. Kommunen åbner midlertidigt et venteskur på kajen, hvor passagerer kan få kaffe og opdateringer hver halve time. Skoleelever fra Nordmark, der skulle til svømmestævne, bliver kørt med bus via Brohuset i stedet.
+
+## vk-002 — Testmast på Klitsand får betinget godkendelse
+section: energy
+windows: 4  gloss DA coverage: 1.000
+back-oracle vs gold  R1=0.436  RL=0.273
+back-gloss  vs gold  R1=0.500  RL=0.312
+facts:
+  - 87 m mast, two-year wind measurement
+  - 14 neighbour complaints on Rylevej
+  - mast must come down if birds drop >10%
+  - hearing closes 3 May
+gold DA summary:
+  En 87 meter testmast på Klitsand får betinget godkendelse i to år. Karsten Vang afviser, at der allerede er besluttet vindmøller. 14 klager fra Rylevej og en fugleklausul på ti procent følger tilladelsen.
+oracle DA back-translation:
+  Teknisk forvaltning har givet betinget godkendelse til en 87 meter høj testmast på Klitsand. Ingeniør Karsten Vang sagde, at masten skal måle vind i to år, før nogen taler om vindmøller. Naboerne på Rylevej har sendt 14 klager om støj og trækfugle, og klagerne følger med tilladelsen som vilkår. Miljøvurderingen kræver, at master og kabler tages ned, hvis fugletællingen falder med over ti procent. Høringen slutter den 3. maj, og Fjordpressen lægger rapporten i læsesalen på biblioteket.
+
+## vk-003 — Taget lækker på Nordmark Skole efter efterårsregn
+section: school
+windows: 3  gloss DA coverage: 1.000
+back-oracle vs gold  R1=0.458  RL=0.386
+back-gloss  vs gold  R1=0.209  RL=0.149
+facts:
+  - leak over the school hall
+  - three classes moved to the library
+  - repair 1.2 million kroner, four weeks
+  - no temporary bus to Amberhus
+gold DA summary:
+  Nordmark Skoles aula lækker efter efterårsregn. Amina Sørensen flyttede tre klasser, og reparationen er sat til 1,2 millioner kroner over fire uger. En midlertidig bus til Amberhus blev afvist.
+oracle DA back-translation:
+  Efterårsregnen har åbnet en lækage i taget over aulaen på Nordmark Skole. Lærer Amina Sørensen flyttede tre klasser ned i bibliotekets læsestue, fordi gulvet var vådt. Teknisk forvaltning skønner, at reparationen koster 1,2 millioner kroner og tager fire uger. Forældre bad om midlertidig bus til Amberhus, men kommunen sagde nej på grund af budgettet.
+
+## vk-004 — Byrådet vedtager udvidelse af Stenmole
+section: harbour
+windows: 3  gloss DA coverage: 1.000
+back-oracle vs gold  R1=0.415  RL=0.317
+back-gloss  vs gold  R1=0.313  RL=0.241
+facts:
+  - council vote 17 for, 4 against, 1 blank
+  - 80 m new quay
+  - 25 local jobs over two seasons
+  - deadline 1 October
+gold DA summary:
+  Stenmole udvides efter 17-4-1 i byrådet. 80 meter ny kaj og 25 job i to sæsoner. Fiskeriforeningen tvivler, og kontrakten kræver færdigt arbejde 1. oktober.
+oracle DA back-translation:
+  Byrådet vedtog i går udvidelsen af Stenmole med 17 stemmer for, fire imod og én blank. Projektet lægger 80 meter ny kaj til fiskere og en bredere sti til sommergæster. Borgmester Ellen Buhl sagde, at anlægsarbejdet skaber 25 lokale arbejdspladser i to sæsoner. Entreprenøren fra Klitsand skal være færdig inden 1. oktober, ellers falder kontrakten.
+
+## vk-005 — Amberhus åbner rav- og bronzealderudstilling
+section: culture
+windows: 3  gloss DA coverage: 1.000
+back-oracle vs gold  R1=0.429  RL=0.405
+back-gloss  vs gold  R1=0.429  RL=0.405
+facts:
+  - opens Saturday
+  - 40% of finds never shown
+  - adults 65 kroner, children free
+  - runs until 15 September
+gold DA summary:
+  Amberhus åbner lørdag en rav- og bronzealderudstilling. 40 procent af fundene er nye for publikum. Børn går gratis, voksne betaler 65 kroner, og Yasmin El-Khatib har skrevet tosprogede tekster.
+oracle DA back-translation:
+  Amberhus åbner lørdag en udstilling om rav og bronzealderfund fra gravhøje i omegnen. Museets formand Poul Nissen sagde, at 40 procent af fundene aldrig har været vist offentligt. Børn kommer gratis ind, mens voksne betaler 65 kroner, og billetter sælges også på biblioteket. Udstillingen varer til 15. september og flytter derefter et udvalg til læsesalen.
+
+## vk-006 — Natbus i sommersæsonen får tre stop i Vesterklit
+section: transport
+windows: 3  gloss DA coverage: 1.000
+back-oracle vs gold  R1=0.545  RL=0.409
+back-gloss  vs gold  R1=0.523  RL=0.386
+facts:
+  - Fri/Sat night bus, three stops
+  - 380,000 kroner trial budget
+  - minimum 12 passengers
+  - killed after three weak weeks
+gold DA summary:
+  En natbus kører i juni–august mellem Havnepladsen, Nordmark og Amberhus efter 22.00. Forsøget koster 380.000 kroner og kræver 12 passagerer. Henrik Straarup dropper ruten efter tre svage uger.
+oracle DA back-translation:
+  Kommunen prøver i juni, juli og august en natbus mellem Havnepladsen, Nordmark og Amberhus. Ruten kører fredag og lørdag efter klokken 22.00 og slutter klokken 01.30. Teknisk chef Henrik Straarup sagde, at forsøget koster 380.000 kroner og kræver mindst 12 passagerer pr. tur. Turister fra Mågeø kan købe billet sammen med færgen, men kun når færgen ikke er aflyst.
+
+## vk-007 — Tilskud til varmepumper i gamle murstenshuse
+section: energy
+windows: 3  gloss DA coverage: 1.000
+back-oracle vs gold  R1=0.494  RL=0.447
+back-gloss  vs gold  R1=0.447  RL=0.400
+facts:
+  - 27,000 kroner per heat pump
+  - houses older than 1965
+  - deadline 12 April, 60 households
+  - priority for Rylevej and Tangløb
+gold DA summary:
+  Et tilskud på 27.000 kroner åbner for varmepumper i huse fra før 1965. Fristen er 12. april, og Sofie Tranberg har plads til 60 husstande. Rylevej og Tangløb får forrang.
+oracle DA back-translation:
+  Kommunen åbner et tilskud på 27.000 kroner til varmepumper i huse ældre end 1965. Fristen er 12. april, og ansøgningen skal vedlægge et energimærke ikke ældre end to år. Sofie Tranberg fra forvaltningen sagde, at der er penge til 60 husstande i første runde. Hvis ansøgere glemmer energimærket, bliver brevet lagt tilbage uden ny frist.
+
+## vk-008 — Cykelsti langs Tangløb udsat efter fredning
+section: transport
+windows: 3  gloss DA coverage: 1.000
+back-oracle vs gold  R1=0.341  RL=0.317
+back-gloss  vs gold  R1=0.259  RL=0.188
+facts:
+  - postponed to next spring
+  - 40 m inland reroute
+  - 2.4 million extra
+  - decision tied to December budget
+gold DA summary:
+  Cykelstien ved Tangløb venter til foråret efter en fredning. Omlægningen på 40 meter koster 2,4 millioner extra. Nordmarks elever cykler videre ad Rylevej, indtil decemberbudgettet er klart.
+oracle DA back-translation:
+  Cykelstien langs Tangløb er udsat til næste forår, fordi en fredning af klitten kom i vejen. Naturstyrelsen kræver en omlægning 40 meter længere inde, væk fra de våde partier. Mikkel Ravn fra teknisk forvaltning sagde, at den nye linje koster 2,4 millioner ekstra. Skoleelever fra Nordmark cykler derfor stadig ad den smalle Rylevej i mørke.
+
+## vk-009 — Kirkebøgerne fra tre sogne kommer i digitalt arkiv
+section: culture
+windows: 3  gloss DA coverage: 1.000
+back-oracle vs gold  R1=0.404  RL=0.337
+back-gloss  vs gold  R1=0.382  RL=0.315
+facts:
+  - three parishes scanned
+  - 11,000 pages since January
+  - 190,000 kroner municipal share
+  - no photos of 1784 volumes
+gold DA summary:
+  Kirkebøger fra Vesterklit, Nordmark og Mågeø scannes til et digitalt arkiv. Troels Kjærs frivillige har taget 11.000 sider. 190.000 kroner kommer fra kommunen, og bind fra 1784 må ikke fotograferes.
+oracle DA back-translation:
+  Biblioteket scanner kirkebøgerne fra Vesterklit, Nordmark og Mågeø og lægger dem i et digitalt arkiv. Frivillige under Troels Kjær har allerede scannet 11.000 sider siden januar. Slægtsforskere kan læse med i læsesalen, men ikke tage billeder af de ældste bind fra 1784. Hvis en side er for våd eller sort, bliver den stående i det fysiske arkiv under lås.
+
+## vk-010 — Fiskeriforeningen venter lavere torskekvote
+section: harbour
+windows: 4  gloss DA coverage: 1.000
+back-oracle vs gold  R1=0.370  RL=0.259
+back-gloss  vs gold  R1=0.412  RL=0.289
+facts:
+  - 18% fewer tonnes expected
+  - meeting at Brohuset
+  - Stenmole berth needs 20 paying boats
+  - weekly catch figures due 1 March
+gold DA summary:
+  Fiskeriforeningen venter 18 procent færre ton torsk og rødspætte. Mikkel Ravn læste ministeriets brev i Brohuset. Kajplads på Stenmole kræver 20 både, og Ellen Buhl vil have ugetal inden 1. marts.
+oracle DA back-translation:
+  Fiskeriforeningen holdt møde i Brohuset om en ventet lavere kvote på torsk og rødspætte. Formand Mikkel Ravn læste et brev fra ministeriet, der peger på 18 procent færre ton i den kommende sæson. Medlemmerne var uenige: nogle vil fiske hårdere først på året, andre vil holde bådene i havnen. Aftalen med kommunen om kajplads på Stenmole gælder kun, hvis mindst 20 både betaler afgift. Fjordpressen sad med som presse, men uden båndoptager, efter et krav fra bestyrelsen.
+

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Fjordpressen lab notes — Vesterklit gazette</title>
+<style>
+  :root {
+    --ink: #1b1a17;
+    --paper: #f6f1e7;
+    --card: #fffdf8;
+    --rule: #c8bba4;
+    --accent: #6b4f2a;
+    --bar: #8a6a3b;
+  }
+  html { background: var(--paper); color: var(--ink); }
+  body {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    max-width: 880px; margin: 2rem auto; padding: 0 1.25rem 4rem;
+    line-height: 1.5;
+  }
+  h1 { font-weight: 600; letter-spacing: -0.02em; }
+  h2 span { font-weight: 400; color: var(--accent); }
+  .lede { font-size: 1.05rem; }
+  .card {
+    background: var(--card); border: 1px solid var(--rule);
+    padding: 1rem 1.2rem; margin: 1.4rem 0; border-radius: 2px;
+  }
+  table { border-collapse: collapse; width: 100%; margin: 0.6rem 0 1rem; }
+  th, td { text-align: left; padding: 0.25rem 0.4rem; border-bottom: 1px solid var(--rule); }
+  td.num { font-variant-numeric: tabular-nums; width: 4.5rem; }
+  td.bar span {
+    display: inline-block; height: 0.65rem; background: var(--bar);
+    min-width: 2px;
+  }
+  blockquote {
+    margin: 0.4rem 0 1rem; padding-left: 0.8rem;
+    border-left: 3px solid var(--accent); color: #333;
+  }
+  .meta, .oov { color: #555; font-size: 0.95rem; }
+  code { font-family: "Source Code Pro", "IBM Plex Mono", monospace; font-size: 0.9em; }
+  footer { margin-top: 2rem; color: #666; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<h1>Fjordpressen lab notes</h1>
+<p class="lede">A closed-world replay of the 2023 ITU four-hop silver label
+on the invented Vesterklit gazette. No model weights are loaded.
+<strong>Oracle</strong> hops use the gold parallel.
+<strong>Gloss</strong> hops use the word list. The gap between them is the
+study-kit stand-in for hop error.</p>
+<table>
+  <caption>Means across the gazette</caption>
+  <tr><td>Oracle entity retention</td><td class='num'>0.755</td><td class='bar'><span style='width:75.5%'></span></td></tr><tr><td>Gloss entity retention</td><td class='num'>0.717</td><td class='bar'><span style='width:71.7%'></span></td></tr><tr><td>Oracle ROUGE-1</td><td class='num'>0.437</td><td class='bar'><span style='width:43.7%'></span></td></tr><tr><td>Gloss ROUGE-1</td><td class='num'>0.391</td><td class='bar'><span style='width:39.1%'></span></td></tr><tr><td>Oracle ROUGE-L</td><td class='num'>0.357</td><td class='bar'><span style='width:35.7%'></span></td></tr><tr><td>Gloss ROUGE-L</td><td class='num'>0.308</td><td class='bar'><span style='width:30.8%'></span></td></tr>
+</table>
+
+<section class="card">
+  <h2>vk-001 <span>Stormen Nanna aflyser færgen til Mågeø</span></h2>
+  <p class="meta">harbour · 3 windows ·
+     gloss coverage 1.000</p>
+  <table>
+    <tr><th></th><th>ROUGE-1</th><th>ROUGE-L</th></tr>
+    <tr><td>oracle back vs gold</td><td>0.479</td><td>0.417</td></tr>
+    <tr><td>gloss back vs gold</td><td>0.438</td><td>0.396</td></tr>
+  </table>
+  <h3>Facts the silver label should keep</h3>
+  <ul><li>all ferry departures cancelled overnight</li><li>waves over four metres at Sølvdyp</li><li>next assessment at 06.00</li><li>Nordmark pupils rerouted via Brohuset</li></ul>
+  <h3>Packed English windows (oracle)</h3>
+  <ol><li><code>w0</code> (2 sents, budget 39) Storm Nanna forced the Vesterklit ferry company last night to cancel all departures between Havnepladsen and Mågeø. Director Lisbeth Holm said that the waves at Sølvdyp measured ov…</li><li><code>w1</code> (2 sents, budget 36) The municipality is temporarily opening a shelter on the quay, where passengers can get coffee and updates every half hour. The next assessment happens at 06.00, when the emergency…</li><li><code>w2</code> (2 sents, budget 38) Schoolchildren from Nordmark, who were going to a swim meet, will be driven by bus via Brohuset instead. Fjordpressen will follow the route through the night and post new figures o…</li></ol>
+  <h3>Gold Danish summary</h3>
+  <blockquote>Stormen Nanna aflyser færgen mellem Havnepladsen og Mågeø. Lisbeth Holm peger på fire meter høje bølger ved Sølvdyp. Kommunen åbner et venteskur, og skoleelever fra Nordmark kører via Brohuset.</blockquote>
+  <h3>Oracle Danish back-translation</h3>
+  <blockquote>Stormen Nanna tvang i nat Færgeselskabet Vesterklit til at aflyse alle afgange mellem Havnepladsen og Mågeø. Direktør Lisbeth Holm sagde, at bølgerne ved Sølvdyp målte over fire meter, og at mandskabet ikke kunne sikre fortøjningen. Kommunen åbner midlertidigt et venteskur på kajen, hvor passagerer kan få kaffe og opdateringer hver halve time. Skoleelever fra Nordmark, der skulle til svømmestævne, bliver kørt med bus via Brohuset i stedet.</blockquote>
+  <h3>Gloss Danish back-translation</h3>
+  <blockquote>Stormen Nanna tvang i nat Færgeselskabet Vesterklit at at aflyse alle afgange mellem Havnepladsen og Mågeø. Direktør Lisbeth Holm sagde, at bølgerne klokken Sølvdyp målt over fire meter, og at mandskabet ikke kunne sikre fortøjningen. Kommunen åbner midlertidigt en venteskur på kajen, hvor passagerer kan få kaffe og opdateringer hver halve time. Skoleelever fra Nordmark, der skulle at svømmestævne, bliver kørt med bus via Brohuset i stedet.</blockquote>
+  <p class="oov"><strong>DA→EN OOV</strong> — none —</p>
+</section>
+
+<section class="card">
+  <h2>vk-002 <span>Testmast på Klitsand får betinget godkendelse</span></h2>
+  <p class="meta">energy · 4 windows ·
+     gloss coverage 1.000</p>
+  <table>
+    <tr><th></th><th>ROUGE-1</th><th>ROUGE-L</th></tr>
+    <tr><td>oracle back vs gold</td><td>0.436</td><td>0.273</td></tr>
+    <tr><td>gloss back vs gold</td><td>0.500</td><td>0.312</td></tr>
+  </table>
+  <h3>Facts the silver label should keep</h3>
+  <ul><li>87 m mast, two-year wind measurement</li><li>14 neighbour complaints on Rylevej</li><li>mast must come down if birds drop &gt;10%</li><li>hearing closes 3 May</li></ul>
+  <h3>Packed English windows (oracle)</h3>
+  <ol><li><code>w0</code> (2 sents, budget 34) The technical department has given conditional approval to an 87-metre test mast at Klitsand. Engineer Karsten Vang said that the mast must measure wind for two years before anyone…</li><li><code>w1</code> (1 sents, budget 22) The neighbours on Rylevej have sent 14 complaints about noise and migratory birds, and the complaints travel with the permit as conditions.</li><li><code>w2</code> (2 sents, budget 36) The environmental review requires that masts and cables come down if the bird count falls by over ten percent. Mayor Ellen Buhl stressed that the project is not a secret turbine pa…</li><li><code>w3</code> (1 sents, budget 19) The hearing closes on 3 May, and Fjordpressen will put the report in the reading room at the library.</li></ol>
+  <h3>Gold Danish summary</h3>
+  <blockquote>En 87 meter testmast på Klitsand får betinget godkendelse i to år. Karsten Vang afviser, at der allerede er besluttet vindmøller. 14 klager fra Rylevej og en fugleklausul på ti procent følger tilladelsen.</blockquote>
+  <h3>Oracle Danish back-translation</h3>
+  <blockquote>Teknisk forvaltning har givet betinget godkendelse til en 87 meter høj testmast på Klitsand. Ingeniør Karsten Vang sagde, at masten skal måle vind i to år, før nogen taler om vindmøller. Naboerne på Rylevej har sendt 14 klager om støj og trækfugle, og klagerne følger med tilladelsen som vilkår. Miljøvurderingen kræver, at master og kabler tages ned, hvis fugletællingen falder med over ti procent. Høringen slutter den 3. maj, og Fjordpressen lægger rapporten i læsesalen på biblioteket.</blockquote>
+  <h3>Gloss Danish back-translation</h3>
+  <blockquote>Teknisk forvaltning har givet betinget godkendelse at en 87 meter høj testmast på Klitsand. Ingeniør Karsten Vang sagde, at masten skal måle vind i to år, før nogen taler om vindmøller. Naboerne på Rylevej har sendt 14 klager om støj og trækfugle, og klagerne følger med tilladelsen som vilkår. Borgmester Ellen Buhl understregede, at projektet ikke er en hemmelig møllepark, men en målepunkt.</blockquote>
+  <p class="oov"><strong>DA→EN OOV</strong> — none —</p>
+</section>
+
+<section class="card">
+  <h2>vk-003 <span>Taget lækker på Nordmark Skole efter efterårsregn</span></h2>
+  <p class="meta">school · 3 windows ·
+     gloss coverage 1.000</p>
+  <table>
+    <tr><th></th><th>ROUGE-1</th><th>ROUGE-L</th></tr>
+    <tr><td>oracle back vs gold</td><td>0.458</td><td>0.386</td></tr>
+    <tr><td>gloss back vs gold</td><td>0.209</td><td>0.149</td></tr>
+  </table>
+  <h3>Facts the silver label should keep</h3>
+  <ul><li>leak over the school hall</li><li>three classes moved to the library</li><li>repair 1.2 million kroner, four weeks</li><li>no temporary bus to Amberhus</li></ul>
+  <h3>Packed English windows (oracle)</h3>
+  <ol><li><code>w0</code> (2 sents, budget 33) The autumn rain has opened a leak in the roof over the hall at Nordmark School. Teacher Amina Sørensen moved three classes down to the library reading room because the floor was we…</li><li><code>w1</code> (2 sents, budget 28) The technical department estimates that the repair costs 1.2 million kroner and takes four weeks. Tradespeople from Brohuset start on Monday if the wind stays under 15 metres.</li><li><code>w2</code> (2 sents, budget 30) Parents asked for a temporary bus to Amberhus, but the municipality said no because of the budget. The schoolchildren get gymnastics in the harbour shelter until the hall is dry.</li></ol>
+  <h3>Gold Danish summary</h3>
+  <blockquote>Nordmark Skoles aula lækker efter efterårsregn. Amina Sørensen flyttede tre klasser, og reparationen er sat til 1,2 millioner kroner over fire uger. En midlertidig bus til Amberhus blev afvist.</blockquote>
+  <h3>Oracle Danish back-translation</h3>
+  <blockquote>Efterårsregnen har åbnet en lækage i taget over aulaen på Nordmark Skole. Lærer Amina Sørensen flyttede tre klasser ned i bibliotekets læsestue, fordi gulvet var vådt. Teknisk forvaltning skønner, at reparationen koster 1,2 millioner kroner og tager fire uger. Forældre bad om midlertidig bus til Amberhus, men kommunen sagde nej på grund af budgettet.</blockquote>
+  <h3>Gloss Danish back-translation</h3>
+  <blockquote>Efterårsregnen har åbnede en læk i taget over aulaen på Nordmark Skole. Lærer Amina Sørensen flyttet tre klasser ned i bibliotekets læsestue, fordi gulvet var våd. Håndværkere fra Brohuset begynder mandag, hvis vinden holder sig under 15 meter.</blockquote>
+  <p class="oov"><strong>DA→EN OOV</strong> — none —</p>
+</section>
+
+<section class="card">
+  <h2>vk-004 <span>Byrådet vedtager udvidelse af Stenmole</span></h2>
+  <p class="meta">harbour · 3 windows ·
+     gloss coverage 1.000</p>
+  <table>
+    <tr><th></th><th>ROUGE-1</th><th>ROUGE-L</th></tr>
+    <tr><td>oracle back vs gold</td><td>0.415</td><td>0.317</td></tr>
+    <tr><td>gloss back vs gold</td><td>0.313</td><td>0.241</td></tr>
+  </table>
+  <h3>Facts the silver label should keep</h3>
+  <ul><li>council vote 17 for, 4 against, 1 blank</li><li>80 m new quay</li><li>25 local jobs over two seasons</li><li>deadline 1 October</li></ul>
+  <h3>Packed English windows (oracle)</h3>
+  <ol><li><code>w0</code> (2 sents, budget 34) The town council yesterday adopted the Stenmole extension with 17 votes for, four against and one blank. The project adds 80 metres of new quay for fishers and a wider path for sum…</li><li><code>w1</code> (2 sents, budget 34) Mayor Ellen Buhl said that the construction creates 25 local jobs over two seasons. The fishery association pointed out that the quota is already tight, and that the quay does not …</li><li><code>w2</code> (2 sents, budget 28) The contractor from Klitsand must finish before 1 October, otherwise the contract falls. The hearing on noise at night continues, because the neighbours on Rylevej are still worrie…</li></ol>
+  <h3>Gold Danish summary</h3>
+  <blockquote>Stenmole udvides efter 17-4-1 i byrådet. 80 meter ny kaj og 25 job i to sæsoner. Fiskeriforeningen tvivler, og kontrakten kræver færdigt arbejde 1. oktober.</blockquote>
+  <h3>Oracle Danish back-translation</h3>
+  <blockquote>Byrådet vedtog i går udvidelsen af Stenmole med 17 stemmer for, fire imod og én blank. Projektet lægger 80 meter ny kaj til fiskere og en bredere sti til sommergæster. Borgmester Ellen Buhl sagde, at anlægsarbejdet skaber 25 lokale arbejdspladser i to sæsoner. Entreprenøren fra Klitsand skal være færdig inden 1. oktober, ellers falder kontrakten.</blockquote>
+  <h3>Gloss Danish back-translation</h3>
+  <blockquote>Byrådet vedtog i går udvidelsen af Stenmole med 17 stemmer for, fire mod og man blanke. Projektet lægger 80 meter nye kaj at fiskere og en bredere sti at sommergæster. Borgmester Ellen Buhl sagde, at anlægsarbejdet skaber 25 lokal arbejdspladser i to sæsoner. Høringen om støj om natten fortsætter, fordi naboerne på Rylevej stadig er bekymret.</blockquote>
+  <p class="oov"><strong>DA→EN OOV</strong> — none —</p>
+</section>
+
+<section class="card">
+  <h2>vk-005 <span>Amberhus åbner rav- og bronzealderudstilling</span></h2>
+  <p class="meta">culture · 3 windows ·
+     gloss coverage 1.000</p>
+  <table>
+    <tr><th></th><th>ROUGE-1</th><th>ROUGE-L</th></tr>
+    <tr><td>oracle back vs gold</td><td>0.429</td><td>0.405</td></tr>
+    <tr><td>gloss back vs gold</td><td>0.429</td><td>0.405</td></tr>
+  </table>
+  <h3>Facts the silver label should keep</h3>
+  <ul><li>opens Saturday</li><li>40% of finds never shown</li><li>adults 65 kroner, children free</li><li>runs until 15 September</li></ul>
+  <h3>Packed English windows (oracle)</h3>
+  <ol><li><code>w0</code> (2 sents, budget 34) Amberhus opens on Saturday an exhibition about amber and Bronze Age finds from barrows in the area. The museum chair Poul Nissen said that 40 percent of the finds have never been s…</li><li><code>w1</code> (2 sents, budget 32) Children enter free, while adults pay 65 kroner, and tickets are also sold at the library. Yasmin El-Khatib has written the texts in Danish and English so summer visitors can read …</li><li><code>w2</code> (2 sents, budget 29) The exhibition runs until 15 September and afterwards moves a selection to the reading room. Fjordpressen will post a map of the barrows by Tangløb, but without precise coordinates…</li></ol>
+  <h3>Gold Danish summary</h3>
+  <blockquote>Amberhus åbner lørdag en rav- og bronzealderudstilling. 40 procent af fundene er nye for publikum. Børn går gratis, voksne betaler 65 kroner, og Yasmin El-Khatib har skrevet tosprogede tekster.</blockquote>
+  <h3>Oracle Danish back-translation</h3>
+  <blockquote>Amberhus åbner lørdag en udstilling om rav og bronzealderfund fra gravhøje i omegnen. Museets formand Poul Nissen sagde, at 40 procent af fundene aldrig har været vist offentligt. Børn kommer gratis ind, mens voksne betaler 65 kroner, og billetter sælges også på biblioteket. Udstillingen varer til 15. september og flytter derefter et udvalg til læsesalen.</blockquote>
+  <h3>Gloss Danish back-translation</h3>
+  <blockquote>Amberhus åbner lørdag en udstilling om rav og bronzealderfund fra gravhøje i omegnen. Museets formand Poul Nissen sagde, at 40 procent af fundene aldrig har været vist offentligt. Børn kommer gratis i, mens voksne betaler 65 kroner, og billetter sælges også på biblioteket. Udstillingen varer at 15. september og flytter derefter en udvalg at læsesalen.</blockquote>
+  <p class="oov"><strong>DA→EN OOV</strong> — none —</p>
+</section>
+
+<section class="card">
+  <h2>vk-006 <span>Natbus i sommersæsonen får tre stop i Vesterklit</span></h2>
+  <p class="meta">transport · 3 windows ·
+     gloss coverage 1.000</p>
+  <table>
+    <tr><th></th><th>ROUGE-1</th><th>ROUGE-L</th></tr>
+    <tr><td>oracle back vs gold</td><td>0.545</td><td>0.409</td></tr>
+    <tr><td>gloss back vs gold</td><td>0.523</td><td>0.386</td></tr>
+  </table>
+  <h3>Facts the silver label should keep</h3>
+  <ul><li>Fri/Sat night bus, three stops</li><li>380,000 kroner trial budget</li><li>minimum 12 passengers</li><li>killed after three weak weeks</li></ul>
+  <h3>Packed English windows (oracle)</h3>
+  <ol><li><code>w0</code> (2 sents, budget 29) The municipality is trying in June, July and August a night bus between Havnepladsen, Nordmark and Amberhus. The route runs Friday and Saturday after 22.00 and ends at 01.30.</li><li><code>w1</code> (2 sents, budget 37) Technical lead Henrik Straarup said that the trial costs 380,000 kroner and needs at least 12 passengers per trip. If the figure sits lower for three weeks in a row, the buses stop…</li><li><code>w2</code> (2 sents, budget 34) Tourists from Mågeø can buy a ticket together with the ferry, but only when the ferry is not cancelled. Fjordpressen will count passengers the first two weekends and put the figure…</li></ol>
+  <h3>Gold Danish summary</h3>
+  <blockquote>En natbus kører i juni–august mellem Havnepladsen, Nordmark og Amberhus efter 22.00. Forsøget koster 380.000 kroner og kræver 12 passagerer. Henrik Straarup dropper ruten efter tre svage uger.</blockquote>
+  <h3>Oracle Danish back-translation</h3>
+  <blockquote>Kommunen prøver i juni, juli og august en natbus mellem Havnepladsen, Nordmark og Amberhus. Ruten kører fredag og lørdag efter klokken 22.00 og slutter klokken 01.30. Teknisk chef Henrik Straarup sagde, at forsøget koster 380.000 kroner og kræver mindst 12 passagerer pr. tur. Turister fra Mågeø kan købe billet sammen med færgen, men kun når færgen ikke er aflyst.</blockquote>
+  <h3>Gloss Danish back-translation</h3>
+  <blockquote>Kommunen prøver i juni, juli og august en natbus mellem Havnepladsen, Nordmark og Amberhus. Ruten kører fredag og lørdag efter klokken 22.00 og lukker klokken 01.30. Teknisk chef Henrik Straarup sagde, at forsøget udgifter 380.000 kroner og kræver mindst 12 passagerer pr. tur. Turister fra Mågeø kan købe billet sammen med færgen, men kun når færgen ikke er aflyste.</blockquote>
+  <p class="oov"><strong>DA→EN OOV</strong> — none —</p>
+</section>
+
+<section class="card">
+  <h2>vk-007 <span>Tilskud til varmepumper i gamle murstenshuse</span></h2>
+  <p class="meta">energy · 3 windows ·
+     gloss coverage 1.000</p>
+  <table>
+    <tr><th></th><th>ROUGE-1</th><th>ROUGE-L</th></tr>
+    <tr><td>oracle back vs gold</td><td>0.494</td><td>0.447</td></tr>
+    <tr><td>gloss back vs gold</td><td>0.447</td><td>0.400</td></tr>
+  </table>
+  <h3>Facts the silver label should keep</h3>
+  <ul><li>27,000 kroner per heat pump</li><li>houses older than 1965</li><li>deadline 12 April, 60 households</li><li>priority for Rylevej and Tangløb</li></ul>
+  <h3>Packed English windows (oracle)</h3>
+  <ol><li><code>w0</code> (2 sents, budget 35) The municipality is opening a subsidy of 27,000 kroner for heat pumps in houses older than 1965. The deadline is 12 April, and the application must attach an energy label no older …</li><li><code>w1</code> (2 sents, budget 33) Sofie Tranberg from the department said that there is money for 60 households in the first round. Houses on Rylevej and around Tangløb get priority because they sit in the cold coa…</li><li><code>w2</code> (2 sents, budget 34) If applicants forget the energy label, the letter is put back without a new deadline. Fjordpressen will put the form in the reading room and on the website the same day the hearing…</li></ol>
+  <h3>Gold Danish summary</h3>
+  <blockquote>Et tilskud på 27.000 kroner åbner for varmepumper i huse fra før 1965. Fristen er 12. april, og Sofie Tranberg har plads til 60 husstande. Rylevej og Tangløb får forrang.</blockquote>
+  <h3>Oracle Danish back-translation</h3>
+  <blockquote>Kommunen åbner et tilskud på 27.000 kroner til varmepumper i huse ældre end 1965. Fristen er 12. april, og ansøgningen skal vedlægge et energimærke ikke ældre end to år. Sofie Tranberg fra forvaltningen sagde, at der er penge til 60 husstande i første runde. Hvis ansøgere glemmer energimærket, bliver brevet lagt tilbage uden ny frist.</blockquote>
+  <h3>Gloss Danish back-translation</h3>
+  <blockquote>Kommunen åbner en tilskud på 27.000 kroner at varmepumper i huse ældre end 1965. Fristen er 12. april, og ansøgningen skal vedlægge en energimærke ikke ældre end to år. Sofie Tranberg fra forvaltningen sagde, at der er penge at 60 husstande i først runde. Hvis ansøgere glemmer energimærket, bliver brevet lagt tilbage uden nye frist.</blockquote>
+  <p class="oov"><strong>DA→EN OOV</strong> — none —</p>
+</section>
+
+<section class="card">
+  <h2>vk-008 <span>Cykelsti langs Tangløb udsat efter fredning</span></h2>
+  <p class="meta">transport · 3 windows ·
+     gloss coverage 1.000</p>
+  <table>
+    <tr><th></th><th>ROUGE-1</th><th>ROUGE-L</th></tr>
+    <tr><td>oracle back vs gold</td><td>0.341</td><td>0.317</td></tr>
+    <tr><td>gloss back vs gold</td><td>0.259</td><td>0.188</td></tr>
+  </table>
+  <h3>Facts the silver label should keep</h3>
+  <ul><li>postponed to next spring</li><li>40 m inland reroute</li><li>2.4 million extra</li><li>decision tied to December budget</li></ul>
+  <h3>Packed English windows (oracle)</h3>
+  <ol><li><code>w0</code> (2 sents, budget 34) The bike path along Tangløb is postponed until next spring because a dune conservation order got in the way. The nature agency requires a reroute 40 metres further inland, away fro…</li><li><code>w1</code> (2 sents, budget 29) Mikkel Ravn from the technical department said that the new line costs 2.4 million extra. The town council postponed the decision until next year&#x27;s budget is clear in December.</li><li><code>w2</code> (2 sents, budget 29) Schoolchildren from Nordmark therefore still cycle along the narrow Rylevej in the dark. Fjordpressen walked the route with Ravn and will post a map without pointing out nesting si…</li></ol>
+  <h3>Gold Danish summary</h3>
+  <blockquote>Cykelstien ved Tangløb venter til foråret efter en fredning. Omlægningen på 40 meter koster 2,4 millioner extra. Nordmarks elever cykler videre ad Rylevej, indtil decemberbudgettet er klart.</blockquote>
+  <h3>Oracle Danish back-translation</h3>
+  <blockquote>Cykelstien langs Tangløb er udsat til næste forår, fordi en fredning af klitten kom i vejen. Naturstyrelsen kræver en omlægning 40 meter længere inde, væk fra de våde partier. Mikkel Ravn fra teknisk forvaltning sagde, at den nye linje koster 2,4 millioner ekstra. Skoleelever fra Nordmark cykler derfor stadig ad den smalle Rylevej i mørke.</blockquote>
+  <h3>Gloss Danish back-translation</h3>
+  <blockquote>Cykelstien ad Tangløb er udsat at næste forår, fordi en fredning af klitten kom i vejen. Naturstyrelsen kræver en omlægning 40 meter længere inde, væk fra den våd partier. Mikkel Ravn fra teknisk forvaltning sagde, at den nye linje udgifter 2,4 millioner ekstra. Fjordpressen har gået ruten med Ravn og lægger en kort uden at pege på redepladser.</blockquote>
+  <p class="oov"><strong>DA→EN OOV</strong> — none —</p>
+</section>
+
+<section class="card">
+  <h2>vk-009 <span>Kirkebøgerne fra tre sogne kommer i digitalt arkiv</span></h2>
+  <p class="meta">culture · 3 windows ·
+     gloss coverage 1.000</p>
+  <table>
+    <tr><th></th><th>ROUGE-1</th><th>ROUGE-L</th></tr>
+    <tr><td>oracle back vs gold</td><td>0.404</td><td>0.337</td></tr>
+    <tr><td>gloss back vs gold</td><td>0.382</td><td>0.315</td></tr>
+  </table>
+  <h3>Facts the silver label should keep</h3>
+  <ul><li>three parishes scanned</li><li>11,000 pages since January</li><li>190,000 kroner municipal share</li><li>no photos of 1784 volumes</li></ul>
+  <h3>Packed English windows (oracle)</h3>
+  <ol><li><code>w0</code> (2 sents, budget 30) The library is scanning the parish registers from Vesterklit, Nordmark and Mågeø and placing them in a digital archive. Volunteers under Troels Kjær have already scanned 11,000 pag…</li><li><code>w1</code> (2 sents, budget 33) Genealogists can read along in the reading room, but not take pictures of the oldest volumes from 1784. The municipality pays 190,000 kroner, and the remainder comes from a shared …</li><li><code>w2</code> (2 sents, budget 31) If a page is too wet or black, it stays in the physical archive under lock. Fjordpressen will not put names of living people in the article, only years and parish.</li></ol>
+  <h3>Gold Danish summary</h3>
+  <blockquote>Kirkebøger fra Vesterklit, Nordmark og Mågeø scannes til et digitalt arkiv. Troels Kjærs frivillige har taget 11.000 sider. 190.000 kroner kommer fra kommunen, og bind fra 1784 må ikke fotograferes.</blockquote>
+  <h3>Oracle Danish back-translation</h3>
+  <blockquote>Biblioteket scanner kirkebøgerne fra Vesterklit, Nordmark og Mågeø og lægger dem i et digitalt arkiv. Frivillige under Troels Kjær har allerede scannet 11.000 sider siden januar. Slægtsforskere kan læse med i læsesalen, men ikke tage billeder af de ældste bind fra 1784. Hvis en side er for våd eller sort, bliver den stående i det fysiske arkiv under lås.</blockquote>
+  <h3>Gloss Danish back-translation</h3>
+  <blockquote>Biblioteket scanner kirkebøgerne fra Vesterklit, Nordmark og Mågeø og lægger dem i en digitalt arkiv. Frivillige under Troels Kjær har allerede scannet 11.000 sider siden januar. Slægtsforskere kan læste med i læsesalen, men ikke tage billeder af den ældste bind fra 1784. Hvis en side er for våd eller sort, bliver den stående i det fysiske arkiv under lås.</blockquote>
+  <p class="oov"><strong>DA→EN OOV</strong> — none —</p>
+</section>
+
+<section class="card">
+  <h2>vk-010 <span>Fiskeriforeningen venter lavere torskekvote</span></h2>
+  <p class="meta">harbour · 4 windows ·
+     gloss coverage 1.000</p>
+  <table>
+    <tr><th></th><th>ROUGE-1</th><th>ROUGE-L</th></tr>
+    <tr><td>oracle back vs gold</td><td>0.370</td><td>0.259</td></tr>
+    <tr><td>gloss back vs gold</td><td>0.412</td><td>0.289</td></tr>
+  </table>
+  <h3>Facts the silver label should keep</h3>
+  <ul><li>18% fewer tonnes expected</li><li>meeting at Brohuset</li><li>Stenmole berth needs 20 paying boats</li><li>weekly catch figures due 1 March</li></ul>
+  <h3>Packed English windows (oracle)</h3>
+  <ol><li><code>w0</code> (2 sents, budget 37) The fishery association held a meeting at Brohuset about an expected lower quota on cod and plaice. Chair Mikkel Ravn read a letter from the ministry that points to 18 percent fewe…</li><li><code>w1</code> (1 sents, budget 21) The members disagreed: some want to fish harder early in the year, others want to keep the boats in the harbour.</li><li><code>w2</code> (2 sents, budget 37) The agreement with the municipality on quay space at Stenmole applies only if at least 20 boats pay the fee. Ellen Buhl did not promise new money, but asked for catch figures per w…</li><li><code>w3</code> (1 sents, budget 16) Fjordpressen sat in as press, but without a tape recorder, after a demand from the board.</li></ol>
+  <h3>Gold Danish summary</h3>
+  <blockquote>Fiskeriforeningen venter 18 procent færre ton torsk og rødspætte. Mikkel Ravn læste ministeriets brev i Brohuset. Kajplads på Stenmole kræver 20 både, og Ellen Buhl vil have ugetal inden 1. marts.</blockquote>
+  <h3>Oracle Danish back-translation</h3>
+  <blockquote>Fiskeriforeningen holdt møde i Brohuset om en ventet lavere kvote på torsk og rødspætte. Formand Mikkel Ravn læste et brev fra ministeriet, der peger på 18 procent færre ton i den kommende sæson. Medlemmerne var uenige: nogle vil fiske hårdere først på året, andre vil holde bådene i havnen. Aftalen med kommunen om kajplads på Stenmole gælder kun, hvis mindst 20 både betaler afgift. Fjordpressen sad med som presse, men uden båndoptager, efter et krav fra bestyrelsen.</blockquote>
+  <h3>Gloss Danish back-translation</h3>
+  <blockquote>Fiskeriforeningen holdt møde i Brohuset om en ventet lavere kvote på torsk og rødspætte. Formand Mikkel Ravn læste en brev fra ministeriet, der peger på 18 procent færre ton i den kommende sæson. Medlemmerne var uenige: nogle vil fiske hårdere først på året, anden vil holde bådene i havnen. Ellen Buhl lovede ikke nye penge, men bad om tal for fangst pr. uge før 1. marts.</blockquote>
+  <p class="oov"><strong>DA→EN OOV</strong> — none —</p>
+</section>
+
+<footer>
+  Personal study kit for sapphireran/Danish-News-Summarization.
+  All Vesterklit copy is fiction.
+</footer>
+</body>
+</html>
