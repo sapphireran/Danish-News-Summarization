@@ -1,0 +1,13 @@
+# Dependencies implied by the December 2023 course scripts on main.
+# The personal lab under silverlab/ and examples/ is stdlib-only (CPython 3.11+).
+# These pins are reconstructed from imports; no 2023 lockfile was committed.
+
+torch
+transformers
+datasets
+evaluate
+nltk
+numpy
+pandas
+tqdm
+ctranslate2

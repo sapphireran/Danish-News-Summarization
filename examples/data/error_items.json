@@ -1,0 +1,171 @@
+[
+  {
+    "id": "err-01",
+    "article_id": "lab-01",
+    "source_span": "Bestyrelsen forventer omkring 80 gæster",
+    "silver_span": "Bestyrelsen venter omkring 18 gæster",
+    "codes": [
+      "HOP-TR",
+      "NUM"
+    ],
+    "severity": 4,
+    "explanation": "80 became eighteen after a da→en hop that folded 'omkring 80' poorly."
+  },
+  {
+    "id": "err-02",
+    "article_id": "lab-01",
+    "source_span": "Saturn kan ses i det største spejlteleskop",
+    "silver_span": "Lørdag kan ses i det største spejlteleskop",
+    "codes": [
+      "HOP-TR",
+      "ENT"
+    ],
+    "severity": 5,
+    "explanation": "Saturn/Saturday confusion is a classic English-pivot bruise."
+  },
+  {
+    "id": "err-03",
+    "article_id": "lab-01",
+    "source_span": "Hvis skydækket bliver for tæt, flyttes kigget til søndag kl. 21",
+    "silver_span": "Observatoriet åbner lørdag aften for offentligheden.",
+    "codes": [
+      "HOP-SM",
+      "OMIS"
+    ],
+    "severity": 3,
+    "explanation": "The English teacher kept the lead and dropped the rain backup."
+  },
+  {
+    "id": "err-04",
+    "article_id": "lab-04",
+    "source_span": "start i Skørping",
+    "silver_span": "start i Skærbæk",
+    "codes": [
+      "HOP-BK",
+      "ENT"
+    ],
+    "severity": 4,
+    "explanation": "Back-translation swapped two Jutland toponyms that share a Sk- onset."
+  },
+  {
+    "id": "err-05",
+    "article_id": "lab-06",
+    "source_span": "udbyttet nok lander under 40 kilo",
+    "silver_span": "udbyttet lander omkring 140 kilo",
+    "codes": [
+      "HOP-TR",
+      "NUM"
+    ],
+    "severity": 5,
+    "explanation": "A dropped 'under' plus a spurious 1-prefix is a typical hop numeral error."
+  },
+  {
+    "id": "err-06",
+    "article_id": "lab-07",
+    "source_span": "Favoritten er Inge Ravn fra Odense",
+    "silver_span": "Favoritten er Inge Ravn fra Odessa",
+    "codes": [
+      "HOP-BK",
+      "ENT"
+    ],
+    "severity": 4,
+    "explanation": "Odense/Odessa is the kind of named-entity drift mT5 will happily memorize."
+  },
+  {
+    "id": "err-07",
+    "article_id": "lab-08",
+    "source_span": "flytter sig op til to meter på et vinterhalvår",
+    "silver_span": "flytter sig op til to kilometer på et vinterhalvår",
+    "codes": [
+      "HOP-SM",
+      "NUM"
+    ],
+    "severity": 5,
+    "explanation": "The English summarizer promoted a unit. Silver labels then teach the wrong scale."
+  },
+  {
+    "id": "err-08",
+    "article_id": "lab-09",
+    "source_span": "Fire afgangsfilm fra den lille filmskole i Aarhus",
+    "silver_span": "Five graduation films from the small film school in Aarhus get premiere.",
+    "codes": [
+      "HOP-SM",
+      "NUM",
+      "STYLE"
+    ],
+    "severity": 4,
+    "explanation": "The teacher counted wrong and the back-translation left English in the label."
+  },
+  {
+    "id": "err-09",
+    "article_id": "lab-11",
+    "source_span": "Holstebro Ungdomskor letter onsdag mod Tórshavn",
+    "silver_span": "Holstebro Ungdomskor letter onsdag mod Tromsø",
+    "codes": [
+      "HOP-TR",
+      "ENT"
+    ],
+    "severity": 4,
+    "explanation": "Two North-Atlantic capitals swapped after the English hop."
+  },
+  {
+    "id": "err-10",
+    "article_id": "lab-12",
+    "source_span": "Holstebros nye klatrehal åbner lørdag",
+    "silver_span": "Holstebros nye klatrehal åbnede lørdag",
+    "codes": [
+      "TNS",
+      "HOP-BK"
+    ],
+    "severity": 2,
+    "explanation": "Past tense leaked in from an English summary that already treated the opening as done."
+  },
+  {
+    "id": "err-11",
+    "article_id": "lab-15",
+    "source_span": "målet i år er at slå 70",
+    "silver_span": "målet i år er at slå 70, og NASA hjælper med artslisten",
+    "codes": [
+      "HOP-SM",
+      "ADD"
+    ],
+    "severity": 5,
+    "explanation": "The English news T5 sometimes injects a global institution. That is not in the article."
+  },
+  {
+    "id": "err-12",
+    "article_id": "lab-16",
+    "source_span": "sender hele dagen fra et telt på torvet i Thisted",
+    "silver_span": "sender hele dagen from a tent on the square i Thisted",
+    "codes": [
+      "HOP-BK",
+      "STYLE"
+    ],
+    "severity": 3,
+    "explanation": "A mixed Danish/English calque survived decoding. Fluency dies before faithfulness does."
+  },
+  {
+    "id": "err-13",
+    "article_id": "lab-02",
+    "source_span": "overskuddet går til byens ungdomsskole",
+    "silver_span": "overskuddet går til byens ungdomsskole og et nyt hotel",
+    "codes": [
+      "ADD",
+      "HOP-SM"
+    ],
+    "severity": 3,
+    "explanation": "An extra beneficiary is a mild but teachable hallucination."
+  },
+  {
+    "id": "err-14",
+    "article_id": "lab-03",
+    "source_span": "Headlineren er saxofonisten Naja Storm",
+    "silver_span": "Headlineren er trompetisten Naja Storm",
+    "codes": [
+      "ENT",
+      "HOP-TR"
+    ],
+    "severity": 3,
+    "explanation": "Instrument swap after 'saxophonist' was paraphrased and then mistranslated back."
+  }
+]

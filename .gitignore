@@ -1,0 +1,36 @@
+# Local environments
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Editor / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# 2023 GPU artifacts that were never meant for git
+models/
+*_model/
+mt5-summarize-*/
+datasets/
+*.pt
+*.bin
+*.safetensors
+*.onnx
+
+# Generated CSVs from the original course scripts
+10000_articles_without_linebreaks.csv
+translated_articles.csv
+summarized_*.csv
+labeled_dataset_*.csv
+
+# Local report rebuilds (committed report lives under examples/lab_report/)
+/tmp/
