@@ -1,0 +1,10 @@
+# GPU / course-script stack (2023). The CPU examples and tests do not need this.
+torch
+transformers
+ctranslate2
+nltk
+pandas
+datasets
+evaluate
+tqdm
+numpy

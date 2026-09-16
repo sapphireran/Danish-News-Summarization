@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "danish-news-summarization"
+version = "0.2.0"
+description = "Personal ITU 2023 project: Danish news summarization via English pivot translation"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Sapphire Ran" }]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+gpu = [
+    "torch",
+    "transformers",
+    "ctranslate2",
+    "nltk",
+    "pandas",
+    "datasets",
+    "evaluate",
+    "tqdm",
+    "numpy",
+]
+
+[tool.setuptools.packages.find]
+include = ["danish_news*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
