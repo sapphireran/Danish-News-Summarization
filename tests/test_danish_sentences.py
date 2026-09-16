@@ -52,6 +52,19 @@ class SentenceSplitTests(unittest.TestCase):
         text = "Kommunen har støttet anlægget med 340.000 kroner."
         self.assertEqual(len(split_danish_sentences(text)), 1)
 
+    def test_year_at_sentence_end_still_splits(self):
+        text = (
+            "Holdet tog pokalen med hjem for første gang siden 2018. "
+            "Målene kom efter en hjørnesituation."
+        )
+        self.assertEqual(
+            split_danish_sentences(text),
+            [
+                "Holdet tog pokalen med hjem for første gang siden 2018.",
+                "Målene kom efter en hjørnesituation.",
+            ],
+        )
+
 
 class WordTokenizeTests(unittest.TestCase):
     def test_words_and_punctuation(self):

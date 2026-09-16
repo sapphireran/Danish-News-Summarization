@@ -56,7 +56,9 @@ _ABBREV_PATTERN = re.compile(
 
 _SENTENCE_END = re.compile(r"([.!?]+)(\s+|$)")
 _INITIALS = re.compile(r"\b([A-ZÆØÅ])\.")
-_ORDINALS = re.compile(r"\b(\d+)\.")
+# Protect 3. april / 340.000, but not a year that really ends a sentence
+# ("...siden 2018. Målene kom...").
+_ORDINALS = re.compile(r"\b(\d+)\.(?!\s+[A-ZÆØÅ])")
 
 
 def _protect_abbreviations(text: str) -> tuple[str, dict[str, str]]:
