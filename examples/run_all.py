@@ -12,6 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 DEMOS = [
+    "test_text_chunking.py",
     "demo_schema_walkthrough.py",
     "demo_sentence_chunking.py",
     "demo_pipeline_dry_run.py",

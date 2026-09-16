@@ -18,6 +18,7 @@ These notes exist so the pipeline can be reread later without reconstructing eve
 | [hyperparameters.md](hyperparameters.md) | Generation and training knobs copied out of the scripts |
 | [reproduction.md](reproduction.md) | Environment, disk, and GPU notes for actually rerunning the 2023 flow |
 | [design-notes.md](design-notes.md) | Intentional shortcuts, mismatches between scripts, and things to fix before a rerun |
+| [script-index.md](script-index.md) | File-by-file reread of the seven course scripts |
 
 Runnable, **offline** walkthroughs that do not download models live in [`../examples`](../examples).
 

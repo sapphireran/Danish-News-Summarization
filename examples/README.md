@@ -18,6 +18,7 @@ python examples/run_all.py
 Or one at a time:
 
 ```bash
+python examples/test_text_chunking.py
 python examples/demo_schema_walkthrough.py
 python examples/demo_sentence_chunking.py
 python examples/demo_pipeline_dry_run.py
@@ -27,6 +28,7 @@ python examples/demo_offline_metrics.py
 
 | Script | What it is for |
 | --- | --- |
+| `test_text_chunking.py` | Packer / sentence-splitter self-checks |
 | `demo_schema_walkthrough.py` | Column names, id joins, UTF-8 `æøå`, train/val/test partition |
 | `demo_sentence_chunking.py` | The 2023 sentence packer, including the long `demo-006` sentence |
 | `demo_pipeline_dry_run.py` | Stub DA→EN→summary→DA that writes the same CSV names as the course scripts |
