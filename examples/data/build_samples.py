@@ -1,0 +1,646 @@
+#!/usr/bin/env python3
+"""Write the fictional sample CSVs that mirror each pipeline stage.
+
+The articles are original municipal-news sketches invented for this repo.
+They are not scraped, and they do not correspond to real events or people.
+
+Run from the repository root:
+
+    python examples/data/build_samples.py
+"""
+
+from __future__ import annotations
+
+import csv
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+
+# id, danish_body, english_body, english_summary, danish_summary
+# Split: train (001-006), validation (007-008), test (009-010)
+ROWS: list[tuple[str, str, str, str, str]] = [
+    (
+        "sample-001",
+        (
+            "Granebæk Kommune åbner onsdag den nye cykelsti mellem stationspladsen "
+            "og folkeskolen i Sønderkvarteret. Stien er 1,8 kilometer lang, belyst "
+            "hele vejen og adskilt fra både gangsti og bilbane med en lav granitkant. "
+            "Teknisk forvaltning oplyser, at anlægget har kostet 14,6 millioner kroner, "
+            "hvoraf 4 millioner kommer fra en statslig pulje til skoleveje. "
+            "Borgmester Line Hald kalder projektet et hverdagsstykke klimapolitik, "
+            "fordi det erstatter korte bilrejser uden at kræve nye buslinjer. "
+            "Forældrene ved Sønderskolen har i tre år klaget over utrygge kryds ved "
+            "Industrivej. Det farligste punkt, en umarkeret venstresvingbane, er nu "
+            "afløst af et hævet felt med rød asfalt og automatisk cykelsignal. "
+            "En tæller ved skolen viste i testdugen 212 passager mellem klokken syv "
+            "og ni. Forvaltningen forventer, at tallet stiger, når vinterbelysningen "
+            "er justeret, og når S-togspendlerne opdager den direkte genvej til perron 2. "
+            "Butiksforeningen på Stationsvej er mere forbeholden. Formand Karim Dinesen "
+            "frygter, at fjernelsen af 18 parkeringspladser rammer kunder, der handler "
+            "tungt. Kommunen svarer, at der åbner 12 nye pladser bag hallen i april, "
+            "og at varelevering fortsat må køre ad baggaden mellem 06 og 11. "
+            "Stien indvies med morgenbrød og en kort tale; den er åben for almindelig "
+            "trafik straks derefter."
+        ),
+        (
+            "On Wednesday Granebæk Municipality opens the new cycleway between the "
+            "station square and the primary school in Sønderkvarteret. The path is "
+            "1.8 kilometres long, lit along its full length, and separated from both "
+            "the footway and the carriageway by a low granite kerb. The technical "
+            "department says the scheme cost 14.6 million kroner, of which 4 million "
+            "comes from a national fund for school routes. Mayor Line Hald calls the "
+            "project everyday climate policy, because it replaces short car trips "
+            "without requiring new bus lines. Parents at Sønderskolen have complained "
+            "for three years about unsafe junctions on Industrivej. The most dangerous "
+            "point, an unmarked left-turn lane, has been replaced by a raised crossing "
+            "with red asphalt and an automatic cycle signal. A counter at the school "
+            "recorded 212 passages between seven and nine o'clock during the test week. "
+            "The department expects the figure to rise once winter lighting is adjusted "
+            "and S-train commuters find the direct shortcut to platform 2. The traders' "
+            "association on Stationsvej is more cautious. Chair Karim Dinesen fears "
+            "that removing 18 parking spaces will hit customers who shop for heavy "
+            "goods. The municipality replies that 12 new spaces will open behind the "
+            "sports hall in April, and that deliveries may still use the back street "
+            "between 06:00 and 11:00. The path will be opened with breakfast rolls "
+            "and a short speech; it is open to ordinary traffic immediately afterwards."
+        ),
+        (
+            "Granebæk opens a 1.8 km lit cycleway from the station to Sønderskolen, "
+            "funded in part by a national school-route grant. A dangerous left-turn "
+            "lane is replaced by a raised red crossing. Traders worry about lost "
+            "parking; the municipality promises replacement spaces in April."
+        ),
+        (
+            "Granebæk åbner en 1,8 km belyst cykelsti fra stationen til Sønderskolen, "
+            "delvist betalt af en statslig skolevejspulje. En farlig venstresvingbane "
+            "erstattes af et hævet rødt felt. Handlende er bekymrede for mistet parkering; "
+            "kommunen lover erstatningspladser i april."
+        ),
+    ),
+    (
+        "sample-002",
+        (
+            "Østerhavn Byråd vedtog i aftes næste års budget med 21 stemmer mod 6. "
+            "Kernen er en stigning i dækningsafgiften på 0,4 procentpoint, som skal "
+            "finansiere tre nye vuggestuegrupper og en natåben sygeplejeklinik ved "
+            "havnen. Socialdemokratiet, De Radikale og SF stemte for. Venstre, "
+            "Konservative og Dansk Folkeparti stemte imod og kaldte aftalen en "
+            "skatteforhøjelse i forkledning. Borgmester Pia Kruse sagde fra talerstolen, "
+            "at kommunen ikke kan blive ved med at sende småbørn 18 kilometer til "
+            "Nabekøbing, når forældrene arbejder på kajen. Oppositionen pegede på, "
+            "at kassebeholdningen allerede er 112 millioner, og at klinikken kunne "
+            "være en satellit under regionshospitalet i stedet for en kommunal drift. "
+            "Budgettet rummer også et loft over konsulentydelser på 9 millioner og "
+            "en pulje på 2 millioner til istandsættelse af tre ældre boligblokke i "
+            "Mølleparken. Skatteprocenten for personlig indkomst er uændret. "
+            "Ejendomsselskabet Havnekanten advarede i et høringssvar om, at højere "
+            "dækningsafgift vil blive lagt oven i huslejen i de nye ungdomsboliger. "
+            "Forvaltningen vurderer merudgiften til 38 kroner om måneden for en "
+            "typisk ungdomslejlighed. Aftalen træder i kraft 1. januar, men "
+            "vuggestuegrupperne åbner først i august, når en pavillon på Skolemarken "
+            "er godkendt af brandmyndigheden."
+        ),
+        (
+            "Østerhavn Town Council last night adopted next year's budget by 21 votes "
+            "to 6. The core is a 0.4 percentage-point rise in the commercial property "
+            "tax, which will fund three new nursery groups and a night-open nursing "
+            "clinic at the harbour. The Social Democrats, the Social Liberals and SF "
+            "voted in favour. Venstre, the Conservatives and the Danish People's Party "
+            "voted against and called the deal a tax rise in disguise. Mayor Pia Kruse "
+            "said the municipality cannot keep sending toddlers 18 kilometres to "
+            "Nabekøbing while their parents work on the quays. The opposition pointed "
+            "out that cash reserves are already 112 million kroner, and that the clinic "
+            "could be a satellite of the regional hospital instead of a municipal "
+            "operation. The budget also caps consultancy at 9 million and sets aside "
+            "2 million to refurbish three older blocks in Mølleparken. The personal "
+            "income tax rate is unchanged. Property company Havnekanten warned in its "
+            "consultation reply that the higher levy will be added to rents in the new "
+            "youth housing. The administration estimates an extra 38 kroner a month "
+            "for a typical youth flat. The agreement takes effect on 1 January, but "
+            "the nursery groups open only in August, once a pavilion at Skolemarken "
+            "is approved by the fire authority."
+        ),
+        (
+            "Østerhavn passes next year's budget 21-6, raising the commercial property "
+            "levy by 0.4 points to pay for nurseries and a night nursing clinic. "
+            "Income tax is unchanged. Youth-housing rents may rise by about 38 kroner "
+            "a month. Nurseries open in August."
+        ),
+        (
+            "Østerhavn vedtager næste års budget 21-6 og hæver dækningsafgiften med "
+            "0,4 point for at betale vuggestuer og en natåben sygeplejeklinik. "
+            "Indkomstskatten er uændret. Ungdomsboligernes husleje kan stige med "
+            "omkring 38 kroner om måneden. Vuggestuerne åbner i august."
+        ),
+    ),
+    (
+        "sample-003",
+        (
+            "DMI har udsendt varsel om forhøjet vandstand i Kattegat fra onsdag aften "
+            "til torsdag formiddag. I Lindefjord Kommune forventes 120 til 140 centimeter "
+            "over daglig vande ved molehovedet. Beredskabet lukker promenaden ved "
+            "Skansevej fra klokken 20 og sætter mobile barrierer op foran de lavest "
+            "liggende huse i Fiskerkvarteret. Indbyggerne i kælderlejlighederne på "
+            "Strandgade 4-18 får sms, hvis pumperne ved slusen ikke kan følge med. "
+            "Færgen til Øen aflyses fra sidste turtorsdag; første mulige afgang er "
+            "fredag klokken 10, hvis bølgerne er under to meter. Kommunen åbner "
+            "varmestue i sportscentret og beder folk flytte biler væk fra kajkanten. "
+            "Varslet nedjusteres, hvis vinden drejer mere vestligt end meldt."
+        ),
+        (
+            "DMI has issued a warning of elevated water levels in the Kattegat from "
+            "Wednesday evening until Thursday morning. Lindefjord Municipality expects "
+            "120 to 140 centimetres above daily high water at the pier head. Emergency "
+            "services will close the promenade on Skansevej from 20:00 and place mobile "
+            "barriers in front of the lowest houses in the fishers' quarter. Residents "
+            "of the basement flats at Strandgade 4-18 will receive a text if the pumps "
+            "at the lock cannot keep up. The ferry to the island is cancelled from the "
+            "last Thursday sailing; the first possible departure is Friday at 10:00 if "
+            "waves are below two metres. The municipality is opening a warming room in "
+            "the sports centre and asks people to move cars away from the quayside. "
+            "The warning will be downgraded if the wind turns more westerly than forecast."
+        ),
+        (
+            "Lindefjord expects a 120-140 cm surge Wednesday night. The promenade "
+            "closes at 20:00, basement residents get SMS alerts, and the island ferry "
+            "stays cancelled until Friday morning if waves remain high."
+        ),
+        (
+            "Lindefjord forventer 120-140 cm forhøjet vand onsdag nat. Promenaden "
+            "lukker klokken 20, kælderbeboere får sms, og ø-færgen er aflyst til "
+            "fredag morgen, hvis bølgerne fortsat er høje."
+        ),
+    ),
+    (
+        "sample-004",
+        (
+            "IF Granebæk rykker op i 2. division efter 2-1 i den afgørende kamp mod "
+            "Holme BK på et udsolgt Stadion Vest. Målscorerne var Kantemir Holm i det "
+            "17. minut og indskiftede Maya Kragh tre minutter før tid. Holme udlignede "
+            "kort før pausen på et tvivlsomt straffespark, som dommeren efter kampen "
+            "medgav kunne være trukket tilbage. Træner Søren Pihl pegede på et "
+            "omlagt presspil efter vinterpausen som forklaringen: holdet vinder nu "
+            "flere dueller i anden bold, og gennemsnittet af forventede mål er steget "
+            "fra 1,1 til 1,6 per kamp. Klubben har 1.240 medlemmer og et budget på "
+            "4,8 millioner. Formand Elise Mortensen sagde i hallen, at oprykningen "
+            "kræver lys på træningsbanen og en ny keepertræner, men at entrépriserne "
+            "på hjemmekampe bliver holdt i 60 kroner for voksne. Kommunen har tidligere "
+            "lovet at medfinansiere lysanlægget, hvis klubben selv skaffer 400.000. "
+            "En indsamling startede allerede i aften ved pølsevognen. Holme BK forbliver "
+            "i rækken og møder Granebæk igen i pokalen i september."
+        ),
+        (
+            "IF Granebæk is promoted to the 2nd Division after a 2-1 win in the "
+            "decisive match against Holme BK at a sold-out Stadion Vest. The scorers "
+            "were Kantemir Holm in the 17th minute and substitute Maya Kragh three "
+            "minutes from time. Holme equalised just before half-time from a disputed "
+            "penalty that the referee later said could have been overturned. Coach "
+            "Søren Pihl pointed to a redesigned press after the winter break: the side "
+            "now wins more second balls, and expected goals have risen from 1.1 to 1.6 "
+            "per match. The club has 1,240 members and a budget of 4.8 million kroner. "
+            "Chair Elise Mortensen said in the hall that promotion requires lights on "
+            "the training pitch and a new goalkeeping coach, but that home ticket "
+            "prices will stay at 60 kroner for adults. The municipality has previously "
+            "promised to co-fund the lights if the club raises 400,000 itself. A "
+            "collection started tonight at the hot-dog van. Holme BK stays in the "
+            "league and meets Granebæk again in the cup in September."
+        ),
+        (
+            "IF Granebæk wins 2-1 over Holme BK and is promoted to the 2nd Division. "
+            "Holm and Kragh scored; a first-half penalty for Holme was later called "
+            "doubtful. The club wants training-pitch lights and will keep tickets at "
+            "60 kroner."
+        ),
+        (
+            "IF Granebæk vinder 2-1 over Holme BK og rykker op i 2. division. Holm og "
+            "Kragh scorede; et straffespark til Holme i første halvleg blev senere "
+            "kaldt tvivlsomt. Klubben vil have lys på træningsbanen og holder "
+            "billetprisen på 60 kroner."
+        ),
+    ),
+    (
+        "sample-005",
+        (
+            "Hovedbiblioteket i Nabekøbing lukker i 11 uger fra 3. marts, mens den "
+            "gamle avislæsesal bygges om til et åbent værksted med 3D-printere, "
+            "symaskiner og to studieceller. Udlån flytter midlertidigt til en "
+            "pavillon på Torvet, hvor reserverede bøger kan hentes mellem 10 og 18 "
+            "på hverdage. Digital adgang til e-bøger og aviser er uændret. "
+            "Biblioteksleder Astrid Fenger siger, at ombygningen svarer på en "
+            "stigning i unge brugere, der kommer for at lave lektier, ikke for at "
+            "låne romaner. Sidste år var der 186.000 besøg og kun 91.000 fysiske "
+            "udlån. Kritikere i byrådet kalder værkstedet en glidebane mod at "
+            "gøre biblioteket til et medborgerhus uden bøger. Fenger svarer, at "
+            "fag- og skønlitteraturen får nye reoler langs facaden, og at "
+            "fjernlånet udvides med en daglig rute til Granebæk. Anlægsbudgettet "
+            "er 7,1 millioner, heraf 1,5 millioner fra en kulturarvspulje, fordi "
+            "facadens terrazzogulv bevares. Under lukningen kører en bogbus "
+            "lørdage til de tre landsbyer vest for fjorden."
+        ),
+        (
+            "The main library in Nabekøbing closes for 11 weeks from 3 March while "
+            "the old newspaper reading room is rebuilt as an open workshop with "
+            "3D printers, sewing machines and two study booths. Lending moves "
+            "temporarily to a pavilion on the square, where reserved books can be "
+            "collected between 10:00 and 18:00 on weekdays. Digital access to "
+            "e-books and newspapers is unchanged. Library director Astrid Fenger "
+            "says the rebuild answers a rise in young users who come to do homework, "
+            "not to borrow novels. Last year there were 186,000 visits and only "
+            "91,000 physical loans. Critics on the council call the workshop a "
+            "slippery slope toward a civic house without books. Fenger replies that "
+            "non-fiction and fiction will get new shelves along the facade, and that "
+            "interlibrary loan will add a daily run to Granebæk. The capital budget "
+            "is 7.1 million kroner, including 1.5 million from a heritage fund "
+            "because the facade terrazzo floor is being kept. During the closure a "
+            "book bus will run on Saturdays to the three villages west of the fjord."
+        ),
+        (
+            "Nabekøbing's main library closes for 11 weeks from 3 March while the "
+            "reading room becomes a workshop. Lending shifts to a square pavilion; "
+            "e-books stay online. Critics fear fewer books; the director says new "
+            "shelves and a Granebæk interlibrary route are part of the 7.1 million "
+            "rebuild."
+        ),
+        (
+            "Nabekøbings hovedbibliotek lukker i 11 uger fra 3. marts, mens læsesalen "
+            "bliver værksted. Udlån flytter til en pavillon på torvet; e-bøger "
+            "fortsætter. Kritikere frygter færre bøger; lederen siger, at nye reoler "
+            "og en Granebæk-fjernlånsrute indgår i den 7,1 millioner kroner dyre "
+            "ombygning."
+        ),
+    ),
+    (
+        "sample-006",
+        (
+            "Granebæk Fjernvarme varsler en prisstigning på 11 procent fra 1. april "
+            "efter et underskud på 18 millioner i det milde, men dyrere år. "
+            "Bestyrelsen peger på tre årsager: den forlængede servicekontrakt på "
+            "fliskedlen, et efterslæb på rørene under Industrivej, og at kommunen "
+            "har udskudt tilslutningen af det nye boligfelt Moseengen, som skulle "
+            "have bidraget med faste afgifter. En typisk parcelhus-kunde på 18 MWh "
+            "kommer til at betale cirka 2.400 kroner mere om året. "
+            "Lejerforeningen i Mølleparken kalder stigningen uacceptabel, fordi "
+            "varmen allerede er bundet i huslejen, og beboerne ikke kan skifte "
+            "selskab. Direktør Tomas Vinge inviterer til åbent hus 12. marts, hvor "
+            "regnskabet gennemgås linje for linje. Han afviser at åbne for individuelle "
+            "varmepumper i det gamle ledningsnet, men åbner for et frivilligt "
+            "spareprogram, hvor kunder med nat-sænkning får et engangstilskud på "
+            "800 kroner til en ny termostat. Byrådet diskuterer onsdag, om kommunen "
+            "som hovedaktionær skal indskyde 5 millioner for at dæmpe stigningen "
+            "til 7 procent. En beslutning kræver, at oppositionen stemmer med, "
+            "fordi budgetloven allerede er presset af vuggestueaftalen."
+        ),
+        (
+            "Granebæk District Heating is announcing an 11 percent price rise from "
+            "1 April after an 18 million kroner deficit in a mild but expensive year. "
+            "The board points to three causes: the extended service contract on the "
+            "wood-chip boiler, a maintenance backlog on the pipes under Industrivej, "
+            "and the municipality's delay in connecting the new Moseengen housing "
+            "field, which was supposed to contribute standing charges. A typical "
+            "detached-house customer using 18 MWh will pay about 2,400 kroner more "
+            "a year. The tenants' association in Mølleparken calls the rise "
+            "unacceptable, because heat is already bundled into rent and residents "
+            "cannot change supplier. Director Tomas Vinge is inviting the public to "
+            "an open meeting on 12 March, where the accounts will be gone through "
+            "line by line. He refuses to allow individual heat pumps on the old "
+            "network, but offers a voluntary saving scheme in which customers who "
+            "set night setbacks receive an 800 kroner one-off toward a new thermostat. "
+            "On Wednesday the council will discuss whether the municipality, as "
+            "majority shareholder, should inject 5 million to cut the rise to 7 "
+            "percent. That decision needs opposition votes because the budget law "
+            "is already strained by the nursery agreement."
+        ),
+        (
+            "Granebæk District Heating will raise prices 11 percent from 1 April "
+            "after an 18 million deficit. A typical house pays about 2,400 kroner "
+            "more a year. Tenants cannot switch supplier. The council may inject "
+            "5 million to limit the rise to 7 percent."
+        ),
+        (
+            "Granebæk Fjernvarme hæver prisen 11 procent fra 1. april efter et "
+            "underskud på 18 millioner. Et typisk hus betaler cirka 2.400 kroner "
+            "mere om året. Lejere kan ikke skifte selskab. Byrådet kan indskyde "
+            "5 millioner for at begrænse stigningen til 7 procent."
+        ),
+    ),
+    (
+        "sample-007",
+        (
+            "Havnefestivalen i Østerhavn vender tilbage i fire dage i juli med et "
+            "budget på 6,3 millioner og et loft på 9.000 gæster om dagen. "
+            "Programmet lægger vægt på lokale navne: korene fra Sønderskolen åbner "
+            "torsdag, mens hovednavnet lørdag er folkduoen Salt og Gran, der "
+            "spiller fra en pram i bassinet. Nyt i år er en stille zone på den "
+            "indre kaj mellem 21 og 01, efter naboerne i Strandgade sidste år "
+            "indsamlede 640 underskrifter om nattesøvn. Lydmålerne flyttes tættere "
+            "på facaderne, og basscenen rykker 80 meter ud på moloen. "
+            "Madboderne skal bruge genbrugsservice; engangsservice i plastik er "
+            "forbudt, også til takeaway. Kommunen lægger 1,1 million i puljen, "
+            "resten kommer fra billet- og boder. Et klippekort til alle fire dage "
+            "koster 320 kroner, og under 18 år kommer gratis ind før klokken 16. "
+            "Beredskabet kræver en ekstra slæbested-adgang holdt fri til båd, hvis "
+            "vinden frisker. Festivalleder Naja Olsson siger, at de hellere aflyser "
+            "pramkoncerten end flytter den ind i en hal, fordi hele pointen er "
+            "vandet. Billetsalget åbner 1. april klokken 10."
+        ),
+        (
+            "The harbour festival in Østerhavn returns for four days in July with a "
+            "budget of 6.3 million kroner and a cap of 9,000 guests a day. The "
+            "programme emphasises local names: the choirs from Sønderskolen open on "
+            "Thursday, while Saturday's headliner is the folk duo Salt og Gran, "
+            "playing from a barge in the basin. New this year is a quiet zone on the "
+            "inner quay between 21:00 and 01:00, after Strandgade neighbours last "
+            "year collected 640 signatures about night-time sleep. Sound meters move "
+            "closer to the facades, and the bass stage shifts 80 metres out onto the "
+            "pier. Food stalls must use reusable tableware; disposable plastic is "
+            "banned, including for takeaway. The municipality puts 1.1 million into "
+            "the pot; the rest comes from tickets and stalls. A four-day clip card "
+            "costs 320 kroner, and under-18s enter free before 16:00. Emergency "
+            "services require an extra slipway kept clear for a boat if the wind "
+            "freshens. Festival director Naja Olsson says they would rather cancel "
+            "the barge concert than move it indoors, because the whole point is the "
+            "water. Ticket sales open on 1 April at 10:00."
+        ),
+        (
+            "Østerhavn's harbour festival returns in July with a 9,000 daily cap, "
+            "a night quiet zone, and a barge concert by Salt og Gran. Plastic "
+            "disposables are banned. Four-day tickets cost 320 kroner; sales open "
+            "1 April."
+        ),
+        (
+            "Østerhavns havnefestival vender tilbage i juli med loft på 9.000 gæster "
+            "om dagen, en natlig stillezone og en pramkoncert med Salt og Gran. "
+            "Plastickræm er forbudt. Fire-dages kort koster 320 kroner; salget "
+            "åbner 1. april."
+        ),
+    ),
+    (
+        "sample-008",
+        (
+            "Regionshospitalet Nabekøbing nedbringer ventetiden til almindelig "
+            "knæudredning fra 14 til 9 uger, viser tal for første kvartal. "
+            "Forklaringen er ikke flere operationsstuer, men en omlagt visitation: "
+            "praktiserende læger sender nu røntgen og spørgeskema ind før første "
+            "møde, så en tredjedel af patienterne går direkte til fysioterapi. "
+            "Ortopædkirurg Hanne Bjerre understreger, at de akutte menisk-skader "
+            "stadig tages ind inden for 72 timer. Patientforeningen Fjordled sagde "
+            "på et møde i går, at tallet dækker over store forskelle: borgere uden "
+            "digital post venter i gennemsnit tre uger længere, fordi indkaldelsen "
+            "sendes som brev. Hospitalet svarer med en forsøgsordning, hvor "
+            "biblioteket i Granebæk hjælper med at udfylde skemaet. "
+            "Sygeplejerskernes fællestillidsrepræsentant advarer om, at den kortere "
+            "kø er købt med overarbejde i ambulatoriet om torsdagen. Regionens "
+            "direktion vil først åbne en lørdagsvagt, hvis næste kvartal viser, at "
+            "9-ugers målet holder uden merarbejde over 6 procent."
+        ),
+        (
+            "Nabekøbing Regional Hospital is cutting the wait for routine knee "
+            "assessment from 14 to 9 weeks, according to first-quarter figures. "
+            "The explanation is not more theatres but a redesigned triage: GPs now "
+            "send X-rays and a questionnaire before the first appointment, so a "
+            "third of patients go straight to physiotherapy. Orthopaedic surgeon "
+            "Hanne Bjerre stresses that acute meniscus injuries are still seen "
+            "within 72 hours. Patient association Fjordled said yesterday that the "
+            "headline figure hides large gaps: residents without Digital Post wait "
+            "on average three weeks longer because the invitation goes by letter. "
+            "The hospital is answering with a trial in which Granebæk library helps "
+            "people fill in the form. The nurses' joint shop steward warns that the "
+            "shorter queue has been bought with Thursday overtime in the outpatient "
+            "clinic. The regional board will only open a Saturday shift if the next "
+            "quarter shows the 9-week target holding without overtime above 6 percent."
+        ),
+        (
+            "Knee-assessment waits at Nabekøbing hospital fall from 14 to 9 weeks "
+            "after GPs send imaging first. Acute injuries stay within 72 hours. "
+            "People without Digital Post still wait longer. Nurses say Thursday "
+            "overtime is carrying the gain."
+        ),
+        (
+            "Ventetiden til knæudredning på hospitalet i Nabekøbing falder fra 14 "
+            "til 9 uger, fordi praktiserende læger sender billeder først. Akutte "
+            "skader holdes inden for 72 timer. Borgere uden Digital Post venter "
+            "stadig længere. Sygeplejersker siger, at overarbejde om torsdagen "
+            "bærer gevinsten."
+        ),
+    ),
+    (
+        "sample-009",
+        (
+            "Byrådet i Lindefjord sender et forslag om at sammenlægge Østerskolen "
+            "og Vesterskolen i høring indtil 2. maj. Elevtallet på Vesterskolen er "
+            "faldet til 148, og der mangler to linjefagslærere i fysik og tysk. "
+            "Østerskolen har 412 elever og en ny hal, men slår i øjeblikket tre "
+            "klasser op i midlertidige pavilloner. Forvaltningens model samler 0.-6. "
+            "klasse på Østerskolens matrikel og placerer en udskolingslinje med "
+            "valgfag i det gamle Vesterskole-byggeri, som så får navnet Fjordskolen "
+            "campus vest. Forældre i vestdistriktet frygter længere skoleveje ad "
+            "en vej uden cykelsti. Teknikudvalget har derfor fremskyndet et "
+            "sti-projekt, som tidligst er færdigt om 16 måneder — efter den "
+            "planlagte sammenlægning i august næste år. Lærerforeningen kræver, "
+            "at ingen medarbejder flyttes uden dialog, og at de to faglokaler i "
+            "fysik bevares, så undervisningen ikke kun kører som fælles hold. "
+            "Borgmesteren siger, at alternativet er at lukke Vesterskolen helt om "
+            "to år, når årgang 2019 er gået ud. Høringsmødet er 11. april i hallen; "
+            "der er tegnsprogstolk og direkte stream."
+        ),
+        (
+            "Lindefjord Town Council is putting a proposal to merge Østerskolen and "
+            "Vesterskolen out to consultation until 2 May. Enrolment at Vesterskolen "
+            "has fallen to 148, and the school is short two specialist teachers in "
+            "physics and German. Østerskolen has 412 pupils and a new hall, but is "
+            "currently teaching three classes in temporary pavilions. The "
+            "administration's model gathers years 0-6 on the Østerskolen site and "
+            "places a lower-secondary track with electives in the old Vesterskolen "
+            "building, which would then be called Fjordskolen west campus. Parents "
+            "in the western district fear longer school journeys on a road without "
+            "a cycleway. The technical committee has therefore brought forward a "
+            "path project that will be finished 16 months from now at the earliest "
+            "— after the planned merger in August next year. The teachers' union "
+            "demands that no staff member is moved without dialogue, and that both "
+            "physics labs are kept so teaching is not only delivered as combined "
+            "groups. The mayor says the alternative is to close Vesterskolen entirely "
+            "in two years when the 2019 cohort leaves. The consultation meeting is "
+            "11 April in the hall, with a sign-language interpreter and a live stream."
+        ),
+        (
+            "Lindefjord consults until 2 May on merging Østerskolen and Vesterskolen. "
+            "Years 0-6 would move east; the old west building becomes a lower-secondary "
+            "campus. Parents want a cycleway before the August merger. Teachers "
+            "want both physics labs kept."
+        ),
+        (
+            "Lindefjord sender sammenlægning af Østerskolen og Vesterskolen i høring "
+            "til 2. maj. 0.-6. klasse flytter øst; den gamle vestbygning bliver "
+            "udskolingscampus. Forældre vil have cykelsti før august-sammenlægningen. "
+            "Lærerne vil bevare begge fysiklokaler."
+        ),
+    ),
+    (
+        "sample-010",
+        (
+            "Østerhavn Havn fremlægger en tiårsplan, der flytter containertrafikken "
+            "200 meter mod nord og åbner den indre kaj til boliger, badeland og et "
+            "fisketorv. Planen er den største fysiske ændring af byen siden "
+            "jernbanens ankomst i 1908, og den splitter byrådet på tværs af de "
+            "sædvanlige blokke. Tilhængerne, anført af borgmester Pia Kruse og "
+            "Venstres gruppeformand Mikkel Rye, siger, at kajen i dag er et hegn "
+            "mod vandet: lastbiler, tomme skure og et hegn med tre huller. "
+            "De vil have en promenade i niveau med vandet, 420 boliger med "
+            "krav om 25 procent almene, og et bræt til joller, så sejlklubben "
+            "ikke presses ud til molerne. Modstanderne, en alliance mellem SF, "
+            "en løsgænger og Fiskeriforeningen, kalder planen en forskydning af "
+            "støj, ikke en løsning. Containerpladsen rykker tættere på "
+            "fuglereservatet Saltholm Enge, hvor en ynglebestand af klyder "
+            "allerede er i tilbagegang. En screening fra rådgiverfirmaet Bølge & "
+            "Bund vurderer, at pælearbejdet i bassinet kan sløre vandet i to "
+            "sæsoner og ramme ålegræsset, som kommunen ellers har brugt tre år "
+            "på at plante. Havnedirektør Eva Solvang svarer, at gravearbejdet "
+            "lægges i vinterhalvåret, og at der afsættes 12 millioner til at "
+            "flytte ålegræsset midlertidigt. Prisen for hele planen er anslået "
+            "til 1,4 milliarder 2023-kroner. Staten har i et indledende brev "
+            "sagt, at en pulje til blandede by- og havnemiljøer kan dække op til "
+            "180 millioner, hvis kommunen binder sig til de almene boliger og "
+            "til at bevare kajens kran som monument. Kranen er i dag rusten og "
+            "uden certifikat; bevaringsforeningen vil have den malet og gjort "
+            "til udsigtspunkt, mens arbejdsmiljøtilsynet kræver, at den enten "
+            "sikres eller skæres ned inden fem år. I den sydlige ende af kajen "
+            "ligger tre aktive fiskeauktioner. Planen lover dem nye haller ved "
+            "den nordlige plads, men fiskerne peger på, at lastbilerne så skal "
+            "køre gennem et kommende boligkvarter før klokken fem om morgenen. "
+            "Teknisk forvaltning skitserer en tunnel under Stationsvej til "
+            "tung trafik; den alene koster 310 millioner og er ikke med i de "
+            "1,4 milliarder. En borgergruppe, Kajens Venner, har på tre uger "
+            "samlet 2.100 underskrifter for at sende hele planen til "
+            "bindende folkeafstemning. Juridisk afdeling vurderer, at "
+            "kommunalfuldmagten ikke tvinger byrådet til afstemning, men at "
+            "et vejledende valg er politisk muligt. Første officielle "
+            "borgermøde er 19. april i Mølleparkens hal. Dagsordenen er delt "
+            "i tre: natur og ålegræs, boliger og støj, og finansiering. "
+            "Hver blok får 40 minutter, og der er tegnsprogstolk. "
+            "Havnen publicerer samtidig et åbent datarum med vanddybder, "
+            "støjberegninger og de fulde rådgiverbilag, så høringssvar ikke "
+            "skal bygge på slides alene. Hvis byrådet vedtager plangrundlaget "
+            "i juni, kan det første pælefelt tidligst rammes i vinteren to år "
+            "senere. Indtil da fortsætter containerne, hvor de er, og "
+            "fisketorvet bliver liggende i den midlertidige telthal, som "
+            "allerede har overlevet tre budgetter, der lovede den noget fast."
+        ),
+        (
+            "Østerhavn Port is presenting a ten-year plan that moves container "
+            "traffic 200 metres north and opens the inner quay to housing, a "
+            "bathing area and a fish market. It is the largest physical change "
+            "to the town since the railway arrived in 1908, and it splits the "
+            "council across the usual blocs. Supporters, led by Mayor Pia Kruse "
+            "and Venstre group chair Mikkel Rye, say the quay is now a fence "
+            "against the water: lorries, empty sheds and a fence with three holes. "
+            "They want a promenade at water level, 420 homes with a 25 percent "
+            "affordable-housing requirement, and a pontoon for dinghies so the "
+            "sailing club is not pushed out to the breakwaters. Opponents, an "
+            "alliance of SF, an independent and the fisheries association, call "
+            "the plan a relocation of noise, not a solution. The container yard "
+            "would move closer to the Saltholm Enge bird reserve, where a breeding "
+            "population of avocets is already in decline. A screening by consultants "
+            "Bølge & Bund finds that piling in the basin could cloud the water for "
+            "two seasons and hit the eelgrass the municipality has spent three years "
+            "planting. Port director Eva Solvang replies that digging will be placed "
+            "in the winter half-year, and that 12 million kroner is reserved to move "
+            "the eelgrass temporarily. The whole plan is estimated at 1.4 billion "
+            "2023-kroner. The state has said in a preliminary letter that a mixed "
+            "urban-harbour fund could cover up to 180 million if the municipality "
+            "commits to the affordable homes and to keeping the quay crane as a "
+            "monument. The crane is currently rusty and uncertified; the preservation "
+            "society wants it painted and turned into a viewpoint, while the working-"
+            "environment authority requires it to be secured or cut down within five "
+            "years. At the southern end of the quay sit three active fish auctions. "
+            "The plan promises them new halls at the northern yard, but fishers note "
+            "that lorries would then drive through a future housing area before five "
+            "in the morning. The technical department sketches a tunnel under "
+            "Stationsvej for heavy traffic; that alone costs 310 million and is not "
+            "inside the 1.4 billion. A residents' group, Friends of the Quay, has in "
+            "three weeks collected 2,100 signatures to send the whole plan to a "
+            "binding referendum. The legal department assesses that the local-"
+            "government mandate does not force the council to a vote, but that an "
+            "advisory ballot is politically possible. The first official public "
+            "meeting is 19 April in the Mølleparken hall. The agenda is split in "
+            "three: nature and eelgrass, housing and noise, and financing. Each "
+            "block gets 40 minutes, with a sign-language interpreter. The port is "
+            "also publishing an open data room with depths, noise calculations and "
+            "the full consultant appendices, so consultation replies need not rest "
+            "on slides alone. If the council adopts the planning basis in June, the "
+            "first piling field can be driven no earlier than the winter two years "
+            "later. Until then the containers stay where they are, and the fish "
+            "market remains in the temporary tent hall that has already survived "
+            "three budgets that promised it something permanent."
+        ),
+        (
+            "Østerhavn Port proposes a ten-year move of containers north so the "
+            "inner quay can hold 420 homes, a bathing area and a fish market. "
+            "The 1.4 billion plan splits the council: supporters want the town "
+            "to meet the water, opponents cite avocets, eelgrass and night lorries. "
+            "A 310 million lorry tunnel is not in the budget. Residents want a "
+            "referendum; lawyers say only an advisory vote is required. A public "
+            "meeting is set for 19 April."
+        ),
+        (
+            "Østerhavn Havn foreslår på ti år at flytte containere nordpå, så den "
+            "indre kaj kan rumme 420 boliger, badeland og fisketorv. Den 1,4 "
+            "milliarder kroner dyre plan splitter byrådet: tilhængere vil have byen "
+            "ned til vandet, modstandere nævner klyder, ålegræs og nattelastbiler. "
+            "En lastbilstunnel til 310 millioner er ikke i budgettet. Borgere vil "
+            "have folkeafstemning; juristerne siger, at kun en vejledende afstemning "
+            "kan kræves. Borgermøde er 19. april."
+        ),
+    ),
+]
+
+
+def _write(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+    print(f"wrote {path.relative_to(HERE.parent.parent)} ({len(rows)} rows)")
+
+
+def main() -> None:
+    raw = [{"id": i, "article text": da} for i, da, *_ in ROWS]
+    translated = [
+        {"id": i, "body": da, "translated": en} for i, da, en, *_ in ROWS
+    ]
+    summarized = [
+        {"id": i, "body": da, "translated": en, "summary": en_sum}
+        for i, da, en, en_sum, _ in ROWS
+    ]
+    labeled = [
+        {"id": i, "body": da, "summary": da_sum} for i, da, _e, _es, da_sum in ROWS
+    ]
+
+    _write(HERE / "raw_articles.sample.csv", ["id", "article text"], raw)
+    _write(
+        HERE / "translated_articles.sample.csv",
+        ["id", "body", "translated"],
+        translated,
+    )
+    _write(
+        HERE / "summarized_articles.sample.csv",
+        ["id", "body", "translated", "summary"],
+        summarized,
+    )
+    _write(HERE / "labeled_dataset.sample.csv", ["id", "body", "summary"], labeled)
+
+    train_ids = {f"sample-{n:03d}" for n in range(1, 7)}
+    val_ids = {f"sample-{n:03d}" for n in range(7, 9)}
+    test_ids = {f"sample-{n:03d}" for n in range(9, 11)}
+    splits = {
+        "train_dataset.sample.csv": train_ids,
+        "validation_dataset.sample.csv": val_ids,
+        "test_dataset.sample.csv": test_ids,
+    }
+    for name, keep in splits.items():
+        subset = [row for row in labeled if row["id"] in keep]
+        _write(HERE / name, ["id", "body", "summary"], subset)
+
+
+if __name__ == "__main__":
+    main()
