@@ -83,6 +83,14 @@ class SentenceBatchTests(unittest.TestCase):
         )
         self.assertEqual(batches, [["Kort.", "Også kort."]])
 
+    def test_keeps_numbered_danish_ordinals_together(self):
+        article = "En 9. klasse på Nørrebro vandt. Skolen fejrer det."
+        batches = split_into_sentence_batches(article, max_length=80, ratio=1.0)
+        self.assertEqual(
+            batches,
+            [["En 9. klasse på Nørrebro vandt.", "Skolen fejrer det."]],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

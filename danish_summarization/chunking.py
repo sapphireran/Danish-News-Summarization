@@ -207,7 +207,17 @@ def _looks_like_boundary(article: str, index: int) -> bool:
     if index + 1 >= len(article):
         return True
     nxt = article[index + 1]
-    return nxt.isspace() or nxt in "\"')]}»"
+    if not (nxt.isspace() or nxt in "\"')]}»"):
+        return False
+    # Keep "9. klasse" together. Still split "klokken 10. Der er..."
+    prev = article[index - 1] if index else ""
+    if prev.isdigit():
+        cursor = index + 1
+        while cursor < len(article) and article[cursor].isspace():
+            cursor += 1
+        if cursor < len(article) and article[cursor].islower():
+            return False
+    return True
 
 
 def iter_chunks(articles: Iterable[str], **kwargs) -> Iterable[List[str]]:
