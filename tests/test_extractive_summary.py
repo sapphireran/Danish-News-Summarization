@@ -22,7 +22,9 @@ class ExtractiveSummaryTests(unittest.TestCase):
             "Læsehaven i Østerhavn åbnede med bænke, pilehegn og højtlæsning. "
             "Og så videre."
         )
-        summary = extractive_summarize(text, max_sentences=1, max_chars=None)
+        summary = extractive_summarize(
+            text, max_sentences=1, max_chars=None, strategy="tfidf"
+        )
         self.assertIn("Læsehaven", summary)
         self.assertNotIn("Og så videre", summary)
 
@@ -44,10 +46,31 @@ class ExtractiveSummaryTests(unittest.TestCase):
         self.assertNotIn("er", tokens)
 
     def test_scores_align_with_sentence_count(self):
-        sentences = ["Kort.", "Klitvig Havn renoverer kajen efter stormfloden."]
+        sentences = [
+            "Kort.",
+            "Klitvig Havn renoverer kajen, og kajen i Klitvig får ny spunsvæg.",
+        ]
         scores = sentence_scores(sentences)
         self.assertEqual(len(scores), 2)
+        # Repeated content words (Klitvig, kajen) should beat a one-token sentence.
         self.assertGreater(scores[1], scores[0])
+
+    def test_lead_strategy_keeps_opening_sentences(self):
+        text = "Første sætning. Anden sætning. Tredje sætning om Klitvig Havn og kajen."
+        summary = extractive_summarize(text, max_sentences=2, max_chars=None, strategy="lead")
+        self.assertTrue(summary.startswith("Første sætning."))
+        self.assertIn("Anden sætning.", summary)
+        self.assertNotIn("Tredje", summary)
+
+    def test_hybrid_keeps_lede_and_a_content_sentence(self):
+        text = (
+            "Klitvig åbner havnen igen. "
+            "Det er det. "
+            "Spunsvægge og kajen i Klitvig skiftes efter stormfloden, og kajen hæves."
+        )
+        summary = extractive_summarize(text, max_sentences=2, max_chars=None, strategy="hybrid")
+        self.assertIn("Klitvig åbner havnen igen.", summary)
+        self.assertIn("Spunsvægge", summary)
 
 
 if __name__ == "__main__":

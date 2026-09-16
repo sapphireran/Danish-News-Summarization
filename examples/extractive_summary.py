@@ -6,11 +6,10 @@ translating the summary back to Danish. That path needs converted OPUS
 models and a GPU-sized T5.
 
 This module is a stand-in that stays inside Danish and never calls a
-neural model. It scores sentences by intra-article term frequency after
-dropping a small stopword list, then returns the top sentences in their
-original order. The goal is to exercise the same *control flow* as
-``summary.py`` (split long inputs, summarize pieces, concatenate) so the
-examples remain honest about what they can and cannot demonstrate.
+neural model. The default ``hybrid`` strategy keeps the news lede and
+adds a TF-IDF sentence from the rest of the article. That is the usual
+extractive floor for newswire, and it lets the toy pipeline stay honest
+about what it can and cannot demonstrate versus T5.
 """
 
 from __future__ import annotations
@@ -177,10 +176,16 @@ def extractive_summarize(
     max_sentences: int = 2,
     max_chars: int | None = 320,
     sentence_splitter=split_danish_sentences,
+    strategy: str = "hybrid",
 ) -> str:
     """Return a short extractive summary of ``text``.
 
-    ``max_sentences`` caps how many source sentences may be kept.
+    ``strategy``:
+
+    * ``lead`` — classic news baseline: the first ``max_sentences``.
+    * ``tfidf`` — highest mean TF-IDF sentences, original order.
+    * ``hybrid`` — always keep the lede, then fill with TF-IDF from the rest.
+
     ``max_chars`` is an optional hard cap applied after selection; if the
     joined summary still overflows, trailing sentences are dropped. When
     even the first selected sentence overflows, it is returned truncated
@@ -188,6 +193,8 @@ def extractive_summarize(
     """
     if max_sentences <= 0:
         raise ValueError("max_sentences must be positive")
+    if strategy not in {"lead", "tfidf", "hybrid"}:
+        raise ValueError("strategy must be 'lead', 'tfidf', or 'hybrid'")
 
     sentences = sentence_splitter(text)
     if not sentences:
@@ -196,12 +203,25 @@ def extractive_summarize(
     if len(sentences) == 1:
         return _fit_char_budget(sentences[0], max_chars)
 
-    scores = sentence_scores(sentences)
-    ranked = sorted(range(len(sentences)), key=lambda idx: (-scores[idx], idx))
-    chosen_idxs = sorted(ranked[: max_sentences])
-    chosen = [sentences[idx] for idx in chosen_idxs]
-    summary = " ".join(chosen)
-    return _fit_char_budget(summary, max_chars, sentences=chosen)
+    if strategy == "lead":
+        chosen_idxs = list(range(min(max_sentences, len(sentences))))
+    elif strategy == "tfidf":
+        scores = sentence_scores(sentences)
+        ranked = sorted(range(len(sentences)), key=lambda idx: (-scores[idx], idx))
+        chosen_idxs = sorted(ranked[:max_sentences])
+    else:
+        chosen = {0}
+        scores = sentence_scores(sentences)
+        ranked = sorted(range(1, len(sentences)), key=lambda idx: (-scores[idx], idx))
+        for idx in ranked:
+            if len(chosen) >= max_sentences:
+                break
+            chosen.add(idx)
+        chosen_idxs = sorted(chosen)
+
+    chosen_sentences = [sentences[idx] for idx in chosen_idxs]
+    summary = " ".join(chosen_sentences)
+    return _fit_char_budget(summary, max_chars, sentences=chosen_sentences)
 
 
 def _fit_char_budget(

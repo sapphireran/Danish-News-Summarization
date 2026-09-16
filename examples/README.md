@@ -14,7 +14,7 @@ show schemas and overlap metrics.
 | --- | --- |
 | `danish_sentences.py` | Abbreviation-aware splitter (no NLTK) |
 | `text_chunking.py` | Historical comma-flush packing vs `near_limit` |
-| `extractive_summary.py` | TF-IDF-ish sentence picker |
+| `extractive_summary.py` | Lead + TF-IDF extractive news baseline |
 | `schema.py` | Column contracts for every pipeline stage |
 | `sample_catalog.py` | Source of truth for the six invented articles |
 | `write_sample_csvs.py` | Regenerates `data/*.csv` from the catalog |
