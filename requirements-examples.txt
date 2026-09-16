@@ -1,0 +1,3 @@
+# The examples/ tree is intentionally stdlib-only.
+# Install this file only if you want pytest extras for nicer test output.
+# The committed tests run with: python -m unittest discover -s examples/tests -v
