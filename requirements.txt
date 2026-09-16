@@ -1,0 +1,23 @@
+# GPU / Hub stack used by the repository-root scripts.
+# Versions are left unpinned on purpose — the 2023 course wheelhouse
+# will not install cleanly on a current CUDA laptop. Install a recent
+# combo that matches your driver, then smoke-test one article.
+
+# torch          # install the CUDA build from pytorch.org, not this file
+transformers
+datasets
+evaluate
+nltk
+pandas
+numpy
+ctranslate2
+tqdm
+accelerate
+sentencepiece
+protobuf
+rouge-score
+bert-score
+
+# The examples and tests do not need any of the above:
+#   PYTHONPATH=. python -m unittest discover -s tests -v
+#   PYTHONPATH=. python examples/walk_one_article.py
