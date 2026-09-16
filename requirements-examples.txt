@@ -1,0 +1,2 @@
+# CPU examples and tests
+pytest>=7.0
