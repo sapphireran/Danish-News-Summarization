@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Pakhuset — Toftevig window atlas</title>
+  <style>
+:root { --ink: #1b1b18; --paper: #f6f1e4; --rule: #cbbf9a; --pane: #2f5d50; --warn: #8b3a2a; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Iowan Old Style", Palatino, Georgia, serif; background: var(--paper); color: var(--ink); }
+header { padding: 2rem 8vw 1rem; border-bottom: 1px solid var(--rule); }
+header h1 { margin: 0 0 .3rem; font-size: 1.8rem; letter-spacing: .02em; }
+header p { margin: 0; max-width: 46rem; line-height: 1.45; }
+main { padding: 1.5rem 8vw 4rem; }
+article { margin: 2rem 0 3rem; }
+article h2 { margin: 0 0 .4rem; font-size: 1.25rem; }
+.meta { color: #4a463a; font-size: .92rem; margin-bottom: 1rem; }
+.panes { display: grid; gap: .45rem; margin: .6rem 0 1rem; }
+.row { display: grid; grid-template-columns: 4.5rem 1fr 11rem; gap: .6rem; align-items: center; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .82rem; }
+.bar { height: 1.05rem; background: #e4dcc6; border-radius: 2px; overflow: hidden; }
+.bar > span { display: block; height: 100%; background: var(--pane); }
+.bar.over > span { background: var(--warn); width: 100% !important; }
+.bar.empty { outline: 1px dashed var(--warn); }
+pre { background: #efe8d4; padding: .8rem 1rem; overflow: auto; font-size: .78rem; line-height: 1.4; }
+.silver { border-left: 3px solid var(--pane); padding: .2rem 0 .2rem 1rem; max-width: 46rem; }
+table { border-collapse: collapse; font-size: .9rem; margin: 1rem 0 2rem; }
+th, td { border-bottom: 1px solid var(--rule); text-align: left; padding: .35rem .7rem .35rem 0; }
+.flag { color: var(--warn); font-weight: 600; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Pakhuset</h1>
+  <p>CPU atlas of the 2023 Danish news silver-label packing house.
+  Each bar is one window. The original course scripts are not run here;
+  Toftevig copy is fictional and sentence-aligned so hop-2 repacking is
+  visible without OPUS-MT or T5.</p>
+</header>
+<main>
+  <table>
+    <thead><tr><th>id</th><th>hop1 panes</th><th>hop2 panes</th><th>silver units</th><th>trunc @128</th><th>pane0 share</th><th>figure survival</th></tr></thead>
+    <tbody><tr><td><a href='#tof-001'>tof-001</a></td><td>2</td><td>2</td><td>158</td><td>yes</td><td>0.51</td><td>0.37</td></tr><tr><td><a href='#tof-002'>tof-002</a></td><td>1</td><td>1</td><td>79</td><td>no</td><td>1.00</td><td>0.25</td></tr><tr><td><a href='#tof-003'>tof-003</a></td><td>1</td><td>1</td><td>80</td><td>no</td><td>1.00</td><td>0.42</td></tr><tr><td><a href='#tof-004'>tof-004</a></td><td>1</td><td>1</td><td>80</td><td>no</td><td>1.00</td><td>0.43</td></tr><tr><td><a href='#tof-005'>tof-005</a></td><td>1</td><td>1</td><td>80</td><td>no</td><td>1.00</td><td>0.50</td></tr><tr><td><a href='#tof-006'>tof-006</a></td><td>1</td><td>1</td><td>77</td><td>no</td><td>1.00</td><td>0.00</td></tr><tr><td><a href='#tof-007'>tof-007</a></td><td>1</td><td>1</td><td>80</td><td>no</td><td>1.00</td><td>0.80</td></tr><tr><td><a href='#tof-008'>tof-008</a></td><td>2</td><td>2</td><td>157</td><td>yes</td><td>0.51</td><td>0.14</td></tr><tr><td><a href='#tof-009'>tof-009</a></td><td>1</td><td>1</td><td>58</td><td>no</td><td>1.00</td><td>1.00</td></tr><tr><td><a href='#tof-010'>tof-010</a></td><td>7</td><td>6</td><td>470</td><td>yes</td><td>0.17</td><td>0.00</td></tr></tbody>
+  </table>
+  
+<article id="tof-001">
+  <h2>tof-001 — Havneudvidelse sendes i høring</h2>
+  <p class="meta">split=train · planted=ordinal-date, clock, mio-kr, bl.a., quote, multi-pane
+  · hop1 panes=2 · hop2 panes=2
+  · silver units=158 · pane0 share=0.51
+  · figure survival=0.37 · oracle ROUGE-L=0.22
+  <span class="flag">would truncate @128 · echo Toftevig Havn</span></p>
+  <h3>Hop 1 panes (Danish packing)</h3>
+  <div class="panes"><div class='row'><div>p00</div><div class="bar"><span style="width:95%"></span></div><div>439/460 · 10 sents</div></div><div class='row'><div>p01</div><div class="bar"><span style="width:79%"></span></div><div>363/460 · 8 sents</div></div></div>
+  <h3>ASCII atlas</h3>
+  <pre>packer=course_translate  budget=460  panes=2  saw_fragments=0  empty=0  over_budget=0  article=tof-001
+pane 00  [######################################..]   439/460  leftover   21  sents 10
+pane 01  [################################........]   363/460  leftover   97  sents  8
+
+packer=course_summary  budget=512  panes=2  saw_fragments=0  empty=0  over_budget=0  article=tof-001
+pane 00  [######################################..]   481/512  leftover   31  sents 16
+pane 01  [##############################..........]   383/512  leftover  129  sents 14</pre>
+  <h3>Silver-sim (concatenated pane briefs, back to Danish)</h3>
+  <p class="silver">On onsdag 12 oktober at 7.30 p.m. Toftevig Municipality&#x27;s havn udvalg decided to send the proposal for an expansion of Toftevig Havn to public høring Chair Søren Vibe said the works, according to the administration&#x27;s estimate, will cost DKK 18.4 mio. including a new kaj The background is that the present kaj in Toftevig Havn was cast in 1978 and, according to inspection, has cracks in 22 percent of the elements facing Gråfjord. En ekstern revisor peger på, at 18,4 mio. kr. er et 2023-prisniveau, og at stål og beton siden er steget ca. 6 pct. Ellen Kragh therefore asks</p>
+  <h3>Oracle brief</h3>
+  <p class="silver">Toftevig Kommunes havneudvalg sendte onsdag den 12. oktober kl. 19.30 en udvidelse af Toftevig Havn i høring. Anlægget anslås til 18,4 mio. kr. bl.a. til ny kaj, uddybning af Gråfjord og et pakhus til ismaskiner.</p>
+</article>
+
+
+<article id="tof-002">
+  <h2>tof-002 — Bus nr. 14 lægges om i anlægsperioden</h2>
+  <p class="meta">split=train · planted=nr, clock, school-name
+  · hop1 panes=1 · hop2 panes=1
+  · silver units=79 · pane0 share=1.00
+  · figure survival=0.25 · oracle ROUGE-L=0.33
+  </p>
+  <h3>Hop 1 panes (Danish packing)</h3>
+  <div class="panes"><div class='row'><div>p00</div><div class="bar"><span style="width:48%"></span></div><div>220/460 · 7 sents</div></div></div>
+  <h3>ASCII atlas</h3>
+  <pre>packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-002
+pane 00  [###################.....................]   220/460  leftover  240  sents  7
+
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-002
+pane 00  [###################.....................]   242/512  leftover  270  sents 10</pre>
+  <h3>Silver-sim (concatenated pane briefs, back to Danish)</h3>
+  <p class="silver">Skolebestyrelsen ved Nørreholt Skole blev onsdag orienteret om, at bus nr. 14 i anlægsperioden ikke kan køre ad Kirkevej. 14 cannot use Kirkevej during the construction period. Erstatningsruten går via Klintbro og Færgelejet Klintbro og lægger ifølge køreplanen 11 minutter til turen fra Østermarken. Skoleleder Mette Holm sagde, at det især rammer elever, der i dag stiger på kl. 07.40 ved Svanedammen og når første time uden at løbe.</p>
+  <h3>Oracle brief</h3>
+  <p class="silver">Bus nr. 14 kører via Klintbro i stedet for Kirkevej, mens Toftevig Havn udvides. Skoleleder Mette Holm frygter, at elever til Nørreholt Skole mister forbindelsen kl. 07.40.</p>
+</article>
+
+
+<article id="tof-003">
+  <h2>tof-003 — Digelaget kræver kontrol af Gråfjord Dige</h2>
+  <p class="meta">split=train · planted=clock, mio-kr, ordinal-date, pct
+  · hop1 panes=1 · hop2 panes=1
+  · silver units=80 · pane0 share=1.00
+  · figure survival=0.42 · oracle ROUGE-L=0.42
+  </p>
+  <h3>Hop 1 panes (Danish packing)</h3>
+  <div class="panes"><div class='row'><div>p00</div><div class="bar"><span style="width:88%"></span></div><div>403/460 · 12 sents</div></div></div>
+  <h3>ASCII atlas</h3>
+  <pre>packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-003
+pane 00  [###################################.....]   403/460  leftover   57  sents 12
+
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-003
+pane 00  [#################################.......]   420/512  leftover   92  sents 17</pre>
+  <h3>Silver-sim (concatenated pane briefs, back to Danish)</h3>
+  <p class="silver">Digelaget i Toftevig indkaldte til stormøde torsdag den 3. oktober kl. 18.30 i Pakhuset. in Pakhuset. Formand Kaj Overgaard mindede om, at Gråfjord Dige i 2022 blev forhøjet for 3,2 mio. kr. efter stormfloden, der satte Fiskerihallen under 40 cm vand. Forvaltningen svarer, at der er afsat 0,8 mio. kr. til pejlinger t.o.m. den 3. november, første hold møder kl. 06.00 ved Svanedammen.</p>
+  <h3>Oracle brief</h3>
+  <p class="silver">Digelaget vil have Gråfjord Dige kontrolleret, før Toftevig Havn uddybes. Kaj Overgaard minder om, at diget blev forhøjet i 2022 for 3,2 mio. kr., og kræver måling den 3. november kl. 06.00.</p>
+</article>
+
+
+<article id="tof-004">
+  <h2>tof-004 — Tre møller ved Østermarken til debat</h2>
+  <p class="meta">split=train · planted=pct, km, noise
+  · hop1 panes=1 · hop2 panes=1
+  · silver units=80 · pane0 share=1.00
+  · figure survival=0.43 · oracle ROUGE-L=0.27
+  </p>
+  <h3>Hop 1 panes (Danish packing)</h3>
+  <div class="panes"><div class='row'><div>p00</div><div class="bar"><span style="width:37%"></span></div><div>168/460 · 6 sents · leftover</div></div></div>
+  <h3>ASCII atlas</h3>
+  <pre>packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-004
+pane 00  [###############.........................]   168/460  leftover  292  sents  6  UNDERFILLED
+
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-004
+pane 00  [##############..........................]   183/512  leftover  329  sents  7  UNDERFILLED</pre>
+  <h3>Silver-sim (concatenated pane briefs, back to Danish)</h3>
+  <p class="silver">Tre møller på hver 150 meter er foreslået på markerne bag Østermarken, 1,8 km fra Nørreholt Skole. Lars Kjær fra teknik- og miljøudvalget sagde, at projektet kan dække ca. 40 pct. af kommunens eget elforbrug. Mette Holm kræver, at støjen i skolegården ikke stiger med mere end 2 pct. i forhold til målingen fra 2023.</p>
+  <h3>Oracle brief</h3>
+  <p class="silver">Teknik- og miljøudvalget sender tre vindmøller ved Østermarken i debat. Støjen ved Nørreholt Skole må ifølge udkastet ikke overstige de nuværende målinger med mere end 2 pct.</p>
+</article>
+
+
+<article id="tof-005">
+  <h2>tof-005 — Klintbro-færgen rykker morgenafgangen</h2>
+  <p class="meta">split=train · planted=clock, kl-split-trap
+  · hop1 panes=1 · hop2 panes=1
+  · silver units=80 · pane0 share=1.00
+  · figure survival=0.50 · oracle ROUGE-L=0.30
+  </p>
+  <h3>Hop 1 panes (Danish packing)</h3>
+  <div class="panes"><div class='row'><div>p00</div><div class="bar"><span style="width:39%"></span></div><div>179/460 · 5 sents · leftover</div></div></div>
+  <h3>ASCII atlas</h3>
+  <pre>packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-005
+pane 00  [################........................]   179/460  leftover  281  sents  5  UNDERFILLED
+
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-005
+pane 00  [################........................]   202/512  leftover  310  sents 11  UNDERFILLED</pre>
+  <h3>Silver-sim (concatenated pane briefs, back to Danish)</h3>
+  <p class="silver">Færgeselskabet ændrer køreplanen fra mandag den 21. oktober, så første afgang fra Færgelejet Klintbro sker kl. 06.05 i stedet for kl. 06.15. instead of 6.15 a.m. 14 reaches the stop at 7.40 a.m. Amina Rashid, der pendler til biblioteket, sagde, at kl. 06.05 rammer natholdet i Pakhuset, men giver ro til skoleeleverne. The return from</p>
+  <h3>Oracle brief</h3>
+  <p class="silver">Færgen fra Færgelejet Klintbro rykker morgenafgangen fra kl. 06.15 til kl. 06.05, så lastbiler til Toftevig Havn er væk før bus nr. 14.</p>
+</article>
+
+
+<article id="tof-006">
+  <h2>tof-006 — Biblioteket flytter depot til Kirkevej</h2>
+  <p class="meta">split=validation · planted=hours, quote
+  · hop1 panes=1 · hop2 panes=1
+  · silver units=77 · pane0 share=1.00
+  · figure survival=0.00 · oracle ROUGE-L=0.40
+  </p>
+  <h3>Hop 1 panes (Danish packing)</h3>
+  <div class="panes"><div class='row'><div>p00</div><div class="bar"><span style="width:39%"></span></div><div>178/460 · 4 sents · leftover</div></div></div>
+  <h3>ASCII atlas</h3>
+  <pre>packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-006
+pane 00  [###############.........................]   178/460  leftover  282  sents  4  UNDERFILLED
+
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-006
+pane 00  [################........................]   201/512  leftover  311  sents  7  UNDERFILLED</pre>
+  <h3>Silver-sim (concatenated pane briefs, back to Danish)</h3>
+  <p class="silver">Biblioteksleder Amina Rashid meddeler, at magasinets kasser flyttes fra Pakhuset til kælderen under Kirkevej i uge 43. Pakhuset skal i anlægsperioden bruges til samråd, digelag og midlertidigt koldt rum, og der er ikke plads til både ismaskiner og romaner. Udlånsskranken holder åbent tirsdag og torsdag kl. 14.00–18.00, og lørdagsvagten kl. 10.00–13.00 indstilles t.o.m. den 12. december.</p>
+  <h3>Oracle brief</h3>
+  <p class="silver">Biblioteket flytter sit depot til kælderen under Kirkevej, mens Pakhuset bruges til havnemøder. Amina Rashid holder åbent tirsdag og torsdag kl. 14.00–18.00.</p>
+</article>
+
+
+<article id="tof-007">
+  <h2>tof-007 — Cykelsti fra Østermarken til havnen</h2>
+  <p class="meta">split=validation · planted=km, mio-kr
+  · hop1 panes=1 · hop2 panes=1
+  · silver units=80 · pane0 share=1.00
+  · figure survival=0.80 · oracle ROUGE-L=0.30
+  </p>
+  <h3>Hop 1 panes (Danish packing)</h3>
+  <div class="panes"><div class='row'><div>p00</div><div class="bar"><span style="width:34%"></span></div><div>157/460 · 5 sents · leftover</div></div></div>
+  <h3>ASCII atlas</h3>
+  <pre>packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-007
+pane 00  [##############..........................]   157/460  leftover  303  sents  5  UNDERFILLED
+
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-007
+pane 00  [#############...........................]   162/512  leftover  350  sents  6  UNDERFILLED</pre>
+  <h3>Silver-sim (concatenated pane briefs, back to Danish)</h3>
+  <p class="silver">Teknik- og miljøudvalget indstiller en cykelsti på 3,4 km fra Østermarken langs Gråfjord til Toftevig Havn. Anlægsoverslaget er 2,1 mio. kr., heraf 0,3 mio. kr. til belysning ved Svanedammen og en broskinne over det lave løb ved Møllebakken. If the money is adopted on 12 november</p>
+  <h3>Oracle brief</h3>
+  <p class="silver">Kommunen vil forbinde cykelstien fra Østermarken med Toftevig Havn for 2,1 mio. kr. Ruten er 3,4 km og skal holde elever væk fra lastbiler på Strandgade.</p>
+</article>
+
+
+<article id="tof-008">
+  <h2>tof-008 — Én lang indstilling med mange kommaer</h2>
+  <p class="meta">split=train · planted=character-saw, comma-chain, mio-kr
+  · hop1 panes=2 · hop2 panes=2
+  · silver units=157 · pane0 share=0.51
+  · figure survival=0.14 · oracle ROUGE-L=0.09
+  <span class="flag">would truncate @128</span></p>
+  <h3>Hop 1 panes (Danish packing)</h3>
+  <div class="panes"><div class='row'><div>p00</div><div class="bar"><span style="width:98%"></span></div><div>451/460 · 33 sents</div></div><div class='row'><div>p01</div><div class="bar"><span style="width:24%"></span></div><div>112/460 · 8 sents · leftover</div></div></div>
+  <h3>ASCII atlas</h3>
+  <pre>packer=course_translate  budget=460  panes=2  saw_fragments=40  empty=0  over_budget=0  article=tof-008
+pane 00  [#######################################.]   451/460  leftover    9  sents 33
+pane 01  [##########..............................]   112/460  leftover  348  sents  8  UNDERFILLED
+
+packer=course_summary  budget=512  panes=2  saw_fragments=0  empty=0  over_budget=0  article=tof-008
+pane 00  [#################.......................]   220/512  leftover  292  sents  2
+pane 01  [#########################...............]   320/512  leftover  192  sents  2</pre>
+  <h3>Silver-sim (concatenated pane briefs, back to Danish)</h3>
+  <p class="silver">Havneudvalget bad onsdag forvaltningen om i samme indstilling at beskrive forvaltningen har gennemgået kajens bæreevne, uddybningen af sejlrenden i Gråfjord, flytningen af ismaskinerne fra Fiskerihallen til Pakhuset, en ny rampe ved Strandgade nr. 14, skiltningen ved Møllebakken, tilslutningen til cykelstien mod Østermarken, støjmålingerne ved Nørreholt Skole, tidsplanen for høringen der slutter den 12. november, overslaget på 18,4 mio. kr. med en reserve på 1,2 mio. kr., digelagets krav om at Gråfjord Dige ikke må svækkes, færgeselskabets ønske om fast kajplads kl. 06.15, fiskernes krav om kold rum i Pakhuset, bibliotekets midlertidige depot i kælderen under Kirkevej, skolebestyrelsens bekymring for lastbiler i morgentimen, en erstatningsrute for bus nr. 14 via Klintbro, belysning på Færgelejet Klintbro, et midlertidigt pakhus af træ indtil betonelementerne er støbt, aftalen med entreprenøren om dagbøder ved forsinkelse, borgmester Ellen Kraghs ønske om åbent samråd, formand Søren Vibes ønske om at holde anlægsperioden uden for turistsæsonen, desuden punkt 1 om kontrolmåling ved Svanedammen, desuden punkt 2 om kontrolmåling ved Svanedammen, desuden punkt 3 om kontrolmåling ved Svanedammen, desuden punkt 4 om kontrolmåling ved Svanedammen, desuden punkt 5 om kontrolmåling ved Svanedammen, desuden punkt 6 om kontrolmåling ved Svanedammen, desuden punkt 7 om kontrolmåling ved Svanedammen, desuden punkt 8 om kontrolmåling ved Svanedammen, desuden punkt 9 om kontrolmåling ved Svanedammen, desuden punkt 10 om kontrolmåling ved Svanedammen, desuden punkt 11 om kontrolmåling ved Svanedammen, desuden punkt 12 om kontrolmåling ved Svanedammen, desuden punkt 13 om kontrolmåling ved Svanedammen, desuden punkt 14 om kontrolmåling ved Svanedammen, desuden punkt 15 om kontrolmåling ved Svanedammen, desuden punkt 16 om kontrolmåling ved Svanedammen, desuden punkt 17 om kontrolmåling ved Svanedammen, før forslaget sendes i høring. 14, signage at Møllebakken, the link 14 via Klintbro, lighting at Færgelejet Klintbro, a temporary timber pakhus until the concrete elements are cast, the contractor agreement on delay penalties, Mayor Ellen Kragh&#x27;s wish for an open consultation, chair Søren Vibe&#x27;s wish to keep the works out of the tourist season, furthermore item 1 on control measurements at</p>
+  <h3>Oracle brief</h3>
+  <p class="silver">Havneudvalget vil have én samlet indstilling om kaj, sejlrender, pakhus, bus nr. 14 og Gråfjord Dige, før høringen. Overslaget er 18,4 mio. kr.</p>
+</article>
+
+
+<article id="tof-009">
+  <h2>tof-009 — Kort meddelelse om Pakhuset</h2>
+  <p class="meta">split=test · planted=single-pane
+  · hop1 panes=1 · hop2 panes=1
+  · silver units=58 · pane0 share=1.00
+  · figure survival=1.00 · oracle ROUGE-L=0.45
+  </p>
+  <h3>Hop 1 panes (Danish packing)</h3>
+  <div class="panes"><div class='row'><div>p00</div><div class="bar"><span style="width:11%"></span></div><div>52/460 · 2 sents · leftover</div></div></div>
+  <h3>ASCII atlas</h3>
+  <pre>packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-009
+pane 00  [#####...................................]    52/460  leftover  408  sents  2  UNDERFILLED
+
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-009
+pane 00  [#####...................................]    60/512  leftover  452  sents  2  UNDERFILLED</pre>
+  <h3>Silver-sim (concatenated pane briefs, back to Danish)</h3>
+  <p class="silver">Pakhuset på Strandgade holdes åbent torsdag kl. 18.30, hvor digelaget gennemgår pejlingerne ved Gråfjord Dige. Deltagelse er gratis, og kaffe sælges til 12 kr. til fordel for belysning ved Svanedammen.</p>
+  <h3>Oracle brief</h3>
+  <p class="silver">Pakhuset på Strandgade er åbent torsdag kl. 18.30 til digelagets møde.</p>
+</article>
+
+
+<article id="tof-010">
+  <h2>tof-010 — Protokol der ikke vil i ét vindue</h2>
+  <p class="meta">split=test · planted=empty-list-scar, over-budget-singleton
+  · hop1 panes=7 · hop2 panes=6
+  · silver units=470 · pane0 share=0.17
+  · figure survival=0.00 · oracle ROUGE-L=0.00
+  <span class="flag">would truncate @128</span></p>
+  <h3>Hop 1 panes (Danish packing)</h3>
+  <div class="panes"><div class='row'><div>p00</div><div class="bar"><span style="width:100%"></span></div><div>460/460 · 88 sents</div></div><div class='row'><div>p01</div><div class="bar"><span style="width:100%"></span></div><div>460/460 · 89 sents</div></div><div class='row'><div>p02</div><div class="bar"><span style="width:99%"></span></div><div>457/460 · 88 sents</div></div><div class='row'><div>p03</div><div class="bar"><span style="width:100%"></span></div><div>458/460 · 89 sents</div></div><div class='row'><div>p04</div><div class="bar"><span style="width:100%"></span></div><div>458/460 · 89 sents</div></div><div class='row'><div>p05</div><div class="bar"><span style="width:99%"></span></div><div>456/460 · 88 sents</div></div><div class='row'><div>p06</div><div class="bar"><span style="width:5%"></span></div><div>21/460 · 3 sents · leftover</div></div></div>
+  <h3>ASCII atlas</h3>
+  <pre>packer=course_translate  budget=460  panes=7  saw_fragments=534  empty=0  over_budget=0  article=tof-010
+pane 00  [########################################]   460/460  leftover    0  sents 88
+pane 01  [########################################]   460/460  leftover    0  sents 89
+pane 02  [########################################]   457/460  leftover    3  sents 88
+pane 03  [########################################]   458/460  leftover    2  sents 89
+pane 04  [########################################]   458/460  leftover    2  sents 89
+pane 05  [########################################]   456/460  leftover    4  sents 88
+pane 06  [##......................................]    21/460  leftover  439  sents  3  UNDERFILLED
+
+packer=course_summary  budget=512  panes=6  saw_fragments=534  empty=0  over_budget=0  article=tof-010
+pane 00  [########################################]   510/512  leftover    2  sents 101
+pane 01  [########################################]   510/512  leftover    2  sents 102
+pane 02  [########################################]   510/512  leftover    2  sents 102
+pane 03  [########################################]   510/512  leftover    2  sents 102
+pane 04  [########################################]   510/512  leftover    2  sents 102
+pane 05  [##########..............................]   133/512  leftover  379  sents 25  UNDERFILLED</pre>
+  <h3>Silver-sim (concatenated pane briefs, back to Danish)</h3>
+  <p class="silver">The packing house ledger lists crate 1 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 2 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 3 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 4 holds ice , rope , nets , ledgers , bolts , paint and twine , paint and twine , crate 18 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 19 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 20 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 21 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 22 paint and twine , crate 35 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 36 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 37 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 38 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 39 paint and twine , crate 52 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 53 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 54 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 55 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 56 paint and twine , crate 69 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 70 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 71 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 72 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 73 paint and twine , crate 86 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 87 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 88 holds ice , rope , nets , ledgers , bolts , paint and twine , crate 89 holds ice , rope , nets , ledgers , bolts , paint and twine before the night</p>
+  <h3>Oracle brief</h3>
+  <p class="silver">Pakhusets protokol opregner kasser med is og reb, før natholdet lukker porten.</p>
+</article>
+
+</main>
+</body>
+</html>

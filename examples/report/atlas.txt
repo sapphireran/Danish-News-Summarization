@@ -1,0 +1,64 @@
+packer=course_translate  budget=460  panes=2  saw_fragments=0  empty=0  over_budget=0  article=tof-001
+pane 00  [######################################..]   439/460  leftover   21  sents 10
+pane 01  [################################........]   363/460  leftover   97  sents  8
+packer=course_summary  budget=512  panes=2  saw_fragments=0  empty=0  over_budget=0  article=tof-001
+pane 00  [######################################..]   481/512  leftover   31  sents 16
+pane 01  [##############################..........]   383/512  leftover  129  sents 14
+
+packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-002
+pane 00  [###################.....................]   220/460  leftover  240  sents  7
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-002
+pane 00  [###################.....................]   242/512  leftover  270  sents 10
+
+packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-003
+pane 00  [###################################.....]   403/460  leftover   57  sents 12
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-003
+pane 00  [#################################.......]   420/512  leftover   92  sents 17
+
+packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-004
+pane 00  [###############.........................]   168/460  leftover  292  sents  6  UNDERFILLED
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-004
+pane 00  [##############..........................]   183/512  leftover  329  sents  7  UNDERFILLED
+
+packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-005
+pane 00  [################........................]   179/460  leftover  281  sents  5  UNDERFILLED
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-005
+pane 00  [################........................]   202/512  leftover  310  sents 11  UNDERFILLED
+
+packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-006
+pane 00  [###############.........................]   178/460  leftover  282  sents  4  UNDERFILLED
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-006
+pane 00  [################........................]   201/512  leftover  311  sents  7  UNDERFILLED
+
+packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-007
+pane 00  [##############..........................]   157/460  leftover  303  sents  5  UNDERFILLED
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-007
+pane 00  [#############...........................]   162/512  leftover  350  sents  6  UNDERFILLED
+
+packer=course_translate  budget=460  panes=2  saw_fragments=40  empty=0  over_budget=0  article=tof-008
+pane 00  [#######################################.]   451/460  leftover    9  sents 33
+pane 01  [##########..............................]   112/460  leftover  348  sents  8  UNDERFILLED
+packer=course_summary  budget=512  panes=2  saw_fragments=0  empty=0  over_budget=0  article=tof-008
+pane 00  [#################.......................]   220/512  leftover  292  sents  2
+pane 01  [#########################...............]   320/512  leftover  192  sents  2
+
+packer=course_translate  budget=460  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-009
+pane 00  [#####...................................]    52/460  leftover  408  sents  2  UNDERFILLED
+packer=course_summary  budget=512  panes=1  saw_fragments=0  empty=0  over_budget=0  article=tof-009
+pane 00  [#####...................................]    60/512  leftover  452  sents  2  UNDERFILLED
+
+packer=course_translate  budget=460  panes=7  saw_fragments=534  empty=0  over_budget=0  article=tof-010
+pane 00  [########################################]   460/460  leftover    0  sents 88
+pane 01  [########################################]   460/460  leftover    0  sents 89
+pane 02  [########################################]   457/460  leftover    3  sents 88
+pane 03  [########################################]   458/460  leftover    2  sents 89
+pane 04  [########################################]   458/460  leftover    2  sents 89
+pane 05  [########################################]   456/460  leftover    4  sents 88
+pane 06  [##......................................]    21/460  leftover  439  sents  3  UNDERFILLED
+packer=course_summary  budget=512  panes=6  saw_fragments=534  empty=0  over_budget=0  article=tof-010
+pane 00  [########################################]   510/512  leftover    2  sents 101
+pane 01  [########################################]   510/512  leftover    2  sents 102
+pane 02  [########################################]   510/512  leftover    2  sents 102
+pane 03  [########################################]   510/512  leftover    2  sents 102
+pane 04  [########################################]   510/512  leftover    2  sents 102
+pane 05  [##########..............................]   133/512  leftover  379  sents 25  UNDERFILLED

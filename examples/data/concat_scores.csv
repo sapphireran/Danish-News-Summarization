@@ -1,0 +1,11 @@
+id,n_panes,silver_units,would_truncate_at_128,truncated_units,pane0_share,echo_names,figure_survival,leftover_fill,figures_in_source,figures_in_silver
+tof-001,2,158,True,30,0.5063,Toftevig Havn,0.3684,0.748,2022;2026;1978;2023;DKK 18.4 million;DKK 3.2 million;DKK 0.9 million;7.40 a.m.;8.15 a.m.;7.30 p.m.;7.00 p.m.;no. 14;12 October;12 November;28 November;3 November;15 percent;22 percent;6 percent,1978;2023;DKK 18.4 million;7.30 p.m.;12 October;22 percent;6 percent
+tof-002,1,79,False,0,1.0,,0.25,0.4727,DKK 0.4 million;7.40 a.m.;8.15 a.m.;no. 14,no. 14
+tof-003,1,80,False,0,1.0,,0.4167,0.8203,2022;2023;DKK 3.2 million;DKK 0.8 million;6.00 a.m.;6.30 p.m.;no. 9;no. 14;3 October;3 November;12 percent;2 percent,2022;DKK 3.2 million;DKK 0.8 million;6.30 p.m.;3 October
+tof-004,1,80,False,0,1.0,,0.4286,0.3574,1.8 km;2023;7.00 p.m.;1 December;14 November;40 percent;2 percent,1.8 km;40 percent;2 percent
+tof-005,1,80,False,0,1.0,,0.5,0.3945,DKK 28;6.05 a.m.;6.15 a.m.;7.40 a.m.;4.50 p.m.;6.10 p.m.;no. 14;21 October,6.05 a.m.;6.15 a.m.;7.40 a.m.;21 October
+tof-006,1,77,False,0,1.0,,0.0,0.3926,10.00 a.m.;6.00 p.m.;1.00 p.m.;no. 9;12 December,
+tof-007,1,80,False,0,1.0,,0.8,0.3164,3.4 km;DKK 2.1 million;DKK 0.3 million;no. 14;12 November,3.4 km;DKK 2.1 million;DKK 0.3 million;12 November
+tof-008,2,157,True,29,0.5096,,0.1429,0.625,DKK 18.4 million;DKK 1.2 million;6.15 a.m.;7.30 p.m.;no. 14;12 November;12 October,no. 14
+tof-009,1,58,False,0,1.0,,1.0,0.1172,DKK 12;6.30 p.m.,DKK 12;6.30 p.m.
+tof-010,6,470,True,342,0.1702,,0.0,0.2598,,
