@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.env
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local experiment artifacts (not the committed example fixtures)
+models/
+*_ct2/
+large_model/
+small_model/
+mt5-summarize-*/
+translated_articles.csv
+summarized_file_*.csv
+labeled_dataset_*.csv
+10000_articles_without_linebreaks.csv
+datasets/*.csv
+!examples/data/*.csv
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

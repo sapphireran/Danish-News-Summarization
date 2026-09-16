@@ -1,0 +1,13 @@
+# Core runtime used by the original 2023 ITU pipeline scripts.
+# Pin loosely so a personal checkout still installs on current pip.
+torch>=2.0.0
+transformers>=4.30.0
+datasets>=2.14.0
+evaluate>=0.4.0
+ctranslate2>=3.16.0
+nltk>=3.8.1
+numpy>=1.24.0
+pandas>=2.0.0
+tqdm>=4.65.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0
