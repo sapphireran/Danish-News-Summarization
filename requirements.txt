@@ -1,0 +1,22 @@
+# Personal rerun list for the 2023 ITU course scripts.
+# Not a locked 2023 lab image. Pin versions locally if you need bit-identical
+# trainer behaviour.
+#
+# GPU scripts (translate / summary / finetune / eval):
+torch
+transformers
+datasets
+evaluate
+accelerate
+ctranslate2
+sentencepiece
+protobuf
+nltk
+pandas
+tqdm
+numpy
+rouge-score
+bert-score
+
+# Model-free examples and tests under examples/ and tests/ need the
+# standard library only (argparse, csv, unittest).

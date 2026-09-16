@@ -1,0 +1,26 @@
+# Local news dump and generated pipeline CSVs
+10000_articles_without_linebreaks.csv
+translated_articles.csv
+summarized_file_ml80_rp5.0.csv
+labeled_dataset_ml80_rp5.0.csv
+datasets/*.csv
+!examples/sample_data/*.csv
+
+# Converted translators and fine-tuned weights
+models/
+mt5-summarize-large/
+large_model/
+small_model/
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+.venv/
+venv/
+.env
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
