@@ -15,6 +15,7 @@ Start here:
 | [design-notes.md](design-notes.md) | Why the project is shaped this way, plus caveats |
 | [reproduction.md](reproduction.md) | Local directory layout and a practical runbook |
 | [script-map.md](script-map.md) | File-by-file map of the original course scripts |
+| [worked-example.md](worked-example.md) | One sample article (`dn-001`) through every CSV |
 
 Runnable, model-free walkthroughs live in [`examples/`](../examples/README.md).
 They use small original sample articles so the CSV contracts can be inspected

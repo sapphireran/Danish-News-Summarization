@@ -87,6 +87,7 @@ BERTScore on Nordjylland News.
 | [docs/design-notes.md](docs/design-notes.md) | Rationale and known issues |
 | [docs/reproduction.md](docs/reproduction.md) | Local runbook |
 | [docs/script-map.md](docs/script-map.md) | File-by-file map |
+| [docs/worked-example.md](docs/worked-example.md) | Article `dn-001` through every CSV |
 
 ## Model-free examples
 
