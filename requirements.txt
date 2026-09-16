@@ -1,0 +1,17 @@
+# Full reproduction stack for the 2023 ITU project scripts in the repo root.
+# Pin loosely: the original course environment used Transformers 4.x and
+# datasets 2.x. Newer majors rename several Trainer arguments.
+torch>=2.0,<3
+transformers>=4.30,<5
+datasets>=2.14,<3
+evaluate>=0.4
+accelerate>=0.20
+nltk>=3.8
+pandas>=1.5
+numpy>=1.23
+tqdm>=4.65
+ctranslate2>=3.16
+sentencepiece>=0.1.99
+protobuf>=3.20
+rouge-score>=0.1.2
+bert-score>=0.3.13
