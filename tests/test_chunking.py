@@ -53,6 +53,23 @@ def test_decimal_does_not_split() -> None:
     assert "12.5" in sentences[0]
 
 
+def test_danish_ordinal_date_stays_one_sentence() -> None:
+    text = (
+        "Ifølge kommunen bliver der holdt borgermøde i Nordkraft den 12. oktober "
+        "kl. 19. Kritikere mener, at tempoet er for højt."
+    )
+    sentences = split_sentences(text)
+    assert len(sentences) == 2
+    assert "12. oktober kl. 19." in sentences[0]
+    assert sentences[1].startswith("Kritikere")
+
+
+def test_harbour_plan_does_not_split_october_date() -> None:
+    sentences = split_sentences(by_id()["harbour-plan"]["article_text"])
+    assert not any(sentence.lower().startswith("oktober") for sentence in sentences)
+    assert any("12. oktober" in sentence for sentence in sentences)
+
+
 def test_runon_fixture_is_one_sentence() -> None:
     article = by_id()["harbour-runon"]
     sentences = split_sentences(article["article_text"])

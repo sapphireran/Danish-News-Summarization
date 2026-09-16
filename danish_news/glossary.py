@@ -52,7 +52,7 @@ PHRASE_PAIRS: tuple[tuple[str, str], ...] = (
     ("dvs.", "that is"),
     ("pga.", "because of"),
     ("hhv.", "respectively"),
-    ("kl.", "at"),
+    ("kl.", "o'clock"),
     ("nr.", "no."),
     ("ca.", "approximately"),
 )

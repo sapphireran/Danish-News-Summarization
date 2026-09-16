@@ -19,6 +19,12 @@ def test_glossary_translates_known_phrase() -> None:
     assert "city council" in out[0].lower()
 
 
+def test_glossary_does_not_map_english_at_to_kl() -> None:
+    backend = GlossaryBackend()
+    out = backend.translate_en_da(["The council adopted the plan at a meeting."])
+    assert "kl." not in out[0]
+
+
 def test_run_pivot_emits_all_stages() -> None:
     records = run_pivot(_raw_rows(), GlossaryBackend())
     assert len(records) == len(ARTICLES)

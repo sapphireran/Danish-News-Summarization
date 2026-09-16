@@ -57,8 +57,10 @@ the original splitter is neither a pure char cap nor a true token cap.
 `unit="words"` as the default for examples.
 
 NLTK `punkt` is also English-centric. Danish `f.eks.` / `mio. kr.` will
-over-segment unless abbreviations are protected. The CPU splitter
-maintains an explicit abbreviation list for that reason.
+over-segment unless abbreviations are protected. Dates add another trap:
+`den 12. oktober kl. 19` uses an ordinal period, not a sentence boundary.
+The CPU splitter protects those ordinals when the next word is
+lowercase, in addition to the abbreviation list.
 
 ## CTranslate2 converter vs. translate.py
 

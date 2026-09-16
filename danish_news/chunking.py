@@ -6,10 +6,11 @@ trained with a 512-token context, so a Danish news article has to be carved
 into windows that fit. Those scripts mix *character* counts with a *token*
 budget in a few places. This module keeps both units explicit.
 
-Danish news text is abbreviation-heavy (`f.eks.`, `bl.a.`, `mio. kr.`). A
-naive split on every period produces broken sentences and therefore broken
-translation windows. The splitter below protects a small, documented set of
-Danish abbreviations and decimal numbers before cutting on `.`, `!`, or `?`.
+Danish news text is abbreviation-heavy (`f.eks.`, `bl.a.`, `mio. kr.`)
+and date-heavy (`den 12. oktober`). A naive split on every period produces
+broken sentences and therefore broken translation windows. The splitter
+below protects a small, documented set of Danish abbreviations, decimal /
+thousand-separator points, and ordinal periods before a lowercase word.
 """
 
 from __future__ import annotations
@@ -70,6 +71,9 @@ DANISH_ABBREVIATIONS = frozenset(
 
 _SENTENCE_END = re.compile(r"([.!?])([\"»”’']?)(\s+|$)")
 _DECIMAL = re.compile(r"(?<=\d)\.(?=\d)")
+# Danish ordinals in dates: "den 12. oktober". Only protect when the next
+# word is lowercase; a capital after `12.` is treated as a real sentence.
+_ORDINAL = re.compile(r"(?<=\d)\.(?=\s+[a-zæøå])")
 _ELLIPSIS = re.compile(r"\.{2,}")
 _WHITESPACE = re.compile(r"\s+")
 _WORD = re.compile(r"[A-Za-zÆØÅæøå0-9]+(?:-[A-Za-zÆØÅæøå0-9]+)*|[.,;:!?]")
@@ -106,17 +110,18 @@ def split_sentences(text: str) -> list[str]:
 
     Protection order:
     1. Collapse runs of periods so ellipses do not become empty sentences.
-    2. Replace decimal points with a placeholder (`12.5` → `12∯5`).
-    3. Replace abbreviation periods with the same placeholder.
-    4. Cut on remaining `.!?` when followed by whitespace.
-    5. Restore placeholders.
+    2. Replace decimal points / thousand separators (`12.5`, `1.200`).
+    3. Replace Danish ordinal periods before a lowercase word (`12. oktober`).
+    4. Replace abbreviation periods with the same placeholder.
+    5. Cut on remaining `.!?` when followed by whitespace.
+    6. Restore placeholders.
     """
     if not text or not text.strip():
         return []
 
     prepared = _ELLIPSIS.sub("…", text.strip())
     prepared = _DECIMAL.sub("∯", prepared)
-
+    prepared = _ORDINAL.sub("∯", prepared)
     prepared = _protect_abbreviations(prepared)
 
     sentences: list[str] = []
