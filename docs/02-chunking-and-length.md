@@ -82,6 +82,8 @@ If s3 were 30 tokens, Step B would split it before packing.
 
 The demo script prints this kind of trace with real Danish sample articles and a **whitespace-approximate tokenizer** so you do not need `transformers` installed to study the control flow. Tests in `tests/test_text_chunking.py` lock the greedy rule down with exact counts.
 
+`examples/compare_budgets.py` runs the same article at 16, 40, and 460 to show the character-shredding regime, the sentence-pack regime, and the one-window production regime.
+
 ## Approximate tokenizer in the examples
 
 `examples/text_chunking.py` exposes:

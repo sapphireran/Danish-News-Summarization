@@ -1,0 +1,12 @@
+raw           rows= 8  cols=['id', 'article text']
+translated    rows= 8  cols=['id', 'body', 'translated']
+summaries_en  rows= 8  cols=['id', 'body', 'translated', 'summary']
+labeled_da    rows= 8  cols=['id', 'body', 'summary']
+split/train       rows= 5
+split/validation  rows= 2
+split/test        rows= 1
+
+alignment: all factory hops share 8 SYN-* ids
+split: train/validation/test partition the labeled set
+danish letters: present in raw bodies and Danish silver summaries
+ok

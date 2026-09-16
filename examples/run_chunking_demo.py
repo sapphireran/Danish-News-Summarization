@@ -98,10 +98,14 @@ def main(argv: list[str] | None = None) -> int:
             print(f"unknown id(s): {sorted(missing)}", file=sys.stderr)
             return 2
 
+    try:
+        csv_display = args.csv.resolve().relative_to(ROOT)
+    except ValueError:
+        csv_display = args.csv
     print(
         "Danish-News-Summarization chunking demo\n"
         "Tokenizer: whitespace words + 1 special token\n"
-        f"Articles: {args.csv}\n"
+        f"Articles: {csv_display}\n"
     )
     for row in rows:
         article = row["article text"]

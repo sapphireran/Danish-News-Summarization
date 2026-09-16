@@ -11,6 +11,7 @@ python -m pip install -r requirements-examples.txt
 python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab')"
 
 python examples/run_chunking_demo.py
+python examples/compare_budgets.py
 python examples/inspect_sample_dataset.py
 python examples/metrics_toy_eval.py
 python -m pytest tests/
@@ -24,6 +25,7 @@ python -m pytest tests/
 | --- | --- |
 | `text_chunking.py` | Packing algorithm from `translate.py` / `summary.py` |
 | `run_chunking_demo.py` | Prints pack traces for the sample articles |
+| `compare_budgets.py` | Same article at budgets 16 / 40 / 460 |
 | `inspect_sample_dataset.py` | Checks columns, `SYN-*` ids, split partition |
 | `metrics_toy_eval.py` | Unigram F1 + LCS on hand-written pairs |
 | `silver_label_walkthrough.md` | One article followed through every hop |
@@ -32,7 +34,7 @@ python -m pytest tests/
 | `data/sample_summaries_en.csv` | After a *hand-simulated* English summary hop |
 | `data/sample_labeled_da.csv` | After a *hand-simulated* en→da hop |
 | `data/sample_finetune_split/` | 5 / 2 / 1 partition of the labeled set |
-| `expected_outputs/` | Frozen stdout snippets for the demos |
+| `expected_outputs/` | Frozen stdout from the four CLIs; `tests/test_expected_outputs.py` diffs them |
 
 "Hand-simulated" means a person wrote the English and the back-translation to show the intended *shape* of factory output. They are not CTranslate2 hypotheses. That keeps the repo small and copyright-clean.
 

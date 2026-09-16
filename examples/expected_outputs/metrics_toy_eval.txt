@@ -1,0 +1,11 @@
+Toy overlap metrics (whitespace unigrams, not official ROUGE)
+
+name                        F1     LCS  lesson
+----------------------------------------------------------------------------------------
+exact_match              1.000   1.000  Upper bound: both token F1 and LCS ratio should be 1.0.
+close_paraphrase         0.632   0.600  Most content words overlap; function words differ.
+fact_swap_budget         0.889   0.889  12 vs 21 is a serious factual error. Overlap metrics barely move because only one token changed.
+entity_swap              0.889   0.889  Wrong town. Unigram F1 stays high; a reader would reject it.
+unrelated_fluent         0.111   0.111  Fluent Danish, zero topical overlap. Scores should collapse.
+
+Read the fact_swap_budget and entity_swap rows before trusting a ROUGE table.

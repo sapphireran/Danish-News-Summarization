@@ -26,6 +26,7 @@ python -m pip install -r requirements-examples.txt
 python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab')"
 python examples/inspect_sample_dataset.py
 python examples/run_chunking_demo.py --id SYN-001
+python examples/compare_budgets.py --id SYN-004
 python examples/metrics_toy_eval.py
 python -m pytest tests/
 ```

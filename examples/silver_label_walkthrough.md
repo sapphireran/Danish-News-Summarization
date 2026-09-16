@@ -56,7 +56,15 @@ Danish is idiomatic enough to train on, but notice the mild translationese:
 
 Klitsogn council passes a budget that moves **18 million kroner** to elder care and schools, delays the **Sønderby** bypass for two years, adds reading coaches, caps marina fees (Kystlisten), and is opposed by people who wanted the road. Mayor **Ingrid Holm** calls it a compromise. Effective **1 January**.
 
-That is ten sentences in the CSV. Under `--budget 16` the demo will emit several packs. In production (budget 460) it is still one or two T5 windows, but the *idea* is the same: later sentences can get their own mini-lead.
+That is ten sentences in the CSV. `python examples/compare_budgets.py --id SYN-004` shows three regimes:
+
+| budget | what you see |
+| --- | --- |
+| 16 | The first long sentence is *character-split* into fragments (`Byrådet i`, `Klitsogn`, …) because `split_long_sentence` compares a character running sum to the token cap. This is the 2023 unit mismatch, magnified. |
+| 40 | Pieces stay mostly sentence-sized; a few sentences share a pack. |
+| 460 | The whole article is one pack — what OPUS-MT would actually do for this short text. |
+
+The collage risk is about the 40-token *idea* applied to a 3,000-token feature, not about shredding SYN-004 at budget 16.
 
 ### Hand-shaped English summary
 
@@ -96,7 +104,7 @@ This internal test is **not** Nordjylland News. Quoting scores on SYN-008 as if 
 
 ## Exercises (no GPU)
 
-1. Run `python examples/run_chunking_demo.py --id SYN-004 --budget 16` and mark which facts land in pack 1 vs pack 3. Those facts would get separate English leads in the factory.
+1. Run `python examples/compare_budgets.py --id SYN-004` and contrast budget 16 (character shredding) with 40 (sentence packs) and 460 (one window). Then mark which facts would land in separate English leads if a *long* feature were packed at ~512 tokens.
 2. Run `python examples/metrics_toy_eval.py` and find `fact_swap_budget`. Change 18 to 81 in a copy of SYN-004's silver summary (do not commit it) and compute token F1 against the committed summary — it will stay high.
 3. Run `python examples/inspect_sample_dataset.py` after renaming column `body` to `article text` in `sample_labeled_da.csv` (again, do not commit). The inspector should refuse the file.
 
