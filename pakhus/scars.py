@@ -49,7 +49,7 @@ SCARS: tuple[Scar, ...] = (
     Scar(
         "nllb-prefix-da-en",
         "translate.py",
-        "target_prefixes = [[tgt_lang]]",
+        "target_prefixes = [[tgt_lang]",
         "substring",
         description="NLLB-style target_prefix on OPUS-MT.",
     ),
@@ -238,10 +238,8 @@ def _literal_assignments(source: str) -> dict[str, object]:
     for node in tree.body:
         if isinstance(node, ast.Assign) and len(node.targets) == 1:
             target = node.targets[0]
-            if isinstance(target, ast.Name) and isinstance(
-                node.value, (ast.Constant, ast.Str, ast.Num)
-            ):
-                out[target.id] = ast.literal_eval(node.value)
+            if isinstance(target, ast.Name) and isinstance(node.value, ast.Constant):
+                out[target.id] = node.value.value
     return out
 
 
