@@ -56,12 +56,25 @@ def looks_danish(text: str) -> bool:
     return any(ch in DANISH_MARKERS for ch in text)
 
 
+_ENGLISH_CUES = (" the ", " and ", " of ", " to ", " in ", " a ", " with ", " from ", " after ", " for ")
+
+
 def looks_english(text: str) -> bool:
-    """Cheap heuristic: English sample rows should not be stuffed with æ/ø/å."""
+    """Cheap heuristic for the hand-written English columns.
+
+    Danish toponyms (Nørrebro, Brøndby, Thyborøn) are expected in a
+    translation of Danish news. Refuse the row only when it lacks English
+    function words or is dense with æ/ø/å.
+    """
     if not text.strip():
         return False
+    padded = f" {text.lower()} "
+    cue_hits = sum(1 for cue in _ENGLISH_CUES if cue in padded)
     marker_hits = sum(ch in DANISH_MARKERS for ch in text)
-    return marker_hits <= 1
+    density = marker_hits / max(len(text), 1)
+    # Short match reports can carry two toponyms (Nordsjælland, Brøndby)
+    # and still be English. Long calques fail on missing function words.
+    return cue_hits >= 1 and (marker_hits <= 10 or density < 0.02)
 
 
 def row_is_complete(row: Mapping[str, object], stage: str) -> list[str]:

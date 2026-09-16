@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from examples.lib.extractive_summary import extractive_summary  # noqa: E402
+from examples.lib.schema import looks_danish, looks_english  # noqa: E402
 from examples.lib.sample_corpus import ARTICLES  # noqa: E402
 from examples.lib.text_chunking import (  # noqa: E402
     default_length_fn,
@@ -83,6 +84,14 @@ def test_extractive_is_prefix() -> None:
     _assert(len(clipped) <= 41, clipped)
 
 
+def test_language_heuristics_allow_toponyms() -> None:
+    english = "FC Nordsjælland beat Brøndby 2-1 in the rain with a late header."
+    danish = "FC Nordsjælland slog Brøndby 2-1 i regnvejr med et sent hovedstød."
+    _assert(looks_english(english), english)
+    _assert(not looks_english(danish), danish)
+    _assert(looks_danish(danish), danish)
+
+
 def main() -> None:
     tests = [
         test_pack_never_exceeds_budget,
@@ -91,6 +100,7 @@ def main() -> None:
         test_long_article_makes_several_small_packs,
         test_translate_back_mode_keeps_overlong,
         test_extractive_is_prefix,
+        test_language_heuristics_allow_toponyms,
     ]
     for fn in tests:
         fn()
