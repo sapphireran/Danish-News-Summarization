@@ -1,0 +1,25 @@
+# Generated models and course-scale corpora (never commit these)
+models/
+*_model/
+mt5-summarize-large/
+datasets/
+10000_articles_without_linebreaks.csv
+translated_articles.csv
+summarized_file_*.csv
+labeled_dataset_*.csv
+
+# Python
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store

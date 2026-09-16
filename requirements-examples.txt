@@ -1,0 +1,2 @@
+# Desk + tests. No torch, no transformers, no NLTK download.
+pytest>=7.4

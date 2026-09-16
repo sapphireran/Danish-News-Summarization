@@ -1,0 +1,90 @@
+Sejerø Tidende — manchet desk notes
+==================================
+
+Closed-world fiction. No scraped news. No course weights.
+Briefs: 8  train=5  validation=2  test=1
+
+Silver-label hops (hand-written stand-ins)
+------------------------------------------
+raw_da -> translated_en -> summarized_en -> labeled_da
+oracle_da is a human manchet written against the gold 5W1H card.
+
+Manchet coverage (first sentence vs WHO/WHAT/WHEN/WHERE)
+--------------------------------------------------------
+SEJ-001  silver=1.00 miss=-  oracle=0.75 miss=['who']
+SEJ-002  silver=0.75 miss=['who']  oracle=0.75 miss=['who']
+SEJ-003  silver=0.75 miss=['who']  oracle=0.75 miss=['who']
+SEJ-004  silver=0.75 miss=['who']  oracle=0.75 miss=['who']
+SEJ-005  silver=0.75 miss=['who']  oracle=0.50 miss=['who', 'what']
+SEJ-006  silver=0.50 miss=['who', 'where']  oracle=0.50 miss=['who', 'where']
+SEJ-007  silver=0.75 miss=['who']  oracle=0.75 miss=['who']
+SEJ-008  silver=0.50 miss=['who', 'when']  oracle=0.50 miss=['who', 'when']
+
+Slot recall and quote survival on the Danish silver label
+---------------------------------------------------------
+SEJ-001  slots=0.83 missing=['how']  quotes=0/1  connectives=0/3  R1-vs-oracle=0.55
+SEJ-002  slots=0.83 missing=['how']  quotes=0/1  connectives=0/2  R1-vs-oracle=0.58
+SEJ-003  slots=0.67 missing=['who', 'why']  quotes=0/1  connectives=0/2  R1-vs-oracle=0.50
+SEJ-004  slots=0.67 missing=['who', 'why']  quotes=0/1  connectives=0/3  R1-vs-oracle=0.53
+SEJ-005  slots=0.83 missing=['how']  quotes=0/1  connectives=0/3  R1-vs-oracle=0.60
+SEJ-006  slots=0.50 missing=['who', 'why', 'how']  quotes=0/1  connectives=0/1  R1-vs-oracle=0.63
+SEJ-007  slots=0.83 missing=['who']  quotes=0/1  connectives=1/2  R1-vs-oracle=0.56
+SEJ-008  slots=0.83 missing=['who']  quotes=0/1  connectives=0/2  R1-vs-oracle=0.58
+
+Planted errors: overlap can stay high while a slot dies
+------------------------------------------------------
+SEJ-001  who-swap: R1 0.93 vs silver  slot recall 0.83->0.67  missing=where,how  (Swaps the operator's route onto a different Kattegat town.)
+SEJ-001  when-drop: R1 0.69 vs silver  slot recall 0.83->0.67  missing=when,how  (Keeps the event but strips the manchet's time.)
+SEJ-002  why-flip: R1 0.79 vs silver  slot recall 0.83->0.67  missing=why,how  (Flips the enrolment argument from too few to too many.)
+SEJ-003  number-swap: R1 0.88 vs silver  slot recall 0.67->0.50  missing=who,what,why  (Drops an order of magnitude from the dredge volume.)
+SEJ-004  quote-loss: R1 1.00 vs silver  slot recall 0.67->0.67  missing=who,why  (Same silver text: the quote never entered the T5-like hop.)
+SEJ-005  polarity-flip: R1 0.82 vs silver  slot recall 0.83->0.50  missing=what,why,how  (Turns a winter cut into an expansion and flips the sales figure.)
+SEJ-006  when-drop: R1 0.92 vs silver  slot recall 0.50->0.33  missing=who,when,why,how  (Drops Saturday and 11 o'clock from the manchet.)
+SEJ-007  who-swap: R1 0.92 vs silver  slot recall 0.83->0.83  missing=who  (Replaces the warden with the mayor, who is not in this brief.)
+SEJ-008  why-flip: R1 0.77 vs silver  slot recall 0.83->0.50  missing=who,when,why  (Contradicts the ranger: the quote said the seals are not ill.)
+
+Length inflation Danish body -> English body
+-------------------------------------------
+SEJ-001  words 83->94 (x1.13)  subwords 141->141 (x1.00)
+SEJ-002  words 85->91 (x1.07)  subwords 141->139 (x0.99)
+SEJ-003  words 75->79 (x1.05)  subwords 114->122 (x1.07)
+SEJ-004  words 66->80 (x1.21)  subwords 109->126 (x1.16)
+SEJ-005  words 72->80 (x1.11)  subwords 123->120 (x0.98)
+SEJ-006  words 78->87 (x1.12)  subwords 122->131 (x1.07)
+SEJ-007  words 64->82 (x1.28)  subwords 110->120 (x1.09)
+SEJ-008  words 81->88 (x1.09)  subwords 120->120 (x1.00)
+
+Extractive lead-1 vs silver vs oracle (manchet coverage)
+-------------------------------------------------------
+SEJ-001  lead1=1.00  silver=1.00  oracle=0.75  slots lead1=0.83 lead2=0.83 silver=0.83
+SEJ-002  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67 lead2=0.67 silver=0.83
+SEJ-003  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67 lead2=0.83 silver=0.67
+SEJ-004  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.67 lead2=1.00 silver=0.67
+SEJ-005  lead1=0.75  silver=0.75  oracle=0.50  slots lead1=0.50 lead2=0.83 silver=0.83
+SEJ-006  lead1=0.50  silver=0.50  oracle=0.50  slots lead1=0.50 lead2=1.00 silver=0.50
+SEJ-007  lead1=0.75  silver=0.75  oracle=0.75  slots lead1=0.83 lead2=0.83 silver=0.83
+SEJ-008  lead1=0.50  silver=0.50  oracle=0.50  slots lead1=0.33 lead2=0.83 silver=0.83
+
+Stylebook gates on the Danish silver label
+-----------------------------------------
+SEJ-001  4/7  fail=['quote_or_speaker', 'figures_majority', 'contrast_men']
+SEJ-002  3/7  fail=['who_in_lede', 'quote_or_speaker', 'figures_majority', 'contrast_men']
+SEJ-003  4/7  fail=['who_in_lede', 'quote_or_speaker', 'contrast_men']
+SEJ-004  4/7  fail=['who_in_lede', 'quote_or_speaker', 'contrast_men']
+SEJ-005  4/7  fail=['who_in_lede', 'quote_or_speaker', 'contrast_men']
+SEJ-006  5/7  fail=['who_in_lede', 'quote_or_speaker']
+SEJ-007  5/7  fail=['who_in_lede', 'quote_or_speaker']
+SEJ-008  4/7  fail=['who_in_lede', 'quote_or_speaker', 'contrast_men']
+
+Packing windows on the Danish body
+----------------------------------
+SEJ-001  manchet-tight=7  manchet-lead=3  t5-summary-cap=2  forward-hop=1
+SEJ-002  manchet-tight=6  manchet-lead=3  t5-summary-cap=2  forward-hop=1
+SEJ-003  manchet-tight=5  manchet-lead=3  t5-summary-cap=2  forward-hop=1
+SEJ-004  manchet-tight=5  manchet-lead=2  t5-summary-cap=2  forward-hop=1
+SEJ-005  manchet-tight=5  manchet-lead=2  t5-summary-cap=2  forward-hop=1
+SEJ-006  manchet-tight=6  manchet-lead=2  t5-summary-cap=2  forward-hop=1
+SEJ-007  manchet-tight=5  manchet-lead=2  t5-summary-cap=2  forward-hop=1
+SEJ-008  manchet-tight=6  manchet-lead=3  t5-summary-cap=2  forward-hop=1
+
+See docs/07-workbook.md for the exercise list.

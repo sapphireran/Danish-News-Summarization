@@ -1,0 +1,8 @@
+SEJ-001 policy=manchet-tight budget=16 notion=words windows=7
+  [0] tokens=15 cut=True :: Sejerøfærgen til Havnsø bliver i eftermiddag aflyst på grund af kuling fra nordvest, oplyser havnefoged
+  [1] tokens=15 cut=True :: Karen Møller. Ifølge hende ventes næste afgang først kl. 18.30, hvis vinden lægger sig
+  [2] tokens=5 cut=True :: under 15 meter i sekundet.
+  [3] tokens=14 cut=False :: Omkring 40 passagerer venter i terminalen i Sejerby, og flere har møder på Sjælland.
+  [4] tokens=15 cut=True :: »Vi sætter en ekstra afgang ind i aften, hvis vejret tillader det,« siger Møller. Rederiet
+  [5] tokens=14 cut=True :: anbefaler, at rejsende følger SMS-varslingen, men understreger at cykler og varebiler først kommer
+  [6] tokens=5 cut=True :: med på den sene tur.

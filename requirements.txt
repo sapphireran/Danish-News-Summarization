@@ -1,0 +1,12 @@
+# Approximate stack for the 2023 root scripts. Not a lockfile from the course lab.
+nltk>=3.8
+numpy>=1.24
+pandas>=2.0
+torch>=2.0
+tqdm>=4.65
+transformers>=4.30
+ctranslate2>=3.16
+datasets>=2.14
+evaluate>=0.4
+sentencepiece>=0.1.99
+protobuf>=3.20

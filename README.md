@@ -1,47 +1,98 @@
 # Danish-News-Summarization
-ITU Advanced Natural Language Processing and Deep Learning (2023) final project: Danish summarization model based on a dataset of automatically generated labels
 
-## Workflow
+ITU Advanced Natural Language Processing and Deep Learning (2023) final
+project: a Danish summarizer trained on **silver labels**. Danish articles
+were translated to English, summarized with a news-tuned T5, and translated
+back to Danish. Those pairs fine-tuned mT5.
 
-### Step 1: Model Conversion
-First, run the Ctranslate_converter.py script to obtain the opus-mt-en-da and opus-mt-da-en models converted using Ctranslate2.
+The original course scripts still live at the repository root. They need
+GPU weights and a corpus that is not in git.
+
+This checkout also has a personal, download-free workbook — **Sejerø
+Tidende** — that replays the same hops on eight fictional island briefs
+and scores what a news manchet keeps: 5W1H slots, quotes, connectives,
+extractive ledes, and night-editor stylebook gates.
+
+## Course workflow (GPU, original scripts)
+
+### 1. Model conversion
+
+`Ctranslate_converter.py` writes CTranslate2 folders for OPUS. The
+committed file only converts `opus-mt-en-da`; uncomment the `da-en` lines
+before `translate.py`.
 
 ```
 python Ctranslate_converter.py
 ```
 
-### Step 2: Translate Dataset
-Use translate.py to translate the Danish news dataset into English.
+### 2. Translate the Danish dump to English
 
 ```
 python translate.py
 ```
 
-### Step 3: Extract Summary
-Next, run summary.py to extract summaries from the translated English news dataset.
+### 3. Summarize the English
 
 ```
 python summary.py
 ```
 
-### Step 4: Translate Back to Danish
-Use translate_back.py to translate the extracted summaries back into Danish, resulting in a tagged Danish news dataset.
+`summary.py` currently scores only `df[:10]`. Remove that slice for a
+full run. Output name: `summarized_file_ml80_rp5.0.csv`.
+
+### 4. Translate summaries back to Danish
 
 ```
 python translate_back.py
 ```
 
-### Fine-Tuning the Model
-Run finetune.py to fine-tune the mt5 model using the generated dataset.
+### 5. Fine-tune mT5
 
 ```
 python finetune.py
 ```
 
-### Model Evaluation
-Use use_model.py to observe the model's predictions, and use eval.py for model evaluation.
+Expects `datasets/train_dataset.csv`, `validation_dataset.csv`, and
+`test_dataset.csv` with columns `id`, `body`, `summary`.
+
+### 6. Inspect and evaluate
 
 ```
 python use_model.py
 python eval.py
 ```
+
+`eval.py` uses `alexandrainst/nordjylland-news-summarization`.
+`use_model.py` prints the ScandEval mini split. See
+[docs/06-course-scripts.md](docs/06-course-scripts.md) for the scars
+(NLLB prefixes on OPUS, `no_repeat_ngram_size=1` in the printer, and the
+deprecated `load_metric` call).
+
+## Personal workbook (CPU, no weights)
+
+```bash
+python3 -m pip install -r requirements-examples.txt
+PYTHONPATH=. python3 examples/run_desk.py
+PYTHONPATH=. python3 examples/walk_ferry.py
+PYTHONPATH=. python3 examples/inspect_manchet.py
+PYTHONPATH=. python3 examples/pack_lede.py --id SEJ-001 --policy manchet-tight
+PYTHONPATH=. python3 examples/score_slots.py --planted
+PYTHONPATH=. python3 examples/compare_baselines.py
+PYTHONPATH=. python3 examples/inspect_gates.py --id SEJ-001
+PYTHONPATH=. python3 examples/align_parallel.py --id SEJ-001
+PYTHONPATH=. python3 -m pytest tests/
+```
+
+| Path | Role |
+| --- | --- |
+| [`docs/`](docs/README.md) | Pipeline notes, manchet / slot / quote write-ups, workbook |
+| [`examples/`](examples/README.md) | CLI wrappers and course-shaped CSVs |
+| [`sejeroe/`](sejeroe/__init__.py) | Stdlib desk library |
+| [`tests/`](tests) | Sentence split, packing, slots, planted-error checks |
+
+The eight briefs (`SEJ-001`–`SEJ-008`) are fiction set on Sejerø. They
+are not a slice of the 10 000-article dump.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
