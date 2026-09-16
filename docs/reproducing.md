@@ -26,9 +26,9 @@ The original lab image, dump, and random seeds were not frozen.
 ## CPU path (contracts only)
 
 ```bash
-python -m unittest discover -s examples/tests -t examples
-python examples/scripts/validate_pipeline_config.py --all
-python examples/scripts/dry_run_pipeline.py \
+python3 -m unittest discover -s examples/tests -t examples
+python3 examples/scripts/validate_pipeline_config.py --all
+python3 examples/scripts/dry_run_pipeline.py \
   --input examples/data/sample_articles.csv \
   --output-dir /tmp/danish-news-dry-run \
   --split

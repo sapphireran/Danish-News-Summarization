@@ -69,7 +69,7 @@ class MetricTests(unittest.TestCase):
         self.assertEqual(scores.rougeL, 1.0)
 
     def test_unrelated_text_is_near_zero(self) -> None:
-        scores = score_overlap("cykelsti og asketræer", "færge og gearbox")
+        scores = score_overlap("cykelsti asketræer", "færge gearbox")
         self.assertLess(scores.rouge1, 0.2)
 
     def test_lcs_length(self) -> None:

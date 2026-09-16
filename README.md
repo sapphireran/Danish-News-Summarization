@@ -105,8 +105,10 @@ These two scripts load **different** Nordjylland News dumps. Read
 
 ## CPU workflow (examples, no models)
 
+Use `python3` if `python` is not on `PATH`.
+
 ```bash
-python -m unittest discover -s examples/tests -t examples
+python3 -m unittest discover -s examples/tests -t examples
 
 python examples/scripts/inspect_dataset.py --stage source \
   --path examples/data/sample_articles.csv

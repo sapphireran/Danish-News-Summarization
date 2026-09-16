@@ -47,7 +47,7 @@ and `dry_run_pipeline.py` do.
 
 ## Scripts
 
-Run them from the repository root.
+Run them from the repository root. Use `python3` if `python` is not on `PATH`.
 
 ```bash
 # Column contracts, empty cells, id uniqueness

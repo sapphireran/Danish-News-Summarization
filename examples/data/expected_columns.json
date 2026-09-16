@@ -49,7 +49,7 @@
     "nordjylland": {
       "file_hint": "Hugging Face test split",
       "required": ["input_text", "target_text"],
-      "optional": ["text_len", "summary_len"],
+      "optional": ["id", "text_len", "summary_len"],
       "languages": {
         "input_text": "da",
         "target_text": "da"
