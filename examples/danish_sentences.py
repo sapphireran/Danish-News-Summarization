@@ -100,6 +100,8 @@ def split_danish_sentences(text: str) -> list[str]:
 
     Empty input returns an empty list. Whitespace-only fragments are dropped.
     A final fragment without terminal punctuation is kept if it has content.
+    Years that really end a sentence (``...siden 2018. Næste sætning``) still
+    split; ordinal dates (``3. april``) and thousand separators do not.
     """
     if text is None:
         return []
