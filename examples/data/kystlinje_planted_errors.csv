@@ -1,0 +1,26 @@
+id,code,hop,source_span,drifted_span,note
+kz-01,DROP-NUM,summary,47,,The rook-endgame length never reaches the English summary.
+kz-01,DROP-PERSON,summary,Petra Skov,,The chair is named only in the source and the pivot.
+kz-02,HYPERBOLE,summary,86,nearly a hundred,Exact orchard count becomes a rounded English cliché.
+kz-02,DROP-NUM,summary,24,,Volunteer headcount is dropped in the summary hop.
+kz-03,HYPERBOLE,summary,18,about twenty,Headcount is rounded up in the English summary.
+kz-03,DROP-MONEY,summary,40 kr.,,Ticket price never leaves the source/pivot pair.
+kz-04,DROP-ORG,summary,Sandvig Glasværksted,,The workshop name is dropped once the summary hop starts.
+kz-04,DROP-NUM,summary,214,,The glass-piece count is too specific for the English summary.
+kz-05,NUM-DRIFT,silver,11,12,Back-translation bumps the survivor count by one.
+kz-06,DROP-PLACE,summary,Færgelejet,,The digitisation target disappears in the summary.
+kz-07,NAME-STUCK,pivot,Lærke Holm,Larke Holm,The æ is flattened in the English pivot and never restored.
+kz-07,NUM-DRIFT,summary,22,20,Hour count is rounded down and then frozen in the silver label.
+kz-07,DROP-COMPOUND,summary,blæretang,,The dialect-shifting seaweed word is the point of the piece.
+kz-08,YEAR-SHIFT,silver,1904,1914,A single digit flips in the back-translation.
+kz-09,DROP-NUM,summary,3,,The sleeping children leave the summary.
+kz-10,DROP-NUM,summary,9,,The bike count is the second number and is the one that drops.
+kz-10,DROP-MONEY,summary,200 kr.,,Annual dues disappear after the pivot.
+kz-11,DROP-PLACE,summary,Tørveengen,,The alder source is cut from the summary.
+kz-12,DROP-COMPOUND,summary,blæretang,seaweed / tang,The species name collapses to the generic weed word.
+kz-13,NUM-DRIFT,silver,63,60,The vane count is rounded to a tidy ten in Danish.
+kz-14,DROP-COMPOUND,silver,strikkeopskrift,opskrift,The compound is simplified after the round trip.
+kz-15,DROP-PLACE,summary,Lynghuset,,The jam-jar classroom is cut.
+kz-16,TERM-DRIFT,silver,håndpresse,trykpresse,Letterpress comes back as a generic printing press.
+kz-17,TIME-SHIFT,silver,23:40,23:30,The new departure slips ten minutes in the Danish silver label.
+kz-18,NUM-DRIFT,silver,7,otte,Seven performances become eight after the round trip.

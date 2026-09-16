@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kystlinje workbook — entity telescope</title>
+<style>
+  :root {
+    --ink: #1c2430;
+    --paper: #f4efe4;
+    --rule: #c9bba3;
+    --teal: #2c6f7a;
+    --clay: #b5523a;
+    --moss: #4d6b3c;
+    --kept: #d7ead4;
+    --lost: #f3d0c8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 17px/1.5 "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    color: var(--ink);
+    background: var(--paper);
+  }
+  header.hero, main { max-width: 920px; margin: 0 auto; padding: 2.2rem 1.4rem; }
+  header.hero h1 {
+    font-size: 2.2rem;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.4rem;
+  }
+  .kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.74rem;
+    color: var(--teal);
+    margin: 0 0 0.6rem;
+  }
+  .lede { font-size: 1.08rem; }
+  .tel-row { display: grid; grid-template-columns: 9.5rem 1fr 4.2rem; gap: 0.6rem; align-items: center; margin: 0.35rem 0; }
+  .tel-lab { font-size: 0.88rem; }
+  .tel-track { background: #e5dccb; height: 0.85rem; border-radius: 99px; overflow: hidden; }
+  .tel-bar { display: block; height: 100%; border-radius: 99px; background: var(--teal); }
+  .tel-bar.hop-source { background: var(--ink); }
+  .tel-bar.hop-silver { background: var(--clay); }
+  .tel-bar.hop-lead2 { background: var(--moss); }
+  .tel-n { font-variant-numeric: tabular-nums; font-size: 0.88rem; text-align: right; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin: 1rem 0 1.6rem; }
+  th, td { border-bottom: 1px solid var(--rule); text-align: left; padding: 0.35rem 0.4rem; }
+  th { font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .card {
+    background: #fffaf1;
+    border: 1px solid var(--rule);
+    padding: 1.2rem 1.3rem 1.4rem;
+    margin: 1.4rem 0;
+  }
+  .card h3 { margin: 0.15rem 0; }
+  .sub { margin: 0 0 0.6rem; color: #5c564b; font-style: italic; }
+  .rates { font-variant-numeric: tabular-nums; color: var(--teal); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 720px) { .two { grid-template-columns: 1fr; } .tel-row { grid-template-columns: 1fr; } }
+  mark.kept { background: var(--kept); padding: 0 0.12em; }
+  mark.lost { background: var(--lost); padding: 0 0.12em; text-decoration: underline wavy var(--clay); }
+  .body { font-size: 1.02rem; }
+  .planted { padding-left: 1.1rem; }
+  .note { color: #5c564b; }
+  a { color: var(--teal); }
+  footer { max-width: 920px; margin: 0 auto; padding: 0 1.4rem 3rem; color: #5c564b; font-size: 0.88rem; }
+</style>
+</head>
+<body>
+<header class="hero">
+  <p class="kicker">Personal coursebook · ITU ANLP/DL 2023</p>
+  <h1>Kystlinje entity telescope</h1>
+  <p class="lede">
+    Eighteen original magazine briefs about a fictional island chain.
+    Each row is a handwritten stand-in for Danish → English → English summary → Danish
+    silver label. Bars show what fraction of <em>source</em> entities still appear
+    after each hop. Nothing here is a 2023 mT5 score.
+  </p>
+  <p>Corpus size: 18 briefs. Worst end-to-end survival:
+     <a href="#kz-04">kz-04</a> (Otto Kvist sætter farve i Sandvig-vinduet) at 25.0%.</p>
+  <div class='tel-row'><span class='tel-lab'>Danish source</span><span class='tel-track'><span class='tel-bar hop-source' style='width:100%'></span></span><span class='tel-n'>100.0%</span></div>
+<div class='tel-row'><span class='tel-lab'>English pivot</span><span class='tel-track'><span class='tel-bar hop-pivot' style='width:88%'></span></span><span class='tel-n'>88.2%</span></div>
+<div class='tel-row'><span class='tel-lab'>English summary</span><span class='tel-track'><span class='tel-bar hop-summary' style='width:52%'></span></span><span class='tel-n'>52.0%</span></div>
+<div class='tel-row'><span class='tel-lab'>Danish silver</span><span class='tel-track'><span class='tel-bar hop-silver' style='width:54%'></span></span><span class='tel-n'>53.7%</span></div>
+<div class='tel-row'><span class='tel-lab'>Lead-2 control</span><span class='tel-track'><span class='tel-bar hop-lead2' style='width:70%'></span></span><span class='tel-n'>70.2%</span></div>
+  <h2>Average entities lost per hop</h2>
+  <table>
+    <thead><tr><th>Hop</th><th>Mean entities lost</th></tr></thead>
+    <tbody><tr><td>source → pivot</td><td>0.94</td></tr><tr><td>pivot → summary</td><td>2.89</td></tr><tr><td>summary → silver</td><td>0.22</td></tr></tbody>
+  </table>
+  <h2>Survival by entity kind (source → hop)</h2>
+  <table>
+    <thead><tr><th>Kind</th><th>Pivot</th><th>Summary</th><th>Silver</th><th>Lead-2</th></tr></thead>
+    <tbody><tr><td>person</td><td>100.0%</td><td>85.7%</td><td>85.7%</td><td>81.0%</td></tr><tr><td>place</td><td>100.0%</td><td>43.5%</td><td>45.7%</td><td>52.2%</td></tr><tr><td>org</td><td>65.2%</td><td>34.8%</td><td>52.2%</td><td>82.6%</td></tr><tr><td>number</td><td>92.3%</td><td>50.0%</td><td>42.3%</td><td>80.8%</td></tr><tr><td>year</td><td>100.0%</td><td>80.0%</td><td>60.0%</td><td>80.0%</td></tr><tr><td>time</td><td>100.0%</td><td>100.0%</td><td>66.7%</td><td>66.7%</td></tr><tr><td>money</td><td>100.0%</td><td>57.1%</td><td>57.1%</td><td>42.9%</td></tr><tr><td>measure</td><td>100.0%</td><td>100.0%</td><td>100.0%</td><td>100.0%</td></tr><tr><td>compound</td><td>0.0%</td><td>0.0%</td><td>28.6%</td><td>57.1%</td></tr></tbody>
+  </table>
+  <h2>Briefs</h2>
+  <ol><li><a href="#kz-01">kz-01 — Signe Brix vinder klubmesterskabet i toldkammeret</a></li><li><a href="#kz-02">kz-02 — Podedag i Æblehaven: 86 gamle sorter</a></li><li><a href="#kz-03">kz-03 — Hjelmhøj Messingorkester sejler til tre øer</a></li><li><a href="#kz-04">kz-04 — Otto Kvist sætter farve i Sandvig-vinduet</a></li><li><a href="#kz-05">kz-05 — Vintertælling: 11 af 14 stader lever</a></li><li><a href="#kz-06">kz-06 — Ravnskær viser ni stumfilm på håndsving</a></li><li><a href="#kz-07">kz-07 — Lærke Holm har 22 timer ø-mål på bånd</a></li><li><a href="#kz-08">kz-08 — Slusen fra 1904 lukker i seks uger</a></li><li><a href="#kz-09">kz-09 — Nattelæsning i Læsehuset: 40 vågne, 12 timer</a></li><li><a href="#kz-10">kz-10 — Saltøre Lastcykel: 27 medlemmer, 9 ladcykler</a></li><li><a href="#kz-11">kz-11 — Fogedtoften fyrer ovnen første gang i 11 år</a></li><li><a href="#kz-12">kz-12 — Mågeodde Tangkompagni tørrer 40 kg blæretang</a></li><li><a href="#kz-13">kz-13 — Vesterklit tæller 63 vejrfløje</a></li><li><a href="#kz-14">kz-14 — Klintø Strikkelav digitaliserer 400 opskrifter</a></li><li><a href="#kz-15">kz-15 — 16 elever fandt 31 arter i tidevandsbassinet</a></li><li><a href="#kz-16">kz-16 — Saltøre Tryk kører den sidste håndpresse</a></li><li><a href="#kz-17">kz-17 — Nattens færge rykker til kl. 23:40</a></li><li><a href="#kz-18">kz-18 — Teaterlauget spiller Tørvestykket syv gange</a></li></ol>
+</header>
+<main>
+
+<article class="card" id="kz-01">
+  <header>
+    <p class="kicker">kz-01 · chess, harbour</p>
+    <h3>Signe Brix vinder klubmesterskabet i toldkammeret</h3>
+    <p class="sub">Signe Brix wins the championship in the customs house</p>
+  </header>
+  <p class="rates">
+    pivot 75.0% ·
+    summary 41.7% ·
+    silver 50.0% ·
+    lead-2 41.7%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="kept">Klintø Skakklub</mark> afholdt lørdag sit årlige <mark class="kept">klubmesterskab</mark> i det gamle <mark class="kept">toldkammeret</mark> ved havnen. Seksten spillere mødte frem, og finalen stod mellem <mark class="kept">Signe Brix</mark> og <mark class="kept">Kaj Nygaard</mark>. Efter <mark class="lost">47</mark> træk i et <mark class="lost">tårnslutspil</mark> vandt Brix med sort, da Nygaard tabte et tempo på h-linjen. Klubben serverede <mark class="lost">æblemost</mark> fra <mark class="lost">Æblehaven</mark> og rugbrød fra <mark class="lost">Sognehavn Bageri</mark>. Formand <mark class="lost">Petra Skov</mark> sagde, at næste års turnering rykker til <mark class="kept">Hjelmhøj</mark>, hvis toldkammeret skal renoveres i vinter.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Signe Brix won the Klintø Chess Club championship against Kaj Nygaard. Sixteen players met in the old customs house, and next year the event may move to Hjelmhøj.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Signe Brix vandt klubmesterskabet i Klintø Skakklub mod Kaj Nygaard. Seksten spillere mødtes i det gamle toldkammeret, og næste år kan turneringen flytte til Hjelmhøj.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> toldkammeret, Klintø Skakklub, Kaj Nygaard, Signe Brix, Hjelmhøj, klubmesterskab</p>
+  <p><strong>Lost by silver:</strong> Sognehavn Bageri, Æblehaven, Petra Skov, 47, tårnslutspil, æblemost</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>DROP-NUM</code> on <em>summary</em>: 47 → ∅ <span class='note'>The rook-endgame length never reaches the English summary.</span></li><li><code>DROP-PERSON</code> on <em>summary</em>: Petra Skov → ∅ <span class='note'>The chair is named only in the source and the pivot.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-02">
+  <header>
+    <p class="kicker">kz-02 · orchard, weather</p>
+    <h3>Podedag i Æblehaven: 86 gamle sorter</h3>
+    <p class="sub">Grafting day at Æblehaven: 86 old varieties</p>
+  </header>
+  <p class="rates">
+    pivot 100.0% ·
+    summary 42.9% ·
+    silver 42.9% ·
+    lead-2 85.7%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="kept">Æblehaven</mark> ved <mark class="lost">Broagerstien</mark> holdt søndag podedag for tiende år i træk. <mark class="kept">Ida Fjaltring</mark> og <mark class="lost">24</mark> frivillige podede <mark class="lost">86</mark> træer med kviste fra sorter, som ellers kun findes i tre private haver på <mark class="lost">Saltøre</mark>. En sen haglbyge tvang selskabet ind i <mark class="kept">Lynghuset</mark>, hvor der blev skåret scion-ved og drukket solbærsaft. Fjaltring mindede om, at hver sort får et skilt med både det danske navn og det lokale ø-navn. Næste podedag er sat til første søndag i april.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Ida Fjaltring and volunteers grafted nearly a hundred old apple trees at Æblehaven after hail sent the group into Lynghuset.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Ida Fjaltring og frivillige podede næsten hundrede gamle æbletræer i Æblehaven, efter hagl jog selskabet ind i Lynghuset.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Æblehaven, Ida Fjaltring, Lynghuset</p>
+  <p><strong>Lost by silver:</strong> Broagerstien, Saltøre, 24, 86</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>HYPERBOLE</code> on <em>summary</em>: 86 → nearly a hundred <span class='note'>Exact orchard count becomes a rounded English cliché.</span></li><li><code>DROP-NUM</code> on <em>summary</em>: 24 → ∅ <span class='note'>Volunteer headcount is dropped in the summary hop.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-03">
+  <header>
+    <p class="kicker">kz-03 · music, ferry</p>
+    <h3>Hjelmhøj Messingorkester sejler til tre øer</h3>
+    <p class="sub">Hjelmhøj brass band sails to three islands</p>
+  </header>
+  <p class="rates">
+    pivot 100.0% ·
+    summary 60.0% ·
+    silver 60.0% ·
+    lead-2 70.0%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="kept">Hjelmhøj Messingorkester</mark> pakkede <mark class="lost">18</mark> musikere og to slædeharer ind i <mark class="kept">Grådyb</mark> Færgeselskabs morgenskib. Turnéen rammer <mark class="kept">Klintø</mark>, <mark class="kept">Saltøre</mark> og <mark class="kept">Mågeodde</mark> på tre aftener, og dirigent <mark class="kept">Bo Hjelm</mark> har skrevet et nyt åbningsstykke over færgeklokken i Grådyb. På Mågeodde spiller de i et udtørret bådskur, fordi forsamlingshuset stadig lugter af maling. Billetprisen er <mark class="lost">40 kr</mark>. for voksne og <mark class="lost">0 kr</mark>. for børn under <mark class="lost">12</mark>.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>About twenty musicians from the Hjelmhøj Brass Band will tour Klintø, Saltøre and Mågeodde. Conductor Bo Hjelm wrote a new piece on the Grådyb ferry bell.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Omkring tyve musikere fra Hjelmhøj Messingorkester turnerer Klintø, Saltøre og Mågeodde. Dirigent Bo Hjelm har skrevet et nyt stykke over færgeklokken i Grådyb.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Hjelmhøj Messingorkester, Mågeodde, Bo Hjelm, Saltøre, Grådyb, Klintø</p>
+  <p><strong>Lost by silver:</strong> 40 kr, 0 kr, 18, 12</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>HYPERBOLE</code> on <em>summary</em>: 18 → about twenty <span class='note'>Headcount is rounded up in the English summary.</span></li><li><code>DROP-MONEY</code> on <em>summary</em>: 40 kr. → ∅ <span class='note'>Ticket price never leaves the source/pivot pair.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-04">
+  <header>
+    <p class="kicker">kz-04 · craft, church</p>
+    <h3>Otto Kvist sætter farve i Sandvig-vinduet</h3>
+    <p class="sub">Otto Kvist puts colour back in the Sandvig window</p>
+  </header>
+  <p class="rates">
+    pivot 100.0% ·
+    summary 25.0% ·
+    silver 25.0% ·
+    lead-2 75.0%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="lost">Sandvig Glasværksted</mark> har i seks uger restaureret kirkens sydvindue, som stormen i januar knækkede på tværs. <mark class="kept">Otto Kvist</mark> skar <mark class="lost">214</mark> stykker nyt antikglas og beholdt kun den gamle blyramme omkring fiskemotivet. Kvist sagde til <mark class="lost">Kystlinje</mark>, at det sværeste var at ramme den grønlige kystfarve, som den lokale sandblæste flaske ellers giver. Vinduet sættes i igen torsdag, hvis mørtelen i karmen tørrer.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Otto Kvist recut the cracked church window after the January storm and will refit it on Thursday if the mortar dries.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Otto Kvist skar det knækkede kirkevindue om efter januarstormen og sætter det i igen torsdag, hvis mørtelen tørrer.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Otto Kvist</p>
+  <p><strong>Lost by silver:</strong> Sandvig Glasværksted, Kystlinje, 214</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>DROP-ORG</code> on <em>summary</em>: Sandvig Glasværksted → ∅ <span class='note'>The workshop name is dropped once the summary hop starts.</span></li><li><code>DROP-NUM</code> on <em>summary</em>: 214 → ∅ <span class='note'>The glass-piece count is too specific for the English summary.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-05">
+  <header>
+    <p class="kicker">kz-05 · bees, weather</p>
+    <h3>Vintertælling: 11 af 14 stader lever</h3>
+    <p class="sub">Winter count: 11 of 14 hives still live</p>
+  </header>
+  <p class="rates">
+    pivot 80.0% ·
+    summary 80.0% ·
+    silver 60.0% ·
+    lead-2 80.0%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="lost">Tørveengen Biavl</mark> åbnede lørdag staderne efter den lange februarfrost. <mark class="kept">Ellen Krag</mark> talte <mark class="lost">11</mark> levende familier ud af <mark class="kept">14</mark>. De tre døde stader stod yderst mod vest, hvor vinden fra <mark class="kept">Grådyb</mark> slår uhindret ind over engen. Krag flytter nu de overlevende længere ind mod pilehegnet og giver dem en kage af honning og rugmel. Foreningen sælger den første forårshonning først i juni, hvis april blomstrer.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Ellen Krag counted 11 of 14 bee colonies alive after the February frost at Tørveengen. The western hives took the Grådyb wind.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Ellen Krag talte 12 af 14 bifamilier i live efter februarfrosten på Tørveengen. De vestlige stader tog vinden fra Grådyb.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Ellen Krag, Grådyb, 14</p>
+  <p><strong>Lost by silver:</strong> Tørveengen Biavl, 11</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>NUM-DRIFT</code> on <em>silver</em>: 11 → 12 <span class='note'>Back-translation bumps the survivor count by one.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-06">
+  <header>
+    <p class="kicker">kz-06 · film, archive</p>
+    <h3>Ravnskær viser ni stumfilm på håndsving</h3>
+    <p class="sub">Ravnskær shows nine silent films on a hand crank</p>
+  </header>
+  <p class="rates">
+    pivot 87.5% ·
+    summary 37.5% ·
+    silver 50.0% ·
+    lead-2 62.5%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="kept">Ravnskær Filmlaug</mark> har fundet en håndsvingprojektor fra <mark class="kept">1928</mark> i et loftsrum over <mark class="lost">Lynghuset</mark>. I påskeugen viser lauget ni stumfilm med levende klaver, og <mark class="kept">Viggo Tranberg</mark> har stemt klaveret to gange, fordi fugt fra <mark class="lost">Grådyb</mark> slår på strengene. Der er <mark class="kept">60</mark> klapsæder i bådskuret, og alle ni aftener er allerede tegnet. Overskuddet går til at digitalisere laugets egne <mark class="lost">8</mark> mm-optagelser af <mark class="lost">Færgelejet</mark>.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Ravnskær Film Guild will show nine silent films on a 1928 hand-crank projector with live piano by Viggo Tranberg. The boatshed&#x27;s 60 seats are already full.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Ravnskær Filmlaug viser ni stumfilm på en håndsvingprojektor fra 1928 med levende klaver ved Viggo Tranberg. Bådskurets 60 pladser er allerede fyldt.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Ravnskær Filmlaug, Viggo Tranberg, 1928, 60</p>
+  <p><strong>Lost by silver:</strong> Færgelejet, Lynghuset, Grådyb, 8</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>DROP-PLACE</code> on <em>summary</em>: Færgelejet → ∅ <span class='note'>The digitisation target disappears in the summary.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-07">
+  <header>
+    <p class="kicker">kz-07 · dialect, archive</p>
+    <h3>Lærke Holm har 22 timer ø-mål på bånd</h3>
+    <p class="sub">Lærke Holm has 22 hours of island speech on tape</p>
+  </header>
+  <p class="rates">
+    pivot 88.9% ·
+    summary 33.3% ·
+    silver 33.3% ·
+    lead-2 55.6%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="kept">Lærke Holm</mark> har i vinter optaget <mark class="lost">22</mark> timer dialekt med tolv talere over <mark class="lost">80</mark> år på <mark class="kept">Hjelmøerne</mark>. Båndene ligger i <mark class="kept">Sognehavn Læsehus</mark>, og Holm transskriberer dem i et system, hvor hvert ø-ord får både lydskrift og en rigsdansk glose. Hun sagde, at ordet for '<mark class="lost">blæretang</mark>' skifter tre gange mellem <mark class="lost">Klintø</mark> og <mark class="lost">Mågeodde</mark>. Projektet slutter i august, når den sidste taler på <mark class="lost">Saltøre</mark> har sagt ja.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Larke Holm has taped 20 hours of dialect from older speakers on the Hjelm islands. The archive will live at the Sognehavn reading house.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Larke Holm har båndet 20 timer dialekt med ældre talere på Hjelmøerne. Arkivet skal bo i Sognehavn Læsehus.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Sognehavn Læsehus, Hjelmøerne, Lærke Holm</p>
+  <p><strong>Lost by silver:</strong> Mågeodde, Saltøre, Klintø, 22, 80, blæretang</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>NAME-STUCK</code> on <em>pivot</em>: Lærke Holm → Larke Holm <span class='note'>The æ is flattened in the English pivot and never restored.</span></li><li><code>NUM-DRIFT</code> on <em>summary</em>: 22 → 20 <span class='note'>Hour count is rounded down and then frozen in the silver label.</span></li><li><code>DROP-COMPOUND</code> on <em>summary</em>: blæretang → ∅ <span class='note'>The dialect-shifting seaweed word is the point of the piece.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-08">
+  <header>
+    <p class="kicker">kz-08 · infrastructure, harbour</p>
+    <h3>Slusen fra 1904 lukker i seks uger</h3>
+    <p class="sub">The 1904 lock closes for six weeks</p>
+  </header>
+  <p class="rates">
+    pivot 100.0% ·
+    summary 83.3% ·
+    silver 66.7% ·
+    lead-2 50.0%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body">Kanalens sluse ved <mark class="kept">Fogedtoften</mark>, bygget i <mark class="lost">1904</mark>, lukker i seks uger fra mandag. <mark class="kept">Troels Dam</mark> fra øernes lille entreprenørlaug skifter de sidste egetræsbjælker, som har stået i saltvand siden tresserne. Fiskere fra <mark class="kept">Sognehavn</mark> må i perioden lægge til ved <mark class="kept">Færgelejet</mark> i stedet. Dam sagde, at slusen kan åbne før tid, hvis tømmerværket i <mark class="lost">Hjelmhøj</mark> leverer en uge tidligere end lovet.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>The 1904 canal lock at Fogedtoften will close for six weeks while Troels Dam replaces the oak beams. Sognehavn boats should use the ferry berth.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Kanalens sluse ved Fogedtoften fra 1914 lukker i seks uger, mens Troels Dam skifter egetræsbjælkerne. Sognehavns både skal bruge Færgelejet.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Færgelejet, Fogedtoften, Troels Dam, Sognehavn</p>
+  <p><strong>Lost by silver:</strong> Hjelmhøj, 1904</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>YEAR-SHIFT</code> on <em>silver</em>: 1904 → 1914 <span class='note'>A single digit flips in the back-translation.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-09">
+  <header>
+    <p class="kicker">kz-09 · books, night</p>
+    <h3>Nattelæsning i Læsehuset: 40 vågne, 12 timer</h3>
+    <p class="sub">Overnight reading at the reading house: 40 awake, 12 hours</p>
+  </header>
+  <p class="rates">
+    pivot 83.3% ·
+    summary 50.0% ·
+    silver 50.0% ·
+    lead-2 50.0%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="kept">Sognehavn Læsehus</mark> holdt nattelæsning fra solnedgang til solopgang. <mark class="lost">40</mark> mennesker blev, og <mark class="kept">12</mark> timer gik med højtlæsning af Mira Holsts ø-roman, te og kold ostemad. <mark class="kept">Astrid Mose</mark> læste det kapitel, hvor færgen ikke kommer, og <mark class="lost">3</mark> børn faldt i søvn under vinduet. Overskuddet fra kaffeordningen går til nye læselamper, fordi de gamle rørpærer summer, når <mark class="lost">Grådyb</mark>-vinden tager i huset.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Forty people spent 12 hours at Sognehavn reading house hearing Mira Holst&#x27;s island novel. Astrid Mose read the chapter about a missed ferry.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Fyrre mennesker brugte 12 timer i Sognehavn Læsehus på Mira Holsts ø-roman. Astrid Mose læste kapitlet om en færge, der udebliver.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Sognehavn Læsehus, Astrid Mose, 12</p>
+  <p><strong>Lost by silver:</strong> Grådyb, 40, 3</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>DROP-NUM</code> on <em>summary</em>: 3 → ∅ <span class='note'>The sleeping children leave the summary.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-10">
+  <header>
+    <p class="kicker">kz-10 · bikes, ferry</p>
+    <h3>Saltøre Lastcykel: 27 medlemmer, 9 ladcykler</h3>
+    <p class="sub">Saltøre cargo bikes: 27 members, 9 bikes</p>
+  </header>
+  <p class="rates">
+    pivot 87.5% ·
+    summary 50.0% ·
+    silver 50.0% ·
+    lead-2 62.5%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="kept">Saltøre Lastcykel</mark> har nu <mark class="kept">27</mark> medlemmer og <mark class="lost">9</mark> ladcykler, der står i et skur ved <mark class="lost">Færgelejet</mark>. <mark class="kept">Esben Kilde</mark> sagde, at den niende cykel er en ombygget postcykel med trækasse til mælkespande. Co-opet kører brød fra <mark class="lost">Sognehavn Bageri</mark> til <mark class="kept">Mågeodde</mark> to gange om ugen, når færgen ellers kun tager personbiler. Kontingentet er <mark class="lost">200 kr</mark>. om året, og der er venteliste på fire husstande.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>The Saltøre cargo-bike cooperative has grown to 27 members. Esben Kilde said they now haul bakery bread to Mågeodde when the ferry is car-only.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Saltøre Lastcykel er vokset til 27 medlemmer. Esben Kilde sagde, at de nu kører bagerbrød til Mågeodde, når færgen kun tager biler.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Saltøre Lastcykel, Esben Kilde, Mågeodde, 27</p>
+  <p><strong>Lost by silver:</strong> Sognehavn Bageri, Færgelejet, 200 kr, 9</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>DROP-NUM</code> on <em>summary</em>: 9 → ∅ <span class='note'>The bike count is the second number and is the one that drops.</span></li><li><code>DROP-MONEY</code> on <em>summary</em>: 200 kr. → ∅ <span class='note'>Annual dues disappear after the pivot.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-11">
+  <header>
+    <p class="kicker">kz-11 · pottery, fire</p>
+    <h3>Fogedtoften fyrer ovnen første gang i 11 år</h3>
+    <p class="sub">Fogedtoften fires the kiln for the first time in 11 years</p>
+  </header>
+  <p class="rates">
+    pivot 100.0% ·
+    summary 50.0% ·
+    silver 50.0% ·
+    lead-2 75.0%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="lost">Fogedtoften Keramik</mark> har tændt den store træovn for første gang i <mark class="kept">11</mark> år. <mark class="kept">Katrine Blå</mark> stablede <mark class="kept">140</mark> krukker og tre lange fade i kammeret og fyrede i <mark class="kept">18</mark> timer med tørret elletræ fra <mark class="lost">Tørveengen</mark>. Naboerne i <mark class="lost">Hjelmhøj</mark> kunne se røgen over pilehegnet fra <mark class="lost">Broagerstien</mark>. Blå åbner værkstedet for salg lørdag, men kun de krukker, der ikke sprang i den sidste nattevagt.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Katrine Blå fired the Fogedtoften kiln for 18 hours after 11 years asleep. 140 jars went in; sales start Saturday.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Katrine Blå fyrer Fogedtoften-ovnen i 18 timer efter 11 års pause. 140 krukker kom i; salget begynder lørdag.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Katrine Blå, 11, 140, 18</p>
+  <p><strong>Lost by silver:</strong> Fogedtoften Keramik, Broagerstien, Tørveengen, Hjelmhøj</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>DROP-PLACE</code> on <em>summary</em>: Tørveengen → ∅ <span class='note'>The alder source is cut from the summary.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-12">
+  <header>
+    <p class="kicker">kz-12 · food, seaweed</p>
+    <h3>Mågeodde Tangkompagni tørrer 40 kg blæretang</h3>
+    <p class="sub">Mågeodde seaweed company dries 40 kg of bladderwrack</p>
+  </header>
+  <p class="rates">
+    pivot 77.8% ·
+    summary 44.4% ·
+    silver 44.4% ·
+    lead-2 77.8%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="lost">Mågeodde Tangkompagni</mark> har tørret <mark class="kept">40 kg</mark> <mark class="lost">blæretang</mark> på riste over <mark class="lost">Færgelejet</mark>. <mark class="kept">Niels Ørum</mark> skærer tangen i strimler, rister den med rugmel og sælger den i poser til <mark class="kept">35 kr</mark>. i <mark class="kept">Sognehavn Bageri</mark>. Han sagde, at årets første skæring smagte mindre salt end sidste oktober, fordi <mark class="lost">Grådyb</mark> har været usædvanlig stille. En prøvepose sendes til <mark class="lost">Hjelmhøj</mark> Skole, hvis lærerne vil bruge den i biologi.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Niels Ørum dried 40 kg of seaweed at Mågeodde and will sell toasted strips at Sognehavn Bakery for 35 kr.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Niels Ørum tørrede 40 kilo tang ved Mågeodde og sælger ristede strimler i Sognehavn Bageri for 35 kr.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Sognehavn Bageri, Niels Ørum, 35 kr, 40 kg</p>
+  <p><strong>Lost by silver:</strong> Mågeodde Tangkompagni, Færgelejet, Hjelmhøj, Grådyb, blæretang</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>DROP-COMPOUND</code> on <em>summary</em>: blæretang → seaweed / tang <span class='note'>The species name collapses to the generic weed word.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-13">
+  <header>
+    <p class="kicker">kz-13 · museum, wind</p>
+    <h3>Vesterklit tæller 63 vejrfløje</h3>
+    <p class="sub">Vesterklit counts 63 weather vanes</p>
+  </header>
+  <p class="rates">
+    pivot 87.5% ·
+    summary 75.0% ·
+    silver 75.0% ·
+    lead-2 87.5%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="kept">Vesterklit Vejrfløjemuseum</mark> har hængt <mark class="lost">63</mark> <mark class="kept">vejrfløje</mark> op i den nye lade. <mark class="kept">Rune Holst</mark> fandt den ældste, en kobberhane fra <mark class="kept">1881</mark>, under gulvet i <mark class="kept">toldkammeret</mark> i <mark class="kept">Klintø</mark>. Udstillingen åbner søndag, og børnene må dreje tre af fløjene med et håndsving. Holst vil ikke låne hanen ud til <mark class="lost">Hjelmhøj</mark> Messingorkesters plakat, fordi patinaen smitter af.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Vesterklit Weather-Vane Museum opens Sunday with 63 vanes. Rune Holst found an 1881 copper rooster under the Klintø customs house.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Vesterklit Vejrfløjemuseum åbner søndag med 60 vejrfløje. Rune Holst fandt en kobberhane fra 1881 under toldkammeret i Klintø.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Vesterklit Vejrfløjemuseum, toldkammeret, Rune Holst, Klintø, 1881, vejrfløje</p>
+  <p><strong>Lost by silver:</strong> Hjelmhøj, 63</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>NUM-DRIFT</code> on <em>silver</em>: 63 → 60 <span class='note'>The vane count is rounded to a tidy ten in Danish.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-14">
+  <header>
+    <p class="kicker">kz-14 · textiles, archive</p>
+    <h3>Klintø Strikkelav digitaliserer 400 opskrifter</h3>
+    <p class="sub">Klintø knitting guild digitises 400 patterns</p>
+  </header>
+  <p class="rates">
+    pivot 75.0% ·
+    summary 50.0% ·
+    silver 75.0% ·
+    lead-2 100.0%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="kept">Klintø Strikkelav</mark> har skannet <mark class="kept">400</mark> håndskrevne strikkeopskrifter fra æsker, der stod i <mark class="lost">Sognehavn Læsehus</mark>. <mark class="kept">Petra Skov</mark> sagde, at den ældste seddel er en vanteropskrift med ø-uld og et hulmønster, som kun tre nulevende strikere kan læse. Filerne lægges frit online, men de fysiske sedler bliver i læsehuset. Lauget holder rettevagt hver torsdag, hvis nogen vil prøve et mønster med levende hjælp.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Klintø Knitting Guild put 400 handwritten patterns online. Petra Skov said the oldest mitten chart is readable by only three knitters.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Klintø Strikkelav har lagt 400 håndskrevne opskrifter online. Petra Skov sagde, at det ældste vantermønster kun kan læses af tre strikere.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Klintø Strikkelav, Petra Skov, 400</p>
+  <p><strong>Lost by silver:</strong> Sognehavn Læsehus</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>DROP-COMPOUND</code> on <em>silver</em>: strikkeopskrift → opskrift <span class='note'>The compound is simplified after the round trip.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-15">
+  <header>
+    <p class="kicker">kz-15 · school, biology</p>
+    <h3>16 elever fandt 31 arter i tidevandsbassinet</h3>
+    <p class="sub">16 pupils found 31 species in the tide pool</p>
+  </header>
+  <p class="rates">
+    pivot 100.0% ·
+    summary 62.5% ·
+    silver 62.5% ·
+    lead-2 75.0%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="lost">Hjelmhøj</mark> Skoles biologihold vadede i tidevandsbassinet ved <mark class="kept">Mågeodde</mark> med <mark class="kept">Ida Fjaltring</mark>. <mark class="kept">16</mark> elever fandt <mark class="kept">31</mark> arter, heriblandt to nøgne snegle, som Fjaltring ikke havde set på øen siden <mark class="kept">2019</mark>. De tog vand med hjem i syltetøjsglas og satte dem i vindueskarmen i <mark class="lost">Lynghuset</mark>. Næste tur går til <mark class="lost">Saltøre</mark>, hvis vestenvinden ikke gør bassinet uigennemskueligt.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Ida Fjaltring took 16 pupils to the Mågeodde tide pool, where they logged 31 species, including nudibranchs last seen in 2019.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Ida Fjaltring tog 16 elever til tidevandsbassinet ved Mågeodde, hvor de noterede 31 arter, heriblandt nøgensnegle sidst set i 2019.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Ida Fjaltring, Mågeodde, 2019, 16, 31</p>
+  <p><strong>Lost by silver:</strong> Lynghuset, Hjelmhøj, Saltøre</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>DROP-PLACE</code> on <em>summary</em>: Lynghuset → ∅ <span class='note'>The jam-jar classroom is cut.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-16">
+  <header>
+    <p class="kicker">kz-16 · print, harbour</p>
+    <h3>Saltøre Tryk kører den sidste håndpresse</h3>
+    <p class="sub">Saltøre Press runs the last letterpress</p>
+  </header>
+  <p class="rates">
+    pivot 77.8% ·
+    summary 55.6% ·
+    silver 66.7% ·
+    lead-2 88.9%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="lost">Saltøre Tryk</mark> er det sidste sted på <mark class="kept">Hjelmøerne</mark> med en kørende <mark class="lost">håndpresse</mark>. <mark class="kept">Viggo Tranberg</mark> trykte <mark class="kept">300</mark> postkort med <mark class="kept">Færgelejet</mark> i sort og et enkelt rødt fyr, og kortene sælges i <mark class="kept">Sognehavn Bageri</mark> til <mark class="kept">15 kr</mark>. Pressen kræver to personer, når valsen skal skubbes, så skoleelever fra <mark class="lost">Hjelmhøj</mark> må hjælpe om onsdagen. Tranberg sagde, at reservedelene kommer fra en ophugget presse i Esbjerg, og at han har tre år tilbage af gummidugene.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Viggo Tranberg printed 300 ferry-berth postcards on the last letterpress on the Hjelm islands. They sell at Sognehavn Bakery for 15 kr.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Viggo Tranberg trykte 300 postkort af Færgelejet på den sidste trykpresse på Hjelmøerne. De sælges i Sognehavn Bageri for 15 kr.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Hjelmøerne, Sognehavn Bageri, Færgelejet, Viggo Tranberg, 15 kr, 300</p>
+  <p><strong>Lost by silver:</strong> Saltøre Tryk, Hjelmhøj, håndpresse</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>TERM-DRIFT</code> on <em>silver</em>: håndpresse → trykpresse <span class='note'>Letterpress comes back as a generic printing press.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-17">
+  <header>
+    <p class="kicker">kz-17 · ferry, night</p>
+    <h3>Nattens færge rykker til kl. 23:40</h3>
+    <p class="sub">The night ferry moves to 23:40</p>
+  </header>
+  <p class="rates">
+    pivot 90.0% ·
+    summary 50.0% ·
+    silver 50.0% ·
+    lead-2 60.0%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="kept">Grådyb Færgeselskab</mark> rykker sidste afgang fra <mark class="kept">Hjelmhøj</mark> til kl. <mark class="lost">23:40</mark> fra næste mandag. Den gamle tid var <mark class="kept">22:10</mark>, og fiskere fra <mark class="lost">Sognehavn</mark> har klaget over at ramme lukket bageri. <mark class="lost">Bo Hjelm</mark> sagde, at den senere tur også hjælper <mark class="lost">Hjelmhøj Messingorkester</mark> hjem efter koncerter på <mark class="lost">Saltøre</mark>. Billetprisen om natten stiger med <mark class="kept">10 kr</mark>., og der sælges ikke cykelpladser efter <mark class="kept">23:00</mark>.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>The last Grådyb ferry from Hjelmhøj will leave at 23:40 instead of 22:10. Night tickets rise by 10 kr., and bikes are barred after 23:00.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Den sidste færge fra Hjelmhøj i Grådyb Færgeselskab rykker til kl. 23:30 i stedet for 22:10. Natbilletter stiger med 10 kr., og cykler nægtes efter 23:00.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Grådyb Færgeselskab, Hjelmhøj, 22:10, 23:00, 10 kr</p>
+  <p><strong>Lost by silver:</strong> Hjelmhøj Messingorkester, Sognehavn, Bo Hjelm, Saltøre, 23:40</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>TIME-SHIFT</code> on <em>silver</em>: 23:40 → 23:30 <span class='note'>The new departure slips ten minutes in the Danish silver label.</span></li></ul>
+</article>
+
+
+<article class="card" id="kz-18">
+  <header>
+    <p class="kicker">kz-18 · theatre, peat</p>
+    <h3>Teaterlauget spiller Tørvestykket syv gange</h3>
+    <p class="sub">The theatre guild plays The Peat Play seven times</p>
+  </header>
+  <p class="rates">
+    pivot 77.8% ·
+    summary 44.4% ·
+    silver 55.6% ·
+    lead-2 66.7%
+  </p>
+  <h4>Source with silver survival</h4>
+  <p class="body"><mark class="kept">Hjelmhøj Teaterlaug</mark> sætter <mark class="kept">Tørvestykket</mark> op i laden ved <mark class="kept">Tørveengen</mark>. Der er <mark class="lost">7</mark> forestillinger, og <mark class="kept">Katrine Blå</mark> har bygget scenen af de samme ellebrædder, som <mark class="lost">Fogedtoften Keramik</mark> brugte til ovnens skærme. Stykket følger tre tørveskærere i <mark class="lost">1922</mark>, og <mark class="lost">Mira Holst</mark> har lånt en replik fra sin ø-roman. Alle syv aftener koster <mark class="kept">75 kr</mark>., og overskuddet går til at tørre laden inden vinter.</p>
+  <div class="two">
+    <section>
+      <h4>English summary</h4>
+      <p>Hjelmhøj Theatre Guild will play The Peat Play seven times in the Tørveengen barn. Katrine Blå built the set; tickets are 75 kr.</p>
+    </section>
+    <section>
+      <h4>Danish silver label</h4>
+      <p>Hjelmhøj Teaterlaug spiller Tørvestykket otte gange i laden ved Tørveengen. Katrine Blå har bygget scenen; billetter koster 75 kr.</p>
+    </section>
+  </div>
+  <p><strong>Kept in silver:</strong> Hjelmhøj Teaterlaug, Tørvestykket, Katrine Blå, Tørveengen, 75 kr</p>
+  <p><strong>Lost by silver:</strong> Fogedtoften Keramik, Mira Holst, 1922, 7</p>
+  <h4>Planted scars</h4>
+  <ul class="planted"><li><code>NUM-DRIFT</code> on <em>silver</em>: 7 → otte <span class='note'>Seven performances become eight after the round trip.</span></li></ul>
+</article>
+
+</main>
+<footer>
+  Fiction only. Not the private 10k dump, not Nordjylland-News copy, not employer code.
+  Rebuild with <code>python3 -m kystlinje report</code>.
+</footer>
+</body>
+</html>
