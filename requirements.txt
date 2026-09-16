@@ -1,0 +1,19 @@
+# Runtime stack used by the 2023 ITU course scripts.
+# Pin loosely: the original project did not ship a lockfile.
+# Install a CUDA build of torch that matches your driver when training.
+
+torch>=2.0.0
+transformers>=4.30.0
+datasets>=2.14.0
+evaluate>=0.4.0
+nltk>=3.8.1
+pandas>=2.0.0
+numpy>=1.24.0
+ctranslate2>=3.16.0
+tqdm>=4.65.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+accelerate>=0.21.0
+rouge-score>=0.1.2
+bert-score>=0.3.13
+sacrebleu>=2.3.0
