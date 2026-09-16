@@ -37,6 +37,7 @@ to reuse in 2023 than training a Danish summarizer from scratch.
 | [evaluation.md](evaluation.md) | ROUGE, BERTScore, and the two inference scripts |
 | [troubleshooting.md](troubleshooting.md) | Known bugs, version drift, and recovery steps |
 | [design-notes.md](design-notes.md) | Why pivot-language silver labels, and what I would change |
+| [reproducing.md](reproducing.md) | GPU checklist vs the CPU-only example path |
 
 Runnable stand-ins that do **not** require GPUs or Hugging Face downloads live
 in [`../examples/`](../examples/README.md).
