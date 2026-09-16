@@ -1,0 +1,141 @@
+id,entity_key,kind,surface,source,pivot,summary,silver,lead2
+kz-01,place:toldkammeret,place,toldkammeret,1,1,1,1,1
+kz-01,org:skakklub,org,Klintø Skakklub,1,1,1,1,1
+kz-01,org:bageri,org,Sognehavn Bageri,1,1,0,0,0
+kz-01,place:aeblehaven,place,Æblehaven,1,1,0,0,0
+kz-01,person:kaj-nygaard,person,Kaj Nygaard,1,1,1,1,1
+kz-01,person:signe-brix,person,Signe Brix,1,1,1,1,1
+kz-01,person:petra-skov,person,Petra Skov,1,1,0,0,0
+kz-01,place:hjelmhoj,place,Hjelmhøj,1,1,1,1,0
+kz-01,kz-01:num:47,number,47,1,1,0,0,0
+kz-01,compound:klubmesterskab,compound,klubmesterskab,1,0,0,1,1
+kz-01,compound:tårnslutspil,compound,tårnslutspil,1,0,0,0,0
+kz-01,compound:æblemost,compound,æblemost,1,0,0,0,0
+kz-02,place:aeblehaven,place,Æblehaven,1,1,1,1,1
+kz-02,person:ida-fjaltring,person,Ida Fjaltring,1,1,1,1,1
+kz-02,place:broagerstien,place,Broagerstien,1,1,0,0,1
+kz-02,place:lynghuset,place,Lynghuset,1,1,1,1,0
+kz-02,place:saltore,place,Saltøre,1,1,0,0,1
+kz-02,kz-02:num:24,number,24,1,1,0,0,1
+kz-02,kz-02:num:86,number,86,1,1,0,0,1
+kz-03,org:messing,org,Hjelmhøj Messingorkester,1,1,1,1,1
+kz-03,place:mageodde,place,Mågeodde,1,1,1,1,1
+kz-03,person:bo-hjelm,person,Bo Hjelm,1,1,1,1,1
+kz-03,place:saltore,place,Saltøre,1,1,1,1,1
+kz-03,place:gradyb,place,Grådyb,1,1,1,1,1
+kz-03,place:klinto,place,Klintø,1,1,1,1,1
+kz-03,kz-03:money:40,money,40 kr,1,1,0,0,0
+kz-03,kz-03:money:0,money,0 kr,1,1,0,0,0
+kz-03,kz-03:num:18,number,18,1,1,0,0,1
+kz-03,kz-03:num:12,number,12,1,1,0,0,0
+kz-04,org:glas,org,Sandvig Glasværksted,1,1,0,0,1
+kz-04,org:kystlinje,org,Kystlinje,1,1,0,0,0
+kz-04,person:otto-kvist,person,Otto Kvist,1,1,1,1,1
+kz-04,kz-04:num:214,number,214,1,1,0,0,1
+kz-05,org:biavl,org,Tørveengen Biavl,1,0,0,0,1
+kz-05,person:ellen-krag,person,Ellen Krag,1,1,1,1,1
+kz-05,place:gradyb,place,Grådyb,1,1,1,1,0
+kz-05,kz-05:num:11,number,11,1,1,1,0,1
+kz-05,kz-05:num:14,number,14,1,1,1,1,1
+kz-06,org:filmlaug,org,Ravnskær Filmlaug,1,0,0,1,1
+kz-06,place:faergelejet,place,Færgelejet,1,1,0,0,0
+kz-06,person:viggo-tranberg,person,Viggo Tranberg,1,1,1,1,1
+kz-06,place:lynghuset,place,Lynghuset,1,1,0,0,1
+kz-06,place:gradyb,place,Grådyb,1,1,0,0,1
+kz-06,kz-06:year:1928,year,1928,1,1,1,1,1
+kz-06,kz-06:num:60,number,60,1,1,1,1,0
+kz-06,kz-06:num:8,number,8,1,1,0,0,0
+kz-07,org:laesehus,org,Sognehavn Læsehus,1,1,1,1,1
+kz-07,place:hjelmoerne,place,Hjelmøerne,1,1,1,1,1
+kz-07,person:laerke-holm,person,Lærke Holm,1,1,1,1,1
+kz-07,place:mageodde,place,Mågeodde,1,1,0,0,0
+kz-07,place:saltore,place,Saltøre,1,1,0,0,0
+kz-07,place:klinto,place,Klintø,1,1,0,0,0
+kz-07,kz-07:num:22,number,22,1,1,0,0,1
+kz-07,kz-07:num:80,number,80,1,1,0,0,1
+kz-07,compound:blæretang,compound,blæretang,1,0,0,0,0
+kz-08,place:faergelejet,place,Færgelejet,1,1,1,1,0
+kz-08,place:fogedtoften,place,Fogedtoften,1,1,1,1,1
+kz-08,person:troels-dam,person,Troels Dam,1,1,1,1,1
+kz-08,place:sognehavn,place,Sognehavn,1,1,1,1,0
+kz-08,place:hjelmhoj,place,Hjelmhøj,1,1,0,0,0
+kz-08,kz-08:year:1904,year,1904,1,1,1,0,1
+kz-09,org:laesehus,org,Sognehavn Læsehus,1,1,1,1,1
+kz-09,person:astrid-mose,person,Astrid Mose,1,1,1,1,0
+kz-09,place:gradyb,place,Grådyb,1,1,0,0,0
+kz-09,kz-09:num:40,number,40,1,1,0,0,1
+kz-09,kz-09:num:12,number,12,1,1,1,1,1
+kz-09,kz-09:num:3,number,3,1,0,0,0,0
+kz-10,org:lastcykel,org,Saltøre Lastcykel,1,0,1,1,1
+kz-10,org:bageri,org,Sognehavn Bageri,1,1,0,0,0
+kz-10,place:faergelejet,place,Færgelejet,1,1,0,0,1
+kz-10,person:esben-kilde,person,Esben Kilde,1,1,1,1,1
+kz-10,place:mageodde,place,Mågeodde,1,1,1,1,0
+kz-10,kz-10:money:200,money,200 kr,1,1,0,0,0
+kz-10,kz-10:num:27,number,27,1,1,1,1,1
+kz-10,kz-10:num:9,number,9,1,1,0,0,1
+kz-11,org:keramik,org,Fogedtoften Keramik,1,1,0,0,1
+kz-11,place:broagerstien,place,Broagerstien,1,1,0,0,0
+kz-11,person:katrine-bla,person,Katrine Blå,1,1,1,1,1
+kz-11,place:torveengen,place,Tørveengen,1,1,0,0,1
+kz-11,place:hjelmhoj,place,Hjelmhøj,1,1,0,0,0
+kz-11,kz-11:num:11,number,11,1,1,1,1,1
+kz-11,kz-11:num:140,number,140,1,1,1,1,1
+kz-11,kz-11:num:18,number,18,1,1,1,1,1
+kz-12,org:tang,org,Mågeodde Tangkompagni,1,0,0,0,1
+kz-12,org:bageri,org,Sognehavn Bageri,1,1,1,1,1
+kz-12,place:faergelejet,place,Færgelejet,1,1,0,0,1
+kz-12,person:niels-orum,person,Niels Ørum,1,1,1,1,1
+kz-12,place:hjelmhoj,place,Hjelmhøj,1,1,0,0,0
+kz-12,place:gradyb,place,Grådyb,1,1,0,0,0
+kz-12,kz-12:money:35,money,35 kr,1,1,1,1,1
+kz-12,kz-12:kg:40,measure,40 kg,1,1,1,1,1
+kz-12,compound:blæretang,compound,blæretang,1,0,0,0,1
+kz-13,org:museum,org,Vesterklit Vejrfløjemuseum,1,1,1,1,1
+kz-13,place:toldkammeret,place,toldkammeret,1,1,1,1,1
+kz-13,person:rune-holst,person,Rune Holst,1,1,1,1,1
+kz-13,place:hjelmhoj,place,Hjelmhøj,1,1,0,0,0
+kz-13,place:klinto,place,Klintø,1,1,1,1,1
+kz-13,kz-13:year:1881,year,1881,1,1,1,1,1
+kz-13,kz-13:num:63,number,63,1,1,1,0,1
+kz-13,compound:vejrfløje,compound,vejrfløje,1,0,0,1,1
+kz-14,org:laesehus,org,Sognehavn Læsehus,1,1,0,0,1
+kz-14,org:strikkelav,org,Klintø Strikkelav,1,0,0,1,1
+kz-14,person:petra-skov,person,Petra Skov,1,1,1,1,1
+kz-14,kz-14:num:400,number,400,1,1,1,1,1
+kz-15,person:ida-fjaltring,person,Ida Fjaltring,1,1,1,1,1
+kz-15,place:lynghuset,place,Lynghuset,1,1,0,0,0
+kz-15,place:hjelmhoj,place,Hjelmhøj,1,1,0,0,1
+kz-15,place:mageodde,place,Mågeodde,1,1,1,1,1
+kz-15,place:saltore,place,Saltøre,1,1,0,0,0
+kz-15,kz-15:year:2019,year,2019,1,1,1,1,1
+kz-15,kz-15:num:16,number,16,1,1,1,1,1
+kz-15,kz-15:num:31,number,31,1,1,1,1,1
+kz-16,place:hjelmoerne,place,Hjelmøerne,1,1,1,1,1
+kz-16,org:bageri,org,Sognehavn Bageri,1,1,1,1,1
+kz-16,place:faergelejet,place,Færgelejet,1,1,0,1,1
+kz-16,person:viggo-tranberg,person,Viggo Tranberg,1,1,1,1,1
+kz-16,org:tryk,org,Saltøre Tryk,1,0,0,0,1
+kz-16,place:hjelmhoj,place,Hjelmhøj,1,1,0,0,0
+kz-16,kz-16:money:15,money,15 kr,1,1,1,1,1
+kz-16,kz-16:num:300,number,300,1,1,1,1,1
+kz-16,compound:håndpresse,compound,håndpresse,1,0,0,0,1
+kz-17,org:messing,org,Hjelmhøj Messingorkester,1,1,0,0,0
+kz-17,org:faerge,org,Grådyb Færgeselskab,1,0,0,1,1
+kz-17,place:sognehavn,place,Sognehavn,1,1,0,0,1
+kz-17,place:hjelmhoj,place,Hjelmhøj,1,1,1,1,1
+kz-17,person:bo-hjelm,person,Bo Hjelm,1,1,0,0,0
+kz-17,place:saltore,place,Saltøre,1,1,0,0,0
+kz-17,kz-17:time:23:40,time,23:40,1,1,1,0,1
+kz-17,kz-17:time:22:10,time,22:10,1,1,1,1,1
+kz-17,kz-17:time:23:00,time,23:00,1,1,1,1,0
+kz-17,kz-17:money:10,money,10 kr,1,1,1,1,1
+kz-18,org:teater,org,Hjelmhøj Teaterlaug,1,0,0,1,1
+kz-18,org:keramik,org,Fogedtoften Keramik,1,1,0,0,1
+kz-18,work:toervestykket,work,Tørvestykket,1,1,1,1,1
+kz-18,person:katrine-bla,person,Katrine Blå,1,1,1,1,1
+kz-18,place:torveengen,place,Tørveengen,1,1,1,1,1
+kz-18,person:mira-holst,person,Mira Holst,1,1,0,0,0
+kz-18,kz-18:money:75,money,75 kr,1,1,1,1,0
+kz-18,kz-18:year:1922,year,1922,1,1,0,0,0
+kz-18,kz-18:num:7,number,7,1,0,0,0,1

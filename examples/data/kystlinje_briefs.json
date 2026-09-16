@@ -1,0 +1,404 @@
+{
+  "world": "Hjelmøerne / Kystlinje magazine (fiction)",
+  "splits": {
+    "train": [
+      "kz-01",
+      "kz-02",
+      "kz-03",
+      "kz-04",
+      "kz-05",
+      "kz-06",
+      "kz-07",
+      "kz-08",
+      "kz-09",
+      "kz-10",
+      "kz-11",
+      "kz-12"
+    ],
+    "validation": [
+      "kz-13",
+      "kz-14",
+      "kz-15"
+    ],
+    "test": [
+      "kz-16",
+      "kz-17",
+      "kz-18"
+    ]
+  },
+  "briefs": [
+    {
+      "id": "kz-01",
+      "title_da": "Signe Brix vinder klubmesterskabet i toldkammeret",
+      "title_en": "Signe Brix wins the championship in the customs house",
+      "themes": [
+        "chess",
+        "harbour"
+      ],
+      "planted": [
+        {
+          "code": "DROP-NUM",
+          "hop": "summary",
+          "source_span": "47",
+          "drifted_span": "",
+          "note": "The rook-endgame length never reaches the English summary."
+        },
+        {
+          "code": "DROP-PERSON",
+          "hop": "summary",
+          "source_span": "Petra Skov",
+          "drifted_span": "",
+          "note": "The chair is named only in the source and the pivot."
+        }
+      ]
+    },
+    {
+      "id": "kz-02",
+      "title_da": "Podedag i Æblehaven: 86 gamle sorter",
+      "title_en": "Grafting day at Æblehaven: 86 old varieties",
+      "themes": [
+        "orchard",
+        "weather"
+      ],
+      "planted": [
+        {
+          "code": "HYPERBOLE",
+          "hop": "summary",
+          "source_span": "86",
+          "drifted_span": "nearly a hundred",
+          "note": "Exact orchard count becomes a rounded English cliché."
+        },
+        {
+          "code": "DROP-NUM",
+          "hop": "summary",
+          "source_span": "24",
+          "drifted_span": "",
+          "note": "Volunteer headcount is dropped in the summary hop."
+        }
+      ]
+    },
+    {
+      "id": "kz-03",
+      "title_da": "Hjelmhøj Messingorkester sejler til tre øer",
+      "title_en": "Hjelmhøj brass band sails to three islands",
+      "themes": [
+        "music",
+        "ferry"
+      ],
+      "planted": [
+        {
+          "code": "HYPERBOLE",
+          "hop": "summary",
+          "source_span": "18",
+          "drifted_span": "about twenty",
+          "note": "Headcount is rounded up in the English summary."
+        },
+        {
+          "code": "DROP-MONEY",
+          "hop": "summary",
+          "source_span": "40 kr.",
+          "drifted_span": "",
+          "note": "Ticket price never leaves the source/pivot pair."
+        }
+      ]
+    },
+    {
+      "id": "kz-04",
+      "title_da": "Otto Kvist sætter farve i Sandvig-vinduet",
+      "title_en": "Otto Kvist puts colour back in the Sandvig window",
+      "themes": [
+        "craft",
+        "church"
+      ],
+      "planted": [
+        {
+          "code": "DROP-ORG",
+          "hop": "summary",
+          "source_span": "Sandvig Glasværksted",
+          "drifted_span": "",
+          "note": "The workshop name is dropped once the summary hop starts."
+        },
+        {
+          "code": "DROP-NUM",
+          "hop": "summary",
+          "source_span": "214",
+          "drifted_span": "",
+          "note": "The glass-piece count is too specific for the English summary."
+        }
+      ]
+    },
+    {
+      "id": "kz-05",
+      "title_da": "Vintertælling: 11 af 14 stader lever",
+      "title_en": "Winter count: 11 of 14 hives still live",
+      "themes": [
+        "bees",
+        "weather"
+      ],
+      "planted": [
+        {
+          "code": "NUM-DRIFT",
+          "hop": "silver",
+          "source_span": "11",
+          "drifted_span": "12",
+          "note": "Back-translation bumps the survivor count by one."
+        }
+      ]
+    },
+    {
+      "id": "kz-06",
+      "title_da": "Ravnskær viser ni stumfilm på håndsving",
+      "title_en": "Ravnskær shows nine silent films on a hand crank",
+      "themes": [
+        "film",
+        "archive"
+      ],
+      "planted": [
+        {
+          "code": "DROP-PLACE",
+          "hop": "summary",
+          "source_span": "Færgelejet",
+          "drifted_span": "",
+          "note": "The digitisation target disappears in the summary."
+        }
+      ]
+    },
+    {
+      "id": "kz-07",
+      "title_da": "Lærke Holm har 22 timer ø-mål på bånd",
+      "title_en": "Lærke Holm has 22 hours of island speech on tape",
+      "themes": [
+        "dialect",
+        "archive"
+      ],
+      "planted": [
+        {
+          "code": "NAME-STUCK",
+          "hop": "pivot",
+          "source_span": "Lærke Holm",
+          "drifted_span": "Larke Holm",
+          "note": "The æ is flattened in the English pivot and never restored."
+        },
+        {
+          "code": "NUM-DRIFT",
+          "hop": "summary",
+          "source_span": "22",
+          "drifted_span": "20",
+          "note": "Hour count is rounded down and then frozen in the silver label."
+        },
+        {
+          "code": "DROP-COMPOUND",
+          "hop": "summary",
+          "source_span": "blæretang",
+          "drifted_span": "",
+          "note": "The dialect-shifting seaweed word is the point of the piece."
+        }
+      ]
+    },
+    {
+      "id": "kz-08",
+      "title_da": "Slusen fra 1904 lukker i seks uger",
+      "title_en": "The 1904 lock closes for six weeks",
+      "themes": [
+        "infrastructure",
+        "harbour"
+      ],
+      "planted": [
+        {
+          "code": "YEAR-SHIFT",
+          "hop": "silver",
+          "source_span": "1904",
+          "drifted_span": "1914",
+          "note": "A single digit flips in the back-translation."
+        }
+      ]
+    },
+    {
+      "id": "kz-09",
+      "title_da": "Nattelæsning i Læsehuset: 40 vågne, 12 timer",
+      "title_en": "Overnight reading at the reading house: 40 awake, 12 hours",
+      "themes": [
+        "books",
+        "night"
+      ],
+      "planted": [
+        {
+          "code": "DROP-NUM",
+          "hop": "summary",
+          "source_span": "3",
+          "drifted_span": "",
+          "note": "The sleeping children leave the summary."
+        }
+      ]
+    },
+    {
+      "id": "kz-10",
+      "title_da": "Saltøre Lastcykel: 27 medlemmer, 9 ladcykler",
+      "title_en": "Saltøre cargo bikes: 27 members, 9 bikes",
+      "themes": [
+        "bikes",
+        "ferry"
+      ],
+      "planted": [
+        {
+          "code": "DROP-NUM",
+          "hop": "summary",
+          "source_span": "9",
+          "drifted_span": "",
+          "note": "The bike count is the second number and is the one that drops."
+        },
+        {
+          "code": "DROP-MONEY",
+          "hop": "summary",
+          "source_span": "200 kr.",
+          "drifted_span": "",
+          "note": "Annual dues disappear after the pivot."
+        }
+      ]
+    },
+    {
+      "id": "kz-11",
+      "title_da": "Fogedtoften fyrer ovnen første gang i 11 år",
+      "title_en": "Fogedtoften fires the kiln for the first time in 11 years",
+      "themes": [
+        "pottery",
+        "fire"
+      ],
+      "planted": [
+        {
+          "code": "DROP-PLACE",
+          "hop": "summary",
+          "source_span": "Tørveengen",
+          "drifted_span": "",
+          "note": "The alder source is cut from the summary."
+        }
+      ]
+    },
+    {
+      "id": "kz-12",
+      "title_da": "Mågeodde Tangkompagni tørrer 40 kg blæretang",
+      "title_en": "Mågeodde seaweed company dries 40 kg of bladderwrack",
+      "themes": [
+        "food",
+        "seaweed"
+      ],
+      "planted": [
+        {
+          "code": "DROP-COMPOUND",
+          "hop": "summary",
+          "source_span": "blæretang",
+          "drifted_span": "seaweed / tang",
+          "note": "The species name collapses to the generic weed word."
+        }
+      ]
+    },
+    {
+      "id": "kz-13",
+      "title_da": "Vesterklit tæller 63 vejrfløje",
+      "title_en": "Vesterklit counts 63 weather vanes",
+      "themes": [
+        "museum",
+        "wind"
+      ],
+      "planted": [
+        {
+          "code": "NUM-DRIFT",
+          "hop": "silver",
+          "source_span": "63",
+          "drifted_span": "60",
+          "note": "The vane count is rounded to a tidy ten in Danish."
+        }
+      ]
+    },
+    {
+      "id": "kz-14",
+      "title_da": "Klintø Strikkelav digitaliserer 400 opskrifter",
+      "title_en": "Klintø knitting guild digitises 400 patterns",
+      "themes": [
+        "textiles",
+        "archive"
+      ],
+      "planted": [
+        {
+          "code": "DROP-COMPOUND",
+          "hop": "silver",
+          "source_span": "strikkeopskrift",
+          "drifted_span": "opskrift",
+          "note": "The compound is simplified after the round trip."
+        }
+      ]
+    },
+    {
+      "id": "kz-15",
+      "title_da": "16 elever fandt 31 arter i tidevandsbassinet",
+      "title_en": "16 pupils found 31 species in the tide pool",
+      "themes": [
+        "school",
+        "biology"
+      ],
+      "planted": [
+        {
+          "code": "DROP-PLACE",
+          "hop": "summary",
+          "source_span": "Lynghuset",
+          "drifted_span": "",
+          "note": "The jam-jar classroom is cut."
+        }
+      ]
+    },
+    {
+      "id": "kz-16",
+      "title_da": "Saltøre Tryk kører den sidste håndpresse",
+      "title_en": "Saltøre Press runs the last letterpress",
+      "themes": [
+        "print",
+        "harbour"
+      ],
+      "planted": [
+        {
+          "code": "TERM-DRIFT",
+          "hop": "silver",
+          "source_span": "håndpresse",
+          "drifted_span": "trykpresse",
+          "note": "Letterpress comes back as a generic printing press."
+        }
+      ]
+    },
+    {
+      "id": "kz-17",
+      "title_da": "Nattens færge rykker til kl. 23:40",
+      "title_en": "The night ferry moves to 23:40",
+      "themes": [
+        "ferry",
+        "night"
+      ],
+      "planted": [
+        {
+          "code": "TIME-SHIFT",
+          "hop": "silver",
+          "source_span": "23:40",
+          "drifted_span": "23:30",
+          "note": "The new departure slips ten minutes in the Danish silver label."
+        }
+      ]
+    },
+    {
+      "id": "kz-18",
+      "title_da": "Teaterlauget spiller Tørvestykket syv gange",
+      "title_en": "The theatre guild plays The Peat Play seven times",
+      "themes": [
+        "theatre",
+        "peat"
+      ],
+      "planted": [
+        {
+          "code": "NUM-DRIFT",
+          "hop": "silver",
+          "source_span": "7",
+          "drifted_span": "otte",
+          "note": "Seven performances become eight after the round trip."
+        }
+      ]
+    }
+  ]
+}
