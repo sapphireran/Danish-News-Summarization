@@ -1,0 +1,30 @@
+# Local model weights and CTranslate2 conversions
+models/
+*_model/
+mt5-summarize-*/
+large_model/
+small_model/
+
+# Generated pipeline artifacts (keep examples/sample_data)
+*.csv
+!examples/sample_data/*.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Notebooks and editor
+.ipynb_checkpoints/
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
